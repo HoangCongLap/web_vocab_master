@@ -8,6 +8,9 @@ import Signup from "./component/Signup";
 import SplitWithImage from "./component/SplitWithImage";
 import ThreeTierPricing from "./component/ThreeTierPricing";
 import LearnNewWords from "./component/LearnNewWords";
+import FlipItemShadow from "./component/FlipItemShadow";
+import StartLearn from "./component/StartLearn";
+import Lessons from "./component/Lessons";
 const router = createBrowserRouter([
   {
     path: "learn",
@@ -40,6 +43,20 @@ const router = createBrowserRouter([
   {
     path: "learnnewwords",
     element: <LearnNewWords />,
+  },
+  //ảnh khi xuất hiện từ để học
+  {
+    path: "flip",
+    element: <FlipItemShadow />,
+  },
+  // chia màn hình thành 3 phần
+  {
+    path: "start",
+    element: <StartLearn />,
+  },
+  {
+    path: "lessons",
+    element: <Lessons />,
   },
 ]);
 function App() {

@@ -34,6 +34,7 @@ import { IconType } from "react-icons";
 // import ThreeTierPricing from "./ThreeTierPricing";
 import Footer from "./Footer";
 import { useNavigate } from "react-router";
+import Lessons from "./Lessons";
 
 interface LinkItemProps {
   name: string;
@@ -218,7 +219,8 @@ const Learn = () => {
   const { onOpen, onClose } = useDisclosure();
 
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="100vh" bg={"while"}>
+      {/* <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}></Box> */}
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -227,8 +229,10 @@ const Learn = () => {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {/* Content */}
         {/* <ThreeTierPricing /> */}
-        <Footer />
+        {/* <LearnNewWords /> */}
+        <Lessons />
       </Box>
+      <Footer />
     </Box>
   );
 };
