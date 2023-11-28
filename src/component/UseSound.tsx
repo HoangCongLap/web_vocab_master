@@ -1,22 +1,26 @@
-import { useSound } from "react-use-sound";
-import PlayButton from "./PlayButton"; // Assuming PlayButton is defined somewhere
+import React from "react";
+import useSound from "use-sound";
+import boopSfx from "../voice/boop.mp3";
+import { Button } from "@chakra-ui/react";
+const UseSound = () => {
+  // const [playbackRate, setPlaybackRate] = React.useState(0.75);
 
-const soundUrl = "/sounds/guitar-loop.mp3";
+  const [play] = useSound(boopSfx, {
+    // playbackRate,
+    interrupt: true,
+  });
 
-const UseSound: React.FC = () => {
-  const [play, { stop, isPlaying }] = useSound(soundUrl);
+  const handleClick = () => {
+    // setPlaybackRate(playbackRate + 0.1);
+    play();
+  };
 
   return (
-    <PlayButton
-      active={isPlaying}
-      size={60}
-      iconColor="var(--color-background)"
-      idleBackgroundColor="var(--color-text)"
-      activeBackgroundColor="var(--color-primary)"
-      play={play}
-      stop={stop}
-    />
+    <Button onClick={handleClick}>
+      <span role="img" aria-label="Person with lines near mouth">
+        🗣
+      </span>
+    </Button>
   );
 };
-
 export default UseSound;

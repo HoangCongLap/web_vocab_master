@@ -2,6 +2,7 @@
 import React from "react";
 import FlipItemShadow from "./FlipItemShadow";
 import { Button, Container, VStack } from "@chakra-ui/react";
+import UseSound from "./UseSound";
 const options = [
   {
     id: 344,
@@ -37,6 +38,7 @@ const StartLearn: React.FC = () => {
         <VStack mt={150}>
           <FlipItemShadow />
           <Button bg="red">Click</Button>
+          <UseSound />
         </VStack>
       </VStack>
     </Container>

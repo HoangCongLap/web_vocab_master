@@ -11,6 +11,7 @@ import LearnNewWords from "./component/LearnNewWords";
 import FlipItemShadow from "./component/FlipItemShadow";
 import StartLearn from "./component/StartLearn";
 import Lessons from "./component/Lessons";
+import UseSound from "./component/UseSound";
 const router = createBrowserRouter([
   {
     path: "learn",
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
   {
     path: "lessons",
     element: <Lessons />,
+  },
+  {
+    path: "so",
+    element: <UseSound />,
   },
 ]);
 function App() {
