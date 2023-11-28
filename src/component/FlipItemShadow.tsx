@@ -1,6 +1,7 @@
 // lật bóng của từ vựng ./learn
 import React, { useState } from "react";
 import { Vocabulary } from "../data/Vocabulary";
+import Slow from "./Sound/Slow";
 interface Props {
   vocabulary: Vocabulary;
 }

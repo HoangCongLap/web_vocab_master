@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Container,
-  Heading,
-  Stack,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Container, Heading, Stack, Text, VStack } from "@chakra-ui/react";
 import LearnNewWords from "./LearnNewWords";
 
 const Lessons: React.FC = () => {

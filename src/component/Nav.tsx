@@ -1,5 +1,5 @@
 "use client";
-import { Box, Flex, Button, Stack, useColorMode, Text } from "@chakra-ui/react";
+import { Box, Flex, Button, Stack, useColorMode } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 import Logo from "./Logo";
 

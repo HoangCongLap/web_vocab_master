@@ -6,7 +6,6 @@ import {
   Avatar,
   HStack,
   IconButton,
-  Button,
   Menu,
   MenuButton,
   MenuList,
@@ -18,7 +17,7 @@ import {
   VStack,
   Text,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { FiBell, FiChevronDown } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import Logo from "../Logo";

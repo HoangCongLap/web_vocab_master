@@ -1,10 +1,11 @@
 // bắt đầu vào học từ vựng
 import React, { useState } from "react";
 import FlipItemShadow from "../component/FlipItemShadow";
-import { Button, Container, VStack } from "@chakra-ui/react";
-import UseSound from "../component/UseSound";
+import { Button, Container, HStack, Stack, VStack } from "@chakra-ui/react";
+import UseSound from "../component/Sound/UseSound";
 import { Vocabulary } from "../data/Vocabulary";
 import { toast } from "react-toastify";
+import Slow from "../component/Sound/Slow";
 
 const vocabularies: Vocabulary[] = [
   {
@@ -47,11 +48,15 @@ const Learning: React.FC = () => {
     <Container maxW="md" bg="gray.100" height="calc(100vh)" color="white">
       <VStack>
         <VStack mt={150}>
+          <HStack>
+            <UseSound />
+            <Slow />
+          </HStack>
           <FlipItemShadow vocabulary={vocabularies[index]} />
           <Button bg="red" onClick={handleOnClick}>
             Click
           </Button>
-          <UseSound />
+          {/* đọc từ vựng */}
         </VStack>
       </VStack>
     </Container>

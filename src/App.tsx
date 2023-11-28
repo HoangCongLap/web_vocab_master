@@ -8,13 +8,12 @@ import Signup from "./pages/Signup";
 import SplitWithImage from "./component/SplitWithImage";
 import ThreeTierPricing from "./component/ThreeTierPricing";
 import LearnNewWords from "./component/LearnNewWords";
-import FlipItemShadow from "./component/FlipItemShadow";
 import Learning from "./pages/Learning";
 import Lessons from "./component/Lessons";
-import UseSound from "./component/UseSound";
+import UseSound from "./component/Sound/UseSound";
 import Layout from "./component/Layout";
 import VocabLesson from "./pages/VocabLesson";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 const router = createBrowserRouter([
   {
     path: "learn",

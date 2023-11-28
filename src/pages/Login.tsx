@@ -12,7 +12,7 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  VStack,
+  // VStack,
 } from "@chakra-ui/react";
 import Nav from "../component/Nav";
 import SocialMediaButtons from "../component/SocialMediaButtons";
