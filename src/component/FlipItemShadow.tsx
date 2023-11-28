@@ -1,10 +1,11 @@
 // lật bóng của từ vựng ./learn
 import React, { useState } from "react";
-interface YourComponentProps {
-  // Define any props if needed
+import { Vocabulary } from "../data/Vocabulary";
+interface Props {
+  vocabulary: Vocabulary;
 }
 
-const FlipItemShadow: React.FC<YourComponentProps> = () => {
+const FlipItemShadow = ({ vocabulary }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleToggle = () => {
@@ -56,8 +57,8 @@ const FlipItemShadow: React.FC<YourComponentProps> = () => {
 
   return (
     <div style={cardStyle} onClick={handleToggle}>
-      <div style={frontStyle}>This is the hidden data!!</div>
-      <div style={backStyle}>Click me!</div>
+      <div style={frontStyle}>{vocabulary.trans}</div>
+      <div style={backStyle}>{vocabulary.content}</div>
     </div>
   );
 };

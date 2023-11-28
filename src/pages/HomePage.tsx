@@ -3,7 +3,6 @@
 import {
   Box,
   Heading,
-  Container,
   Text,
   Button,
   Stack,
@@ -12,7 +11,7 @@ import {
   createIcon,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
-import Nav from "./Nav";
+import Nav from "../component/Nav";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -21,64 +20,58 @@ export default function HomePage() {
   };
   return (
     <>
-      <Container maxW={"none"}>
-        <Nav />
-        <Stack
-          as={Box}
-          textAlign={"center"}
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}
+      <Nav />
+      <Stack
+        as={Box}
+        textAlign={"center"}
+        spacing={{ base: 8, md: 14 }}
+        py={{ base: 20, md: 36 }}
+      >
+        <Heading
+          fontWeight={600}
+          fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+          lineHeight={"110%"}
         >
-          <Heading
-            fontWeight={600}
-            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-            lineHeight={"110%"}
-          >
-            Never give up <br />
-            <Text as={"span"} color={"green.400"}>
-              learning English
-            </Text>
-          </Heading>
-          <Text color={"gray.500"} fontSize={20}>
-            Ghi nhớ 1000 từ vựng trong 1 tháng
-            <br /> Học đúng thời điểm vàng giúp bạn học ít vẫn dễ dàng nhớ ngàn
-            từ
+          Never give up <br />
+          <Text as={"span"} color={"green.400"}>
+            learning English
           </Text>
-          <Stack
-            direction={"column"}
-            spacing={3}
-            align={"center"}
-            alignSelf={"center"}
-            position={"relative"}
+        </Heading>
+        <Text color={"gray.500"} fontSize={20}>
+          Ghi nhớ 1000 từ vựng trong 1 tháng
+          <br /> Học đúng thời điểm vàng giúp bạn học ít vẫn dễ dàng nhớ ngàn từ
+        </Text>
+        <Stack
+          direction={"column"}
+          spacing={3}
+          align={"center"}
+          alignSelf={"center"}
+          position={"relative"}
+        >
+          <Button
+            colorScheme={"green"}
+            bg={"green.400"}
+            rounded={"full"}
+            px={6}
+            _hover={{
+              bg: "green.500",
+            }}
+            onClick={handleOnclickGetStarted}
           >
-            <Button
-              colorScheme={"green"}
-              bg={"green.400"}
-              rounded={"full"}
-              px={6}
-              _hover={{
-                bg: "green.500",
-              }}
-              onClick={handleOnclickGetStarted}
-            >
-              Get Started
-            </Button>
-            <Button variant={"link"} colorScheme={"blue"} size={"sm"}>
-              Learn more
-            </Button>
-            <Box>
-              <Icon
-                as={Arrow}
-                color={useColorModeValue("gray.800", "gray.300")}
-                w={71}
-                position={"absolute"}
-                right={-71}
-                top={"10px"}
-              />
-            </Box>
-          </Stack>
+            Bắt đầu
+          </Button>
+          <Box>
+            <Icon
+              as={Arrow}
+              color={useColorModeValue("gray.800", "gray.300")}
+              w={71}
+              position={"absolute"}
+              right={-71}
+              top={"10px"}
+            />
+          </Box>
         </Stack>
-      </Container>
+      </Stack>
     </>
   );
 }

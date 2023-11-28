@@ -1,24 +1,35 @@
 import { ChakraProvider } from "@chakra-ui/react";
-import Learn from "./component/Learn";
+import Learn from "./pages/Learn";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./component/HomePage";
+import HomePage from "./pages/HomePage";
 import Nav from "./component/Nav";
-import Login from "./component/Login";
-import Signup from "./component/Signup";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import SplitWithImage from "./component/SplitWithImage";
 import ThreeTierPricing from "./component/ThreeTierPricing";
 import LearnNewWords from "./component/LearnNewWords";
 import FlipItemShadow from "./component/FlipItemShadow";
-import StartLearn from "./component/StartLearn";
+import Learning from "./pages/Learning";
 import Lessons from "./component/Lessons";
 import UseSound from "./component/UseSound";
+import Layout from "./component/Layout";
+import VocabLesson from "./pages/VocabLesson";
+import { toast, ToastContainer } from "react-toastify";
 const router = createBrowserRouter([
   {
     path: "learn",
     element: <Learn />,
   },
   {
-    path: "home",
+    path: "learnvocab",
+    element: (
+      <Layout>
+        <VocabLesson />
+      </Layout>
+    ),
+  },
+  {
+    path: "/",
     element: <HomePage />,
   },
   {
@@ -46,14 +57,14 @@ const router = createBrowserRouter([
     element: <LearnNewWords />,
   },
   //ảnh khi xuất hiện từ để học
-  {
-    path: "flip",
-    element: <FlipItemShadow />,
-  },
+  // {
+  //   path: "flip",
+  //   element: <FlipItemShadow />,
+  // },
   // chia màn hình thành 3 phần
   {
     path: "start",
-    element: <StartLearn />,
+    element: <Learning />,
   },
   {
     path: "lessons",
@@ -68,6 +79,7 @@ function App() {
   return (
     <ChakraProvider>
       <RouterProvider router={router} />
+      <ToastContainer />
     </ChakraProvider>
   );
 }

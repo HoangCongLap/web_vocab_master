@@ -32,9 +32,9 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 // import ThreeTierPricing from "./ThreeTierPricing";
-import Footer from "./Footer";
+import Footer from "../component/Footer";
 import { useNavigate } from "react-router";
-import Lessons from "./Lessons";
+import Lessons from "../component/Lessons";
 
 interface LinkItemProps {
   name: string;

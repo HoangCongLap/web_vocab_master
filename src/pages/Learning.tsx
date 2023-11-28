@@ -1,15 +1,18 @@
 // bắt đầu vào học từ vựng
-import React from "react";
-import FlipItemShadow from "./FlipItemShadow";
+import React, { useState } from "react";
+import FlipItemShadow from "../component/FlipItemShadow";
 import { Button, Container, VStack } from "@chakra-ui/react";
-import UseSound from "./UseSound";
-const options = [
+import UseSound from "../component/UseSound";
+import { Vocabulary } from "../data/Vocabulary";
+import { toast } from "react-toastify";
+
+const vocabularies: Vocabulary[] = [
   {
     id: 344,
     content: "student",
     phonetic: "/ˈstuːdnt/",
     position: "n",
-    lesson_id: "1",
+    lesson_id: 1,
     course_id: 1,
     trans: "Học sinh, sinh viên",
     trans_hint: "Em gái của anh ấy là một sinh viên ở trường đại học đó.",
@@ -31,13 +34,23 @@ const options = [
     picture: "https://pi.nhalq.dev/kimochi/image/348.png",
   },
 ];
-const StartLearn: React.FC = () => {
+const Learning: React.FC = () => {
+  const [index, setIndex] = useState(0);
+  const handleOnClick = () => {
+    if (index == vocabularies.length - 1) {
+      toast("Wow so easy!");
+      return;
+    }
+    setIndex(index + 1);
+  };
   return (
     <Container maxW="md" bg="gray.100" height="calc(100vh)" color="white">
       <VStack>
         <VStack mt={150}>
-          <FlipItemShadow />
-          <Button bg="red">Click</Button>
+          <FlipItemShadow vocabulary={vocabularies[index]} />
+          <Button bg="red" onClick={handleOnClick}>
+            Click
+          </Button>
           <UseSound />
         </VStack>
       </VStack>
@@ -45,4 +58,4 @@ const StartLearn: React.FC = () => {
   );
 };
 
-export default StartLearn;
+export default Learning;

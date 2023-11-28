@@ -1,22 +1,15 @@
 "use client";
-import logo from "../img/logo.svg";
-import { Box, Flex, Button, Stack, useColorMode } from "@chakra-ui/react";
+import { Box, Flex, Button, Stack, useColorMode, Text } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import Logo from "./Logo";
 
 export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <Box
-        backgroundImage={
-          " https://img4.thuthuatphanmem.vn/uploads/2020/12/25/photo-blue-banner_060833022.jpg"
-        }
-        px={4}
-      >
+      <Box sx={{ backgroundColor: "green.400" }} px={4} minWidth="100%">
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <img src={logo} />
-          {/* <Box>Logo</Box> */}
-
+          <Logo />
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
               <Button onClick={toggleColorMode}>

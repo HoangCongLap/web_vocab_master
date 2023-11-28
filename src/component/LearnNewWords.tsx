@@ -162,7 +162,13 @@ const PackageTier = ({
   const bgColorDark = checked ? "purple.400" : "gray.300";
 
   return (
-    <Stack borderRadius={20} background="gray.400" p={3} alignItems="center">
+    <Stack
+      borderRadius={20}
+      background="gray.400"
+      p={3}
+      alignItems="center"
+      boxShadow="lg"
+    >
       <Heading size={"lg"}>{titleEN}</Heading>
       <Heading size={"xs"}>{titleVN}</Heading>
 
