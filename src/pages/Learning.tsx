@@ -1,12 +1,12 @@
 // bắt đầu vào học từ vựng
 import React, { useState } from "react";
 import FlipItemShadow from "../component/FlipItemShadow";
-import { Button, Container, HStack, Stack, VStack } from "@chakra-ui/react";
+import { Button, Container, HStack, VStack } from "@chakra-ui/react";
 import UseSound from "../component/Sound/UseSound";
 import { Vocabulary } from "../data/Vocabulary";
 import { toast } from "react-toastify";
 import Slow from "../component/Sound/Slow";
-
+import ProgressBar from "../component/Progress/ProgressBar";
 const vocabularies: Vocabulary[] = [
   {
     id: 344,
@@ -45,17 +45,39 @@ const Learning: React.FC = () => {
     setIndex(index + 1);
   };
   return (
-    <Container maxW="md" bg="gray.100" height="calc(100vh)" color="white">
+    <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
       <VStack>
-        <VStack mt={150}>
-          <HStack>
+        <ProgressBar />
+        <VStack>
+          <HStack marginTop={"50px"}>
             <UseSound />
             <Slow />
           </HStack>
           <FlipItemShadow vocabulary={vocabularies[index]} />
-          <Button bg="red" onClick={handleOnClick}>
-            Click
+          <Button
+            bg="#58bd2f"
+            fontSize={"20px"}
+            height={"50px"}
+            width={"250px"}
+            color={"#fff"}
+            borderRadius={"50px"}
+            marginTop={"100px"}
+            onClick={handleOnClick}
+          >
+            Tiếp Tục
           </Button>
+          <p
+            style={{
+              fontWeight: "bold",
+              fontSize: "18px",
+              color: "black",
+              cursor: "pointer",
+              textDecoration: "underline",
+              margin: "1rem 0px",
+            }}
+          >
+            Mình đã thuộc từ này
+          </p>
           {/* đọc từ vựng */}
         </VStack>
       </VStack>

@@ -1,7 +1,6 @@
 // lật bóng của từ vựng ./learn
 import React, { useState } from "react";
 import { Vocabulary } from "../data/Vocabulary";
-import Slow from "./Sound/Slow";
 interface Props {
   vocabulary: Vocabulary;
 }
@@ -39,6 +38,8 @@ const FlipItemShadow = ({ vocabulary }: Props) => {
     background: "white",
     color: "black",
     borderRadius: "10px",
+    textAlign: "center",
+    flexDirection: "column",
   };
 
   const backStyle: React.CSSProperties = {
@@ -54,12 +55,60 @@ const FlipItemShadow = ({ vocabulary }: Props) => {
     color: "black",
     borderRadius: "10px",
     transform: isFlipped ? "rotateY(180deg)" : "backStyle",
+    textAlign: "center",
+    flexDirection: "column",
   };
 
   return (
     <div style={cardStyle} onClick={handleToggle}>
-      <div style={frontStyle}>{vocabulary.trans}</div>
-      <div style={backStyle}>{vocabulary.content}</div>
+      <div style={backStyle}>
+        <p
+          style={{
+            fontWeight: "bold",
+            fontStyle: "normal",
+            fontSize: "24px",
+            lineHeight: "45px",
+          }}
+        >
+          {vocabulary.content}
+        </p>
+        <p
+          style={{
+            fontStyle: "normal",
+            fontSize: "15px",
+            lineHeight: "45px",
+            marginTop: "18px",
+          }}
+        >
+          {vocabulary.phonetic}
+        </p>
+        <p
+          style={{
+            fontWeight: "bold",
+            fontStyle: "normal",
+            fontSize: "15px",
+            lineHeight: "45px",
+            marginTop: "18px",
+          }}
+        >
+          {vocabulary.trans}
+        </p>
+        <p style={{ textAlign: "center" }}></p>
+      </div>
+      <div style={frontStyle}>
+        {" "}
+        <p
+          style={{
+            fontStyle: "normal",
+            fontSize: "14px",
+            lineHeight: "30px",
+            marginTop: "200px",
+            marginBottom: "1rem",
+          }}
+        >
+          {vocabulary.en_hint}
+        </p>
+      </div>
     </div>
   );
 };

@@ -153,7 +153,7 @@ const PackageTier = ({
 }: PackageTierProps) => {
   const navigate = useNavigate();
   const handleOnclickGetStartLearn = () => {
-    navigate("/start");
+    navigate("/learning");
   };
   const colorTextLight = checked ? "white" : "purple.600";
   const bgColorLight = checked ? "purple.400" : "gray.300";

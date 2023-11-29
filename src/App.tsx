@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Progress } from "@chakra-ui/react";
 import Learn from "./pages/Learn";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
@@ -14,11 +14,8 @@ import UseSound from "./component/Sound/UseSound";
 import Layout from "./component/Layout";
 import VocabLesson from "./pages/VocabLesson";
 import { ToastContainer } from "react-toastify";
+import ProgressBar from "./component/Progress/ProgressBar";
 const router = createBrowserRouter([
-  {
-    path: "learn",
-    element: <Learn />,
-  },
   {
     path: "learnvocab",
     element: (
@@ -62,7 +59,7 @@ const router = createBrowserRouter([
   // },
   // chia màn hình thành 3 phần
   {
-    path: "start",
+    path: "learning",
     element: <Learning />,
   },
   {
@@ -72,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: "so",
     element: <UseSound />,
+  },
+  {
+    path: "progess",
+    element: <ProgressBar />,
   },
 ]);
 function App() {
