@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import Nav from "../component/Nav";
-import ProgressBar from "../component/Progress/ProgressBar";
 
 export default function HomePage() {
   const navigate = useNavigate();

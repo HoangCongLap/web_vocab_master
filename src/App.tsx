@@ -1,5 +1,4 @@
-import { ChakraProvider, Progress } from "@chakra-ui/react";
-import Learn from "./pages/Learn";
+import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Nav from "./component/Nav";

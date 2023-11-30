@@ -17,8 +17,8 @@ const UseSound = () => {
   };
 
   return (
-    <Button onClick={handleClick}>
-      <Icon fontSize={25} as={IoVolumeHighSharp} />
+    <Button onClick={handleClick} borderRadius={"50px"} bg={"white"}>
+      <Icon color={"Gold"} fontSize={25} as={IoVolumeHighSharp} />
     </Button>
   );
 };

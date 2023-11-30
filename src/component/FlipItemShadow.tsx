@@ -3,15 +3,25 @@ import React, { useState } from "react";
 import { Vocabulary } from "../data/Vocabulary";
 interface Props {
   vocabulary: Vocabulary;
+  onIsClicked: (value: number) => void;
 }
 
-const FlipItemShadow = ({ vocabulary }: Props) => {
+const FlipItemShadow = ({ vocabulary, onIsClicked }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
+  const [isCliked, setIsCliked] = useState(false);
 
   const handleToggle = () => {
     setIsFlipped(!isFlipped);
+    setIsCliked(!isCliked);
+    onIsClicked(-1);
   };
-
+  console.log(isFlipped);
+  setTimeout(() => {
+    if (isFlipped == false && isCliked == false) {
+      setIsFlipped(true);
+      onIsClicked(-1);
+    }
+  }, 8000);
   const cardStyle: React.CSSProperties = {
     width: "200px",
     height: "300px",
@@ -58,10 +68,26 @@ const FlipItemShadow = ({ vocabulary }: Props) => {
     textAlign: "center",
     flexDirection: "column",
   };
-
+  const imgaPointer = (
+    <div
+      style={{
+        position: "absolute",
+        marginLeft: "180px",
+        width: "33px",
+        marginTop: "300px",
+        zIndex: 2,
+      }}
+    >
+      <img
+        src="https://learn.mochidemy.com/image/aa189bbb8bf83e974d5b39e2934ff2eb.png"
+        alt="Pointer"
+      ></img>
+    </div>
+  );
   return (
     <div style={cardStyle} onClick={handleToggle}>
       <div style={backStyle}>
+        {imgaPointer}
         <p
           style={{
             fontWeight: "bold",
@@ -96,7 +122,7 @@ const FlipItemShadow = ({ vocabulary }: Props) => {
         <p style={{ textAlign: "center" }}></p>
       </div>
       <div style={frontStyle}>
-        {" "}
+        {imgaPointer}
         <p
           style={{
             fontStyle: "normal",

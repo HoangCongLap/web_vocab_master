@@ -34,15 +34,36 @@ const vocabularies: Vocabulary[] = [
     audio: "https://pi.nhalq.dev/kimochi/audio/348.mp3",
     picture: "https://pi.nhalq.dev/kimochi/image/348.png",
   },
+  {
+    id: 349,
+    content: "exaination",
+    phonetic: "/ɪɡˌæmɪˈneɪʃn/",
+    position: "n",
+    lesson_id: 3,
+    course_id: 1,
+    trans: "Kiểm t thi",
+    trans_hint: "tham gia một kỳ thi đầu vào.",
+    en_hint: "He is goinan entrance examination.",
+    audio: "https://pi.nhalq.dev/kimochi/audio/348.mp3",
+    picture: "https://pi.nhalq.dev/kimochi/image/348.png",
+  },
 ];
 const Learning: React.FC = () => {
   const [index, setIndex] = useState(0);
+  const [onIsClicked, setonIsClicked] = useState<number | null>(null);
+
+  const handleIsClicked = (value: number) => {
+    setonIsClicked(value);
+  };
+
   const handleOnClick = () => {
-    if (index == vocabularies.length - 1) {
-      toast("Wow so easy!");
-      return;
+    if (onIsClicked == -1) {
+      if (index == vocabularies.length - 1) {
+        toast("Wow so easy!");
+        return;
+      }
+      setIndex(index + 1);
     }
-    setIndex(index + 1);
   };
   return (
     <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
@@ -53,9 +74,14 @@ const Learning: React.FC = () => {
             <UseSound />
             <Slow />
           </HStack>
-          <FlipItemShadow vocabulary={vocabularies[index]} />
+          <FlipItemShadow
+            vocabulary={vocabularies[index]}
+            onIsClicked={handleIsClicked}
+          />
+
           <Button
-            bg="#58bd2f"
+            bg={onIsClicked !== -1 ? "gray.200" : "#58bd2f"}
+            // bg={"#58bd2f"}
             fontSize={"20px"}
             height={"50px"}
             width={"250px"}

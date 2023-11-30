@@ -4,7 +4,7 @@ import boopSfx from "../../voice/boop.mp3";
 import { Button, Icon } from "@chakra-ui/react";
 import { MdSlowMotionVideo } from "react-icons/md";
 const Slow = () => {
-  const [playbackRate, setPlaybackRate] = React.useState(0.75);
+  const [playbackRate, setPlaybackRate] = React.useState(0.5);
 
   const [play] = useSound(boopSfx, {
     playbackRate,
@@ -12,16 +12,13 @@ const Slow = () => {
   });
 
   const handleClick = () => {
-    setPlaybackRate(playbackRate + 0.1);
+    setPlaybackRate(playbackRate);
     play();
   };
 
   return (
-    <Button onClick={handleClick}>
-      {/* <span role="img" aria-label="Person with lines near mouth">
-        🗣
-      </span> */}
-      <Icon fontSize={25} as={MdSlowMotionVideo} />
+    <Button onClick={handleClick} borderRadius={"50px"} bg={"white"}>
+      <Icon color={"Gold"} fontSize={25} as={MdSlowMotionVideo} />
     </Button>
   );
 };
