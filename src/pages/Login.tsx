@@ -12,15 +12,43 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  // VStack,
 } from "@chakra-ui/react";
 import Nav from "../component/Nav";
 import SocialMediaButtons from "../component/SocialMediaButtons";
 import { useNavigate } from "react-router";
+import { useState } from "react";
+import { Account } from "../data/Account";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+const account: Account[] = [
+  {
+    email: "lap@gmail.com",
+    password: "1212121",
+  },
+  {
+    email: "lappp@gmail.com",
+    password: "123",
+  },
+];
+
 export default function Login() {
+  // const toast = useToast();
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const handleOnclickLearn = () => {
-    navigate("/learn");
+    if (!email || !password) {
+      console.log("fdsafs");
+      toast.error("Please enter both email and password.");
+      return;
+    }
+    const user = account.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (user) {
+      navigate("/learnvocab");
+    }
   };
   return (
     <Flex
@@ -45,11 +73,19 @@ export default function Login() {
           <Stack spacing={4}>
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </FormControl>
             <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <Input type="password" />
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </FormControl>
             <Stack spacing={10}>
               <Stack
