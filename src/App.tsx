@@ -14,6 +14,8 @@ import Layout from "./component/Layout";
 import VocabLesson from "./pages/VocabLesson";
 import { ToastContainer } from "react-toastify";
 import ProgressBar from "./component/Progress/ProgressBar";
+import CatsMenu from "./component/Menu/CatsMenu";
+import Hstack from "./component/Hstack";
 const router = createBrowserRouter([
   {
     path: "learnvocab",
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
         <VocabLesson />
       </Layout>
     ),
+  },
+  {
+    path: "menu",
+    element: <CatsMenu />,
   },
   {
     path: "/",
@@ -72,6 +78,10 @@ const router = createBrowserRouter([
   {
     path: "progess",
     element: <ProgressBar />,
+  },
+  {
+    path: "H",
+    element: <Hstack />,
   },
 ]);
 function App() {

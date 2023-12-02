@@ -1,14 +1,18 @@
 import { Progress } from "@chakra-ui/react";
-function ProgressBar() {
+interface Props {
+  value: number;
+}
+function ProgressBar({ value }: Props) {
   return (
     <Progress
       mt={50}
       width={"80%"}
       height={"20px"}
-      value={100}
+      value={value}
       borderRadius={"10px"}
       // size="xs"
       colorScheme="green"
+      backgroundColor="gray.300"
     />
   );
 }

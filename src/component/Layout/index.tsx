@@ -16,17 +16,19 @@ import {
   Stack,
   VStack,
   Text,
+  // background,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { FiBell, FiChevronDown } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import Logo from "../Logo";
+import { pageLinks } from "../../data/PageLinks";
 
 interface Props {
   children: React.ReactNode;
 }
 
-const Links = ["Ôn tập", "Học từ mới ", "Sổ tay"];
+// const Links = ["Ôn tập", "Học từ mới ", "Sổ tay", "Khóa học"];
 
 const NavLink = (props: Props) => {
   const { children } = props;
@@ -49,6 +51,7 @@ const NavLink = (props: Props) => {
     </Box>
   );
 };
+
 interface Props {
   children: React.ReactNode;
 }
@@ -58,6 +61,9 @@ export default function Layout(props: Props) {
   const navigate = useNavigate();
   const handleOnclickLogin = () => {
     navigate("/login");
+  };
+  const handleOnclickLogo = () => {
+    navigate("/learnvocab");
   };
   return (
     <>
@@ -70,18 +76,48 @@ export default function Layout(props: Props) {
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <Box>
+          <Box onClick={handleOnclickLogo}>
             <Logo />
           </Box>
           <HStack
             as={"nav"}
             display={{ base: "none", md: "flex" }}
             justifyContent="center"
-            gap={12}
+            gap={10}
+            style={{
+              listStyle: "none",
+              color: "white",
+              fontSize: "23px",
+              fontFamily: "cursive",
+              fontWeight: "bold",
+            }}
           >
-            {Links.map((link) => (
+            {pageLinks.map((link) => {
+              const { id, href, text } = link;
+              return (
+                <li key={id}>
+                  <Box
+                    as="a"
+                    px={3}
+                    py={3}
+                    href={href}
+                    textDecoration="none"
+                    color="white"
+                    transition="background 0.3s"
+                    _hover={{
+                      bg: "green.300",
+                      color: "white",
+                    }}
+                  >
+                    {text}
+                  </Box>
+                </li>
+              );
+            })}
+
+            {/* {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
-            ))}
+            ))} */}
           </HStack>
           <Flex alignItems={"center"}>
             <IconButton
@@ -136,8 +172,8 @@ export default function Layout(props: Props) {
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+              {pageLinks.map((link) => (
+                <NavLink key={link.id}>{link.text}</NavLink>
               ))}
             </Stack>
           </Box>

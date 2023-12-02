@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 // import { FaCheckCircle } from "react-icons/fa";
 import { useNavigate } from "react-router";
-import CourseMenu from "./CourseMenu";
 const options = [
   {
     courseId: 1,
@@ -203,7 +202,7 @@ const LearnNewWords = () => {
           <Divider />
           {options.map((option) => (
             <PackageTier
-              key={option.courseId}
+              key={option.lessonId}
               // lessonId={option.lessonId}
               titleVN={option.titleVN}
               titleEN={option.titleEN}

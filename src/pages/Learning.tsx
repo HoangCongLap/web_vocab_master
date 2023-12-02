@@ -1,5 +1,5 @@
 // bắt đầu vào học từ vựng
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FlipItemShadow from "../component/FlipItemShadow";
 import { Button, Container, HStack, VStack } from "@chakra-ui/react";
 import UseSound from "../component/Sound/UseSound";
@@ -47,47 +47,79 @@ const vocabularies: Vocabulary[] = [
     audio: "https://pi.nhalq.dev/kimochi/audio/348.mp3",
     picture: "https://pi.nhalq.dev/kimochi/image/348.png",
   },
+  {
+    id: 3497,
+    content: "exaination",
+    phonetic: "/ɪɡˌæmɪˈneɪʃn/",
+    position: "n",
+    lesson_id: 3,
+    course_id: 1,
+    trans: "Kiểm t thi",
+    trans_hint: "tham gia một kỳ thi đầu vào.",
+    en_hint: "He is goinan entrance examination.",
+    audio: "https://pi.nhalq.dev/kimochi/audio/348.mp3",
+    picture: "https://pi.nhalq.dev/kimochi/image/348.png",
+  },
 ];
 const Learning: React.FC = () => {
   const [index, setIndex] = useState(0);
-  const [onIsClicked, setonIsClicked] = useState<number | null>(null);
-
-  const handleIsClicked = (value: number) => {
-    setonIsClicked(value);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [progressValue, setProgressValue] = useState(0);
+  const handleFlip = () => {
+    setIsFlipped(true);
   };
-
   const handleOnClick = () => {
-    if (onIsClicked == -1) {
-      if (index == vocabularies.length - 1) {
-        toast("Wow so easy!");
-        return;
-      }
-      setIndex(index + 1);
+    if (isFlipped) {
+      nextVocab();
+    }
+  };
+  const nextVocab = () => {
+    setProgressValue(progressValue + 100 / vocabularies.length);
+    if (index == vocabularies.length - 1) {
+      toast("Wow so easy!");
+      return;
+    }
+    setIndex(index + 1);
+  };
+  const handleRemembered = () => {
+    nextVocab();
+  };
+  useEffect(() => {
+    setIsFlipped(false);
+  }, [index]);
+  const renderContent = () => {
+    if (index % 2) {
+      return (
+        <FlipItemShadow
+          key={index}
+          vocabulary={vocabularies[index / 2]}
+          onFlip={handleFlip}
+        />
+      );
+    } else {
+      const vocab = vocabularies[(index - 1) / 2];
     }
   };
   return (
     <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
       <VStack>
-        <ProgressBar />
-        <VStack>
+        <ProgressBar value={progressValue} />
+        <VStack width="50%">
           <HStack marginTop={"50px"}>
             <UseSound />
             <Slow />
           </HStack>
-          <FlipItemShadow
-            vocabulary={vocabularies[index]}
-            onIsClicked={handleIsClicked}
-          />
+          {renderContent()}
 
           <Button
-            bg={onIsClicked !== -1 ? "gray.200" : "#58bd2f"}
+            bg={!isFlipped ? "gray.200" : "#58bd2f"}
             // bg={"#58bd2f"}
             fontSize={"20px"}
             height={"50px"}
             width={"250px"}
             color={"#fff"}
             borderRadius={"50px"}
-            marginTop={"100px"}
+            marginTop={"50px"}
             onClick={handleOnClick}
           >
             Tiếp Tục
@@ -101,6 +133,7 @@ const Learning: React.FC = () => {
               textDecoration: "underline",
               margin: "1rem 0px",
             }}
+            onClick={handleRemembered}
           >
             Mình đã thuộc từ này
           </p>

@@ -3,28 +3,26 @@ import React, { useState } from "react";
 import { Vocabulary } from "../data/Vocabulary";
 interface Props {
   vocabulary: Vocabulary;
-  onIsClicked: (value: number) => void;
+  onFlip: () => void;
 }
 
-const FlipItemShadow = ({ vocabulary, onIsClicked }: Props) => {
+const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isCliked, setIsCliked] = useState(false);
-
   const handleToggle = () => {
     setIsFlipped(!isFlipped);
     setIsCliked(!isCliked);
-    onIsClicked(-1);
+    onFlip();
   };
-  console.log(isFlipped);
   setTimeout(() => {
     if (isFlipped == false && isCliked == false) {
       setIsFlipped(true);
-      onIsClicked(-1);
+      onFlip();
     }
   }, 8000);
   const cardStyle: React.CSSProperties = {
-    width: "200px",
-    height: "300px",
+    width: "80%",
+    height: "430px",
     perspective: "1000px",
     transformStyle: "preserve-3d",
     transition: "transform 0.5s",
@@ -39,7 +37,7 @@ const FlipItemShadow = ({ vocabulary, onIsClicked }: Props) => {
   const frontStyle: React.CSSProperties = {
     width: "100%",
     height: "100%",
-    position: "absolute",
+    position: "relative",
     backfaceVisibility: "hidden",
     display: "flex",
     justifyContent: "center",
@@ -72,10 +70,10 @@ const FlipItemShadow = ({ vocabulary, onIsClicked }: Props) => {
     <div
       style={{
         position: "absolute",
-        marginLeft: "180px",
         width: "33px",
-        marginTop: "300px",
         zIndex: 2,
+        bottom: 0,
+        right: 0,
       }}
     >
       <img
