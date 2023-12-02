@@ -7,6 +7,8 @@ import { Vocabulary } from "../data/Vocabulary";
 import { toast } from "react-toastify";
 import Slow from "../component/Sound/Slow";
 import ProgressBar from "../component/Progress/ProgressBar";
+import Writewords from "../component/FormLabelWritewords/Writewords";
+
 const vocabularies: Vocabulary[] = [
   {
     id: 344,
@@ -23,7 +25,7 @@ const vocabularies: Vocabulary[] = [
   },
   {
     id: 348,
-    content: "examination",
+    content: "hai",
     phonetic: "/ɪɡˌzæmɪˈneɪʃn/",
     position: "n",
     lesson_id: 2,
@@ -36,7 +38,7 @@ const vocabularies: Vocabulary[] = [
   },
   {
     id: 349,
-    content: "exaination",
+    content: "ba",
     phonetic: "/ɪɡˌæmɪˈneɪʃn/",
     position: "n",
     lesson_id: 3,
@@ -49,7 +51,7 @@ const vocabularies: Vocabulary[] = [
   },
   {
     id: 3497,
-    content: "exaination",
+    content: "bon",
     phonetic: "/ɪɡˌæmɪˈneɪʃn/",
     position: "n",
     lesson_id: 3,
@@ -68,11 +70,13 @@ const Learning: React.FC = () => {
   const handleFlip = () => {
     setIsFlipped(true);
   };
+  // xử lí tiếp tục khi hình đã lật
   const handleOnClick = () => {
     if (isFlipped) {
       nextVocab();
     }
   };
+
   const nextVocab = () => {
     setProgressValue(progressValue + 100 / vocabularies.length);
     if (index == vocabularies.length - 1) {
@@ -88,29 +92,16 @@ const Learning: React.FC = () => {
     setIsFlipped(false);
   }, [index]);
   const renderContent = () => {
-    if (index % 2) {
+    console.log({ index });
+    if (index % 2 == 0) {
+      // console.log("lap");
       return (
-        <FlipItemShadow
-          key={index}
-          vocabulary={vocabularies[index / 2]}
-          onFlip={handleFlip}
-        />
-      );
-    } else {
-      const vocab = vocabularies[(index - 1) / 2];
-    }
-  };
-  return (
-    <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
-      <VStack>
-        <ProgressBar value={progressValue} />
-        <VStack width="50%">
-          <HStack marginTop={"50px"}>
-            <UseSound />
-            <Slow />
-          </HStack>
-          {renderContent()}
-
+        <>
+          <FlipItemShadow
+            key={index}
+            vocabulary={vocabularies[index / 2]}
+            onFlip={handleFlip}
+          />
           <Button
             bg={!isFlipped ? "gray.200" : "#58bd2f"}
             // bg={"#58bd2f"}
@@ -137,6 +128,24 @@ const Learning: React.FC = () => {
           >
             Mình đã thuộc từ này
           </p>
+        </>
+      );
+    } else {
+      const vocab = vocabularies[(index - 1) / 2];
+      return <Writewords word={vocab.content} onSucces={nextVocab} />;
+    }
+  };
+  return (
+    <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
+      <VStack>
+        <ProgressBar value={progressValue} />
+        <VStack width="50%">
+          <HStack marginTop={"50px"}>
+            <UseSound />
+            <Slow />
+          </HStack>
+          {renderContent()}
+
           {/* đọc từ vựng */}
         </VStack>
       </VStack>

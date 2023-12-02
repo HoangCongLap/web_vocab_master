@@ -39,7 +39,6 @@ export default function Login() {
 
   const handleOnclickLearn = () => {
     if (!email || !password) {
-      console.log("fdsafs");
       toast.error("Please enter both email and password.");
       return;
     }
