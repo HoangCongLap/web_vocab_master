@@ -21,7 +21,8 @@ const vocabularies: Vocabulary[] = [
     trans_hint: "Em gái của anh ấy là một sinh viên ở trường đại học đó.",
     en_hint: "His younger sister is a student at that university.",
     audio: "http://daviser.ml/audio/344.mp3",
-    picture: "http://daviser.ml/image/344.png",
+    picture:
+      "https://wpvip.edutopia.org/wp-content/uploads/2022/10/shutterstock_1958383675-crop.jpg?w=200&quality=85",
   },
   {
     id: 348,
@@ -67,6 +68,9 @@ const Learning: React.FC = () => {
   const [index, setIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [progressValue, setProgressValue] = useState(0);
+  const getTotalStep = () => {
+    return vocabularies.length * 2;
+  };
   const handleFlip = () => {
     setIsFlipped(true);
   };
@@ -76,17 +80,24 @@ const Learning: React.FC = () => {
       nextVocab();
     }
   };
-
+  const learnFinish = () => {
+    toast("Wow. Finish!");
+  };
   const nextVocab = () => {
-    setProgressValue(progressValue + 100 / vocabularies.length);
-    if (index == vocabularies.length - 1) {
-      toast("Wow so easy!");
+    setProgressValue(progressValue + 100 / getTotalStep());
+    if (index == getTotalStep() - 1) {
+      learnFinish();
       return;
     }
     setIndex(index + 1);
   };
   const handleRemembered = () => {
-    nextVocab();
+    setProgressValue(progressValue + (2 * 100) / getTotalStep());
+    if (index == getTotalStep() - 2) {
+      learnFinish();
+      return;
+    }
+    setIndex(index + 2);
   };
   useEffect(() => {
     setIsFlipped(false);

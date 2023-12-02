@@ -1,6 +1,7 @@
 // lật bóng của từ vựng ./learn
 import React, { useState } from "react";
 import { Vocabulary } from "../data/Vocabulary";
+import { Box, Image, Stack } from "@chakra-ui/react";
 interface Props {
   vocabulary: Vocabulary;
   onFlip: () => void;
@@ -21,7 +22,8 @@ const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
     }
   }, 8000);
   const cardStyle: React.CSSProperties = {
-    width: "80%",
+    width: "100%",
+    minWidth: "300px",
     height: "430px",
     perspective: "1000px",
     transformStyle: "preserve-3d",
@@ -121,12 +123,15 @@ const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
       </div>
       <div style={frontStyle}>
         {imgaPointer}
+        <Stack direction="row">
+          <Image boxSize="250px" src={vocabulary.picture} />
+        </Stack>
         <p
           style={{
             fontStyle: "normal",
             fontSize: "14px",
             lineHeight: "30px",
-            marginTop: "200px",
+            marginTop: "30px",
             marginBottom: "1rem",
           }}
         >

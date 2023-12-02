@@ -8,16 +8,17 @@ interface Props {
 
 const Writewords = ({ word, onSucces }: Props) => {
   const [heardWords, setHeardWords] = useState("");
+
   const handleOnClickCheckWords = () => {
     if (!heardWords) {
-      toast.error("Please enter");
+      toast.error("Vui lòng nhập từ ");
       return;
     }
     const isMatch = word === heardWords;
     if (isMatch) {
       onSucces();
     } else {
-      toast.error("sai");
+      toast.error("Nhập từ không đúng");
     }
   };
   return (
@@ -44,6 +45,7 @@ const Writewords = ({ word, onSucces }: Props) => {
             Nghe và viết lại
           </p>
           <Input
+            autoFocus
             style={{
               background: "white",
               color: "black",

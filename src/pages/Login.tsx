@@ -73,6 +73,7 @@ export default function Login() {
             <FormControl id="email">
               <FormLabel>Email address</FormLabel>
               <Input
+                autoFocus
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

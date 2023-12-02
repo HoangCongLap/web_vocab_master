@@ -53,7 +53,7 @@ export default function Signup() {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
+                  <Input autoFocus type="text" />
                 </FormControl>
               </Box>
               <Box>
