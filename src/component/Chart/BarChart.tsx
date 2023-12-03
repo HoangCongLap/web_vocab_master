@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import Layout from "../Layout";
 
 ChartJS.register(
   CategoryScale,
@@ -47,9 +48,28 @@ export const data = {
 
 export default function BarChart() {
   return (
-    <>
-      <Bar options={options} data={data} />
-      <Button>fd</Button>
-    </>
+    <div
+      style={{
+        // display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Stack style={{ width: "60%" }}>
+        <Bar options={options} data={data} />
+      </Stack>
+      <p
+        style={{
+          justifyItems: "center",
+          marginTop: "10px",
+          fontSize: "20px",
+          marginBottom: "30px",
+        }}
+      >
+        Chuẩn bị ôn tập: ... từ
+      </p>
+      <Button>ÔN TẬP NGAY</Button>
+    </div>
   );
 }

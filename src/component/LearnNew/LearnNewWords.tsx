@@ -163,16 +163,21 @@ const PackageTier = ({
 
   return (
     <Stack
+      width={"100%"}
+      backgroundColor="#e0e0e0"
+      boxShadow="5px 10px 5px rgba(189, 189, 189, 0.9);"
       borderRadius={20}
-      background="gray.400"
-      p={3}
-      alignItems="center"
-      boxShadow="lg"
     >
-      <Heading size={"lg"}>{titleEN}</Heading>
-      <Heading size={"xs"}>{titleVN}</Heading>
+      <Stack
+        p={3}
+        backgroundColor={"#F8F8F8"}
+        alignItems="center"
+        borderRadius={20}
+      >
+        <Heading size={"lg"}>{titleEN}</Heading>
+        <Heading size={"xs"}>{titleVN}</Heading>
 
-      {/* <List spacing={3} textAlign="start">
+        {/* <List spacing={3} textAlign="start">
         {options.map((name) => (
           <ListItem key={name.id}>
             <ListIcon as={FaCheckCircle} color="green.500" />
@@ -181,29 +186,29 @@ const PackageTier = ({
         ))}
       </List> */}
 
-      <Stack>
-        <Button
-          size="md"
-          color={useColorModeValue(colorTextLight, colorTextDark)}
-          bgColor={useColorModeValue(bgColorLight, bgColorDark)}
-          onClick={handleOnclickGetStartLearn}
-        >
-          Get Started
-        </Button>
+        <Stack>
+          <Button
+            size="md"
+            color={useColorModeValue(colorTextLight, colorTextDark)}
+            bgColor={useColorModeValue(bgColorLight, bgColorDark)}
+            onClick={handleOnclickGetStartLearn}
+          >
+            Get Started
+          </Button>
+        </Stack>
       </Stack>
     </Stack>
   );
 };
 const LearnNewWords = () => {
   return (
-    <Box>
+    <Box width={"60%"}>
       <Stack spacing={4} direction={"column"}>
-        <Stack>
+        <Stack gap={8}>
           <Divider />
           {options.map((option) => (
             <PackageTier
               key={option.lessonId}
-              // lessonId={option.lessonId}
               titleVN={option.titleVN}
               titleEN={option.titleEN}
               options={options}

@@ -5,12 +5,12 @@ import Nav from "./component/Nav";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Learning from "./pages/Learning";
-import Layout from "./component/Layout";
 import VocabLesson from "./pages/VocabLesson";
 import { ToastContainer } from "react-toastify";
 import CatsMenu from "./component/Menu/CatsMenu";
-import Hstack from "./component/Hstack";
+import Hstack from "./component/Stack/Hstack";
 import BarChart from "./component/Chart/BarChart";
+import { Chart } from "react-chartjs-2";
 const router = createBrowserRouter([
   {
     path: "learnvocab",
@@ -40,6 +40,14 @@ const router = createBrowserRouter([
     path: "signup",
     element: <Signup />,
   },
+  {
+    path: "review",
+    element: (
+      <Hstack>
+        <BarChart />
+      </Hstack>
+    ),
+  },
 
   // {
   //   path: "learnnewwords",
@@ -56,10 +64,10 @@ const router = createBrowserRouter([
     element: <Learning />,
   },
   // test
-  {
-    path: "H",
-    element: <Hstack />,
-  },
+  // {
+  //   path: "H",
+  //   element: <Hstack />,
+  // },
   // {
   //   path: "write",
   //   element: <Writewords />,

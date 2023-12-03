@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Heading, Stack, Text, VStack } from "@chakra-ui/react";
-import LearnNewWords from "./LearnNewWords";
+import LearnNewWords from "./LearnNew/LearnNewWords.1";
 
 const Lessons: React.FC = () => {
   return (
