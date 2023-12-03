@@ -1,18 +1,24 @@
 import { Box, Flex } from "@chakra-ui/react";
+import Layout from "./Layout";
 
-const Hstack = () => {
+interface Props {
+  children: React.ReactNode;
+}
+const Hstack = ({ children }: Props) => {
   return (
-    <Flex>
-      <Box flex="1" background="gray.200" height="900px">
-        hoang
-      </Box>
-      <Box flex="2" background="white" height="900px">
-        cong
-      </Box>
-      <Box flex="1" background="gray.200" height="900px">
-        lap
-      </Box>
-    </Flex>
+    <Layout>
+      <Flex>
+        <Box flex="1" background="gray.200">
+          hoang
+        </Box>
+        <Box flex="2" background="white">
+          {children}
+        </Box>
+        <Box flex="1" background="gray.200">
+          lap
+        </Box>
+      </Flex>
+    </Layout>
   );
 };
 

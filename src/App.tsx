@@ -10,15 +10,14 @@ import VocabLesson from "./pages/VocabLesson";
 import { ToastContainer } from "react-toastify";
 import CatsMenu from "./component/Menu/CatsMenu";
 import Hstack from "./component/Hstack";
-import Writewords from "./component/FormLabelWritewords/Writewords";
-// import  from "./component/Lessons";
+import BarChart from "./component/Chart/BarChart";
 const router = createBrowserRouter([
   {
     path: "learnvocab",
     element: (
-      <Layout>
+      <Hstack>
         <VocabLesson />
-      </Layout>
+      </Hstack>
     ),
   },
   {
@@ -61,9 +60,13 @@ const router = createBrowserRouter([
     path: "H",
     element: <Hstack />,
   },
+  // {
+  //   path: "write",
+  //   element: <Writewords />,
+  // },
   {
-    path: "write",
-    element: <Writewords />,
+    path: "chart",
+    element: <BarChart />,
   },
   //
 ]);

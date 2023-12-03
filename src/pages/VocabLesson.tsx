@@ -4,7 +4,8 @@ import LearnNewWords from "../component/LearnNewWords";
 
 const VocabLesson: React.FC = () => {
   return (
-    <Container minW="3xl" bg="gray.100" color="white" p={10}>
+    // <div ="gray.100" color="white" p={10}>
+    <>
       <Stack
         background="blue.500"
         p={5}
@@ -21,7 +22,7 @@ const VocabLesson: React.FC = () => {
       <VStack>
         <LearnNewWords />
       </VStack>
-    </Container>
+    </>
   );
 };
 
