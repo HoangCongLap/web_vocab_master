@@ -7,8 +7,10 @@ const VocabLesson: React.FC = () => {
     // <div ="gray.100" color="white" p={10}>
     <>
       <Stack
-        width={"80%"}
-        background="blue.500"
+        width={"85%"}
+        // background="blue.500"
+        background={"linear-gradient(0deg , #387ed9 65.50%, #0023ac 100.81%)"}
+        boxShadow={"0 6px 0 0 #00209b"}
         p={5}
         alignItems={"center"}
         justifyContent="center"
@@ -19,7 +21,7 @@ const VocabLesson: React.FC = () => {
         borderRadius={20}
         style={{ margin: "0 auto", marginTop: "20px" }}
       >
-        <Heading size={"md"}>1000 TỪ CƠ BẢN</Heading>
+        <Heading fontSize={30}>1000 TỪ CƠ BẢN</Heading>
       </Stack>
       <VStack>
         <LearnNewWords />

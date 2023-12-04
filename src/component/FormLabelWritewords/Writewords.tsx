@@ -10,15 +10,13 @@ const Writewords = ({ word, onSucces }: Props) => {
   const [heardWords, setHeardWords] = useState("");
 
   const handleOnClickCheckWords = () => {
-    if (!heardWords) {
-      toast.error("Vui lòng nhập từ ");
-      return;
-    }
-    const isMatch = word === heardWords;
-    if (isMatch) {
-      onSucces();
-    } else {
-      toast.error("Nhập từ không đúng");
+    if (heardWords) {
+      const isMatch = word === heardWords;
+      if (isMatch) {
+        onSucces();
+      } else {
+        toast.error("Nhập từ không đúng");
+      }
     }
   };
   return (
@@ -61,8 +59,17 @@ const Writewords = ({ word, onSucces }: Props) => {
         console.log({heardWords});
       </Stack>
       <Button
-        // bg={!isFlipped ? "gray.200" : "#58bd2f"}
-        bg={"#58bd2f"}
+        background={
+          !heardWords
+            ? "gray.200"
+            : "linear-gradient(83deg, #58cc02 19.02%, #23ac38 90.81%)"
+        }
+        boxShadow={!heardWords ? "gray" : "0 6px 0 0 #209b32"}
+        _hover={{
+          background: !heardWords
+            ? "gray.200"
+            : "linear-gradient(83deg, #7bea00 9.02%, #2fbf33 90.81%)",
+        }}
         fontSize={"20px"}
         height={"50px"}
         width={"250px"}

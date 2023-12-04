@@ -1,4 +1,4 @@
-import { Button, Stack } from "@chakra-ui/react";
+import { Button, Center, Stack } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -50,26 +50,40 @@ export default function BarChart() {
   return (
     <div
       style={{
-        // display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
+        minHeight: "91vh",
+        display: "flex",
       }}
     >
-      <Stack style={{ width: "60%" }}>
+      <Stack style={{ width: "70%", margin: "0 auto", marginTop: "120px" }}>
         <Bar options={options} data={data} />
+        <p
+          style={{
+            justifyItems: "center",
+            marginTop: "10px",
+            fontSize: "20px",
+            marginBottom: "30px",
+            margin: "20px auto 0px",
+          }}
+        >
+          Chuẩn bị ôn tập: ... từ
+        </p>
+        <Button
+          margin={"0 auto"}
+          marginTop={"20px"}
+          width={"60%"}
+          color={"white"}
+          borderRadius={25}
+          fontSize={20}
+          background={"linear-gradient(83deg, #58cc02 19.02%, #23ac38 90.81%)"}
+          boxShadow={"0 6px 0 0 #209b32"}
+          _hover={{
+            background: "linear-gradient(83deg, #7bea00 9.02%, #2fbf33 90.81%)",
+            boxShadow: "0 6px 0 0 #209b32",
+          }}
+        >
+          ÔN TẬP NGAY
+        </Button>
       </Stack>
-      <p
-        style={{
-          justifyItems: "center",
-          marginTop: "10px",
-          fontSize: "20px",
-          marginBottom: "30px",
-        }}
-      >
-        Chuẩn bị ôn tập: ... từ
-      </p>
-      <Button>ÔN TẬP NGAY</Button>
     </div>
   );
 }
