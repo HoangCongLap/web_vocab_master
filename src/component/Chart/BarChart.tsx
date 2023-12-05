@@ -1,4 +1,4 @@
-import { Button, Center, Stack } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import Layout from "../Layout";
 
 ChartJS.register(
   CategoryScale,
@@ -19,6 +18,36 @@ ChartJS.register(
   Tooltip,
   Legend
 );
+const optionsOverviewVocab = [
+  {
+    level: 1,
+    count: 1,
+  },
+  {
+    level: 2,
+    count: 2,
+  },
+  {
+    level: 3,
+    count: 6,
+  },
+  {
+    level: 4,
+    count: 1,
+  },
+  {
+    level: 5,
+    count: 2,
+  },
+  {
+    level: 6,
+    count: 1,
+  },
+  {
+    level: 7,
+    count: 10,
+  },
+];
 export const options = {
   responsive: true,
   plugins: {
@@ -31,10 +60,17 @@ export const options = {
   },
 };
 
-const labels = ["1", "2", "3", "4", "5"];
-//  const xValues = ["1", "2", "3", "4", "5"];
-const yValues = [5, 9, 4, 2, 7];
-const barColors = ["#EB5757", "#FFCB08", "blue", "#2F80ED", "#213782"];
+const labels = optionsOverviewVocab.map((item) => item.level.toString());
+const yValues = optionsOverviewVocab.map((item) => item.count);
+const barColors = [
+  "#EB5757",
+  "#FFCB08",
+  "blue",
+  "#FF9999",
+  "#2F80ED",
+  "#CC6600",
+  "#213782",
+];
 export const data = {
   labels,
   datasets: [

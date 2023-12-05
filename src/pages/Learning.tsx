@@ -105,7 +105,6 @@ const Learning: React.FC = () => {
   const renderContent = () => {
     console.log({ index });
     if (index % 2 == 0) {
-      // console.log("lap");
       return (
         <>
           <FlipItemShadow

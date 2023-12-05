@@ -56,7 +56,7 @@ const Writewords = ({ word, onSucces }: Props) => {
             onChange={(e) => setHeardWords(e.target.value)}
           />
         </FormControl>
-        console.log({heardWords});
+        {/* console.log({heardWords}); */}
       </Stack>
       <Button
         background={

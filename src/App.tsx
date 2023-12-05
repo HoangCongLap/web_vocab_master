@@ -1,4 +1,4 @@
-import { ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Nav from "./component/Nav";
@@ -10,7 +10,8 @@ import { ToastContainer } from "react-toastify";
 import CatsMenu from "./component/Menu/CatsMenu";
 import Hstack from "./component/Stack/Hstack";
 import BarChart from "./component/Chart/BarChart";
-import { Chart } from "react-chartjs-2";
+import BoxAnswer from "./component/Boxx/BoxAnswer";
+import ReviewAnswer from "./component/ReviewAnswer/ReviewAnswer";
 const router = createBrowserRouter([
   {
     path: "learnvocab",
@@ -48,6 +49,14 @@ const router = createBrowserRouter([
       </Hstack>
     ),
   },
+  {
+    path: "reviewAnswer",
+    element: (
+      <Hstack>
+        <ReviewAnswer />
+      </Hstack>
+    ),
+  },
 
   // {
   //   path: "learnnewwords",
@@ -63,7 +72,7 @@ const router = createBrowserRouter([
     path: "learning",
     element: <Learning />,
   },
-  // test
+  //=========== test
   // {
   //   path: "H",
   //   element: <Hstack />,
@@ -75,6 +84,10 @@ const router = createBrowserRouter([
   {
     path: "chart",
     element: <BarChart />,
+  },
+  {
+    path: "box",
+    element: <BoxAnswer />,
   },
   //
 ]);
