@@ -1,12 +1,4 @@
-import {
-  Button,
-  Flex,
-  FormControl,
-  Input,
-  Stack,
-  Text,
-  Toast,
-} from "@chakra-ui/react";
+import { Button, FormControl, Input, Stack, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import { ReviewVocab } from "../../data/ReviewVocab";
 import { toast } from "react-toastify";
@@ -112,6 +104,8 @@ const ReviewAnswer = () => {
               fontWeight: "bold",
               fontStyle: "normal",
               color: "#06072E",
+              marginTop: "20px",
+              textAlign: "center",
             }}
           >
             {vocabularies[index].vocabulary.trans}
@@ -121,10 +115,11 @@ const ReviewAnswer = () => {
             style={{
               background: "white",
               color: "black",
-              marginTop: "40px",
+              marginTop: "50px",
               fontSize: "17px",
-              width: "90%",
-              margin: " 50px auto 0",
+              width: "70%",
+              marginLeft: "auto",
+              marginRight: "auto",
             }}
             placeholder="Gõ lại từ "
             type="fillInWord"

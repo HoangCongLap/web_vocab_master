@@ -9,6 +9,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { useNavigate } from "react-router";
 
 ChartJS.register(
   CategoryScale,
@@ -83,6 +84,10 @@ export const data = {
 };
 
 export default function BarChart() {
+  const navigate = useNavigate();
+  const handleOnclickReview = () => {
+    navigate("/reviewAnswer");
+  };
   return (
     <div
       style={{
@@ -116,6 +121,7 @@ export default function BarChart() {
             background: "linear-gradient(83deg, #7bea00 9.02%, #2fbf33 90.81%)",
             boxShadow: "0 6px 0 0 #209b32",
           }}
+          onClick={handleOnclickReview}
         >
           ÔN TẬP NGAY
         </Button>

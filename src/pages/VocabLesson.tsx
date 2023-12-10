@@ -8,7 +8,6 @@ const VocabLesson: React.FC = () => {
     <>
       <Stack
         width={"85%"}
-        // background="blue.500"
         background={"linear-gradient(0deg , #387ed9 65.50%, #0023ac 100.81%)"}
         boxShadow={"0 6px 0 0 #00209b"}
         p={5}

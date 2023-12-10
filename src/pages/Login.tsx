@@ -17,38 +17,68 @@ import Nav from "../component/Nav";
 import SocialMediaButtons from "../component/SocialMediaButtons";
 import { useNavigate } from "react-router";
 import { useState } from "react";
-import { Account } from "../data/Account";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const account: Account[] = [
-  {
-    email: "lap@gmail.com",
-    password: "1212121",
-  },
-  {
-    email: "lappp@gmail.com",
-    password: "123",
-  },
-];
+import { signInWithEmailAndPassword } from "firebase/auth/cordova";
+import { auth } from "../firebaseConfig";
+
+// const account: Account[] = [
+//   {
+//     email: "lap@gmail.com",
+//     password: "1212121",
+//   },
+//   {
+//     email: "lappp@gmail.com",
+//     password: "123",
+//   },
+// ];
 
 export default function Login() {
-  // const toast = useToast();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleOnclickLearn = () => {
     if (!email || !password) {
-      toast.error("Please enter both email and password.");
+      toast.error("Vui lòng nhập email và mật khẩu.");
       return;
-    }
-    const user = account.find(
-      (user) => user.email === email && user.password === password
-    );
-    if (user) {
-      navigate("/learnvocab");
+    } else {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          navigate("/learnvocab");
+          console.log(user);
+          toast.success("Đăng nhập thành công.");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorCode === "auth/invalid-email") {
+            toast.error("Email không đúng. Vui lòng nhập lại.");
+          } else if (errorCode === "auth/wrong-password") {
+            toast.error("Mật khẩu không đúng. Vui lòng nhập lại.");
+          }
+          console.log(errorCode, errorMessage);
+        });
     }
   };
+
+  // const handleOnclickLearn = () => {
+  // if (!email || !password) {
+  //   toast.error("Vui lòng nhập cả email và mật khẩu.");
+  //   return;
+  // }
+  //   const user = account.find(
+  //     (user) => user.email === email && user.password === password
+  //   );
+  //   if (user) {
+  //     navigate("/learnvocab");
+  //   } else {
+  //     toast.error("Vui lòng kiểm trả lại cả email và mật khẩu.");
+  //     return;
+  //   }
+  // };
   return (
     <Flex
       direction="column"

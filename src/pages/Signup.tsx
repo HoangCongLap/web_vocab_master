@@ -6,41 +6,68 @@ import {
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
-  HStack,
-  InputRightElement,
   Stack,
   Button,
   Heading,
   Text,
   useColorModeValue,
-  Link,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
+import Nav from "../component/Nav";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import { toast } from "react-toastify";
 export default function Signup() {
-  const navigate = useNavigate();
-  const handleOnclickLearn = () => {
-    navigate("/learn");
+  // const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleOnclickSignup = async () => {
+    if (password == confirmPassword) {
+      await createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          // navigate("/login")
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode, errorMessage);
+          if (errorCode === "auth/email-already-in-use") {
+            toast.error("Email đã được sử dụng.");
+          }
+        });
+    } else {
+      toast.error("Xác nhận mật khẩu không khớp.");
+    }
   };
-  const [showPassword, setShowPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
 
   return (
     <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
+      direction="column"
+      align="center"
+      justify="flex-start"
       bg={useColorModeValue("gray.50", "gray.800")}
+      minH="100vh"
+      gap={10}
+      width={"100%"}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Nav />
+      <Stack
+        width={"40%"}
+        spacing={8}
+        mx={"auto"}
+        maxW={"lg"}
+        px={6}
+        minW={400}
+      >
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Sign up
-          </Heading>
-          <Text fontSize={"lg"} color={"gray.600"}>
-            to enjoy all of our cool features ✌️
-          </Text>
+          <Heading fontSize={"4xl"}>Sign up</Heading>
         </Stack>
         <Box
           rounded={"lg"}
@@ -49,61 +76,62 @@ export default function Signup() {
           p={8}
         >
           <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input autoFocus type="text" />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-            </HStack>
-            <FormControl id="email" isRequired>
+            <FormControl id="email">
               <FormLabel>Email address</FormLabel>
-              <Input type="email" />
+              <Input
+                autoFocus
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </FormControl>
-            <FormControl id="password" isRequired>
+            <FormControl id="password">
               <FormLabel>Password</FormLabel>
-              <InputGroup>
-                <Input type={showPassword ? "text" : "password"} />
-                <InputRightElement h={"full"}>
-                  <Button
-                    variant={"ghost"}
-                    onClick={() =>
-                      setShowPassword((showPassword) => !showPassword)
-                    }
-                  >
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
+              <Input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </FormControl>
-            <Stack spacing={10} pt={2}>
+            <FormControl id="confirmPassword">
+              <FormLabel>Confirm password</FormLabel>
+              <Input
+                type="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </FormControl>
+            <Stack spacing={10} marginTop={50}>
               <Button
-                loadingText="Submitting"
-                size="lg"
                 bg={"blue.400"}
                 color={"white"}
                 _hover={{
                   bg: "blue.500",
                 }}
-                onClick={handleOnclickLearn}
+                onClick={handleOnclickSignup}
               >
                 Sign up
               </Button>
             </Stack>
-            <Stack pt={6}>
-              <Text align={"center"}>
-                Already a user?{" "}
-                <Link color={"blue.400"} href="/login">
+            <Stack
+              direction="row"
+              spacing={4}
+              display={"Flex"}
+              flexDirection={"row"}
+              margin={"20px auto 0"}
+            >
+              <div>Đã có tài khoản? </div>
+              <div>
+                <Text
+                  as="a"
+                  color={"blue.400"}
+                  textDecor="underline"
+                  fontWeight="bold"
+                  href="/login"
+                >
                   Login
-                </Link>
-              </Text>
+                </Text>
+              </div>
             </Stack>
           </Stack>
         </Box>

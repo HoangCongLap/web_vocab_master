@@ -1,17 +1,18 @@
-import { Box, ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Nav from "./component/Nav";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import Learning from "./pages/Learning";
 import VocabLesson from "./pages/VocabLesson";
 import { ToastContainer } from "react-toastify";
 import CatsMenu from "./component/Menu/CatsMenu";
 import Hstack from "./component/Stack/Hstack";
 import BarChart from "./component/Chart/BarChart";
-import BoxAnswer from "./component/Boxx/BoxAnswer";
 import ReviewAnswer from "./component/ReviewAnswer/ReviewAnswer";
+import BoxAnswer from "./component/Boxx/BoxAnswer";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import DrawerCourse from "./component/DrawerCourse/DrawerCourse";
 const router = createBrowserRouter([
   {
     path: "learnvocab",
@@ -89,7 +90,10 @@ const router = createBrowserRouter([
     path: "box",
     element: <BoxAnswer />,
   },
-  //
+  {
+    path: "drawer",
+    element: <DrawerCourse />,
+  },
 ]);
 function App() {
   return (

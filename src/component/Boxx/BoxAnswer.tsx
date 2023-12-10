@@ -1,5 +1,4 @@
 import { Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
-import { VocabularyAnswer } from "../../data/VocabularyAnswer";
 import { ReviewVocab } from "../../data/ReviewVocab";
 
 const vocabularies: ReviewVocab[] = [
@@ -44,10 +43,8 @@ const vocabularies: ReviewVocab[] = [
     },
   },
 ];
-interface Props {
-  vocabularyAnswer: VocabularyAnswer;
-}
-const BoxAnswer = ({ vocabularyAnswer }: Props) => {
+
+const BoxAnswer = () => {
   return (
     <Wrap>
       <WrapItem>
