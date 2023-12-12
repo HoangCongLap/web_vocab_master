@@ -1,15 +1,15 @@
 // bắt đầu vào học từ vựng
 import React, { useEffect, useState } from "react";
-// import FlipItemShadow from "../component/FlipItemShadow";
-// import { Button, Container, HStack, VStack } from "@chakra-ui/react";
-// import UseSound from "../component/Sound/UseSound";
+import FlipItemShadow from "../component/FlipItemShadow";
+import { Button, Container, HStack, VStack } from "@chakra-ui/react";
+import UseSound from "../component/Sound/UseSound";
 import { Vocabulary } from "../data/Vocabulary";
-// import { toast } from "react-toastify";
-// import Slow from "../component/Sound/Slow";
-// import ProgressBar from "../component/Progress/ProgressBar";
-// import Writewords from "../component/FormLabelWritewords/Writewords";
+import { toast } from "react-toastify";
+import Slow from "../component/Sound/Slow";
+import ProgressBar from "../component/Progress/ProgressBar";
+import Writewords from "../component/FormLabelWritewords/Writewords";
 import axios from "axios";
-import { auth } from "../firebaseConfig";
+import { getAuthV2 } from "../firebaseConfig";
 // const vocabularies: Vocabulary[] = [
 //   {
 //     id: 344,
@@ -65,137 +65,138 @@ import { auth } from "../firebaseConfig";
 //     picture: "https://pi.nhalq.dev/kimochi/image/348.png",
 //   },
 // ];
-const url = "https://pi.nhalq.dev/kimochiapi/api/vocabs/from";
-const token = await auth?.currentUser?.getIdToken();
 const Learning: React.FC = () => {
-  const [post, setPost] = React.useState<Vocabulary[]>([]);
-
-  React.useEffect(() => {
+  const [vocabularies, setVocabularies] = React.useState<Vocabulary[]>([]);
+  const [index, setIndex] = useState(0);
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [progressValue, setProgressValue] = useState(0);
+  const auth = getAuthV2();
+  const getData = async () => {
+    const token = await auth?.currentUser?.getIdToken();
     axios
-      .get<Vocabulary[]>(url, {
+      .get<Vocabulary[]>("https://pi.nhalq.dev/kimochiapi/api/vocabs/from", {
         headers: { Authorization: `Bearer ${token}` },
+        params: {
+          fromId: 0,
+          limit: 10,
+        },
       })
       .then((response) => {
-        setPost(response.data);
+        console.log("response.data", response.data);
+        setVocabularies(response.data);
       });
-  }, []);
+  };
+  React.useEffect(() => {
+    if (auth?.currentUser) {
+      getData();
+    }
+  }, [auth?.currentUser]);
 
-  if (!post || post.length === 0) {
+  const getTotalStep = () => {
+    return vocabularies.length * 2;
+  };
+  const handleFlip = () => {
+    setIsFlipped(true);
+  };
+  // xử lí tiếp tục khi hình đã lật
+  const handleOnClick = () => {
+    if (isFlipped) {
+      nextVocab();
+    }
+  };
+  const learnFinish = () => {
+    toast("Wow. Finish!");
+  };
+  const nextVocab = () => {
+    setProgressValue(progressValue + 100 / getTotalStep());
+    if (index == getTotalStep() - 1) {
+      learnFinish();
+      return;
+    }
+    setIndex(index + 1);
+  };
+  const handleRemembered = () => {
+    setProgressValue(progressValue + (2 * 100) / getTotalStep());
+    if (index == getTotalStep() - 2) {
+      learnFinish();
+      return;
+    }
+    setIndex(index + 2);
+  };
+  useEffect(() => {
+    setIsFlipped(false);
+  }, [index]);
+  const renderContent = () => {
+    console.log({ index });
+    if (index % 2 == 0) {
+      return (
+        <>
+          <FlipItemShadow
+            key={index}
+            vocabulary={vocabularies[index / 2]}
+            onFlip={handleFlip}
+          />
+          <Button
+            background={
+              !isFlipped
+                ? "gray.200"
+                : "linear-gradient(83deg, #58cc02 19.02%, #23ac38 90.81%)"
+            }
+            boxShadow={!isFlipped ? "gray" : "0 6px 0 0 #209b32"}
+            _hover={{
+              background: !isFlipped
+                ? "gray.200"
+                : "linear-gradient(83deg, #7bea00 9.02%, #2fbf33 90.81%)",
+            }}
+            fontSize={"20px"}
+            height={"50px"}
+            width={"250px"}
+            color={"#fff"}
+            borderRadius={"50px"}
+            marginTop={"50px"}
+            onClick={handleOnClick}
+          >
+            Tiếp Tục
+          </Button>
+          <p
+            style={{
+              fontWeight: "bold",
+              fontSize: "18px",
+              color: "black",
+              cursor: "pointer",
+              textDecoration: "underline",
+              margin: "1rem 0px",
+            }}
+            onClick={handleRemembered}
+          >
+            Mình đã thuộc từ này
+          </p>
+        </>
+      );
+    } else {
+      const vocab = vocabularies[(index - 1) / 2];
+      return <Writewords word={vocab.content} onSucces={nextVocab} />;
+    }
+  };
+  if (!vocabularies || vocabularies.length === 0) {
     return null;
   }
   return (
-    <div>
-      <h1>{post[0]?.id}</h1>
-      <p>{post[0]?.trans}</p>
-    </div>
+    <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
+      <VStack>
+        <ProgressBar value={progressValue} />
+        <VStack width="50%">
+          <HStack marginTop={"50px"}>
+            <UseSound />
+            <Slow />
+          </HStack>
+          {renderContent()}
+
+          {/* đọc từ vựng */}
+        </VStack>
+      </VStack>
+    </Container>
   );
 };
-
-// const [index, setIndex] = useState(0);
-// const [isFlipped, setIsFlipped] = useState(false);
-// const [progressValue, setProgressValue] = useState(0);
-// const getTotalStep = () => {
-//   return vocabularies.length * 2;
-// };
-// const handleFlip = () => {
-//   setIsFlipped(true);
-// };
-// // xử lí tiếp tục khi hình đã lật
-// const handleOnClick = () => {
-//   if (isFlipped) {
-//     nextVocab();
-//   }
-// };
-// const learnFinish = () => {
-//   toast("Wow. Finish!");
-// };
-// const nextVocab = () => {
-//   setProgressValue(progressValue + 100 / getTotalStep());
-//   if (index == getTotalStep() - 1) {
-//     learnFinish();
-//     return;
-//   }
-//   setIndex(index + 1);
-// };
-// const handleRemembered = () => {
-//   setProgressValue(progressValue + (2 * 100) / getTotalStep());
-//   if (index == getTotalStep() - 2) {
-//     learnFinish();
-//     return;
-//   }
-//   setIndex(index + 2);
-// };
-// useEffect(() => {
-//   setIsFlipped(false);
-// }, [index]);
-// const renderContent = () => {
-//   console.log({ index });
-//   if (index % 2 == 0) {
-//     return (
-//       <>
-//         <FlipItemShadow
-//           key={index}
-//           vocabulary={vocabularies[index / 2]}
-//           onFlip={handleFlip}
-//         />
-//         <Button
-//           background={
-//             !isFlipped
-//               ? "gray.200"
-//               : "linear-gradient(83deg, #58cc02 19.02%, #23ac38 90.81%)"
-//           }
-//           boxShadow={!isFlipped ? "gray" : "0 6px 0 0 #209b32"}
-//           _hover={{
-//             background: !isFlipped
-//               ? "gray.200"
-//               : "linear-gradient(83deg, #7bea00 9.02%, #2fbf33 90.81%)",
-//           }}
-//           fontSize={"20px"}
-//           height={"50px"}
-//           width={"250px"}
-//           color={"#fff"}
-//           borderRadius={"50px"}
-//           marginTop={"50px"}
-//           onClick={handleOnClick}
-//         >
-//           Tiếp Tục
-//         </Button>
-//         <p
-//           style={{
-//             fontWeight: "bold",
-//             fontSize: "18px",
-//             color: "black",
-//             cursor: "pointer",
-//             textDecoration: "underline",
-//             margin: "1rem 0px",
-//           }}
-//           onClick={handleRemembered}
-//         >
-//           Mình đã thuộc từ này
-//         </p>
-//       </>
-//     );
-//   } else {
-//     const vocab = vocabularies[(index - 1) / 2];
-//     return <Writewords word={vocab.content} onSucces={nextVocab} />;
-//   }
-// };
-// return (
-//   <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
-//     <VStack>
-//       <ProgressBar value={progressValue} />
-//       <VStack width="50%">
-//         <HStack marginTop={"50px"}>
-//           <UseSound />
-//           <Slow />
-//         </HStack>
-//         {renderContent()}
-
-//         {/* đọc từ vựng */}
-//       </VStack>
-//     </VStack>
-//   </Container>
-// );
-// };
 
 export default Learning;

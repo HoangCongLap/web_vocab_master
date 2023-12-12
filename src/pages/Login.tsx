@@ -20,7 +20,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { signInWithEmailAndPassword } from "firebase/auth/cordova";
-import { auth } from "../firebaseConfig";
+import { useAuth } from "../firebaseConfig";
 
 // const account: Account[] = [
 //   {
@@ -37,7 +37,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const auth = useAuth();
   const handleOnclickLearn = () => {
     if (!email || !password) {
       toast.error("Vui lòng nhập email và mật khẩu.");

@@ -13,6 +13,9 @@ import BoxAnswer from "./component/Boxx/BoxAnswer";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import DrawerCourse from "./component/DrawerCourse/DrawerCourse";
+import { useEffect, useState } from "react";
+import { getAuthV2, setupFirebase, useAuth } from "./firebaseConfig";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 const router = createBrowserRouter([
   {
     path: "learnvocab",
@@ -96,8 +99,16 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+  const [indexState, setIndexState] = useState(0);
+  useEffect(() => {
+    setupFirebase();
+    const auth = getAuth();
+    onAuthStateChanged(auth, () => {
+      setIndexState(indexState + 1);
+    });
+  }, []);
   return (
-    <ChakraProvider>
+    <ChakraProvider key={indexState}>
       <RouterProvider router={router} />
       <ToastContainer />
     </ChakraProvider>

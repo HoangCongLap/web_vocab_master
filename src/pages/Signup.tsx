@@ -16,14 +16,14 @@ import { useState } from "react";
 // import { useNavigate } from "react-router";
 import Nav from "../component/Nav";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebaseConfig";
+import { useAuth } from "../firebaseConfig";
 import { toast } from "react-toastify";
 export default function Signup() {
   // const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const auth = useAuth();
   const handleOnclickSignup = async () => {
     if (password == confirmPassword) {
       await createUserWithEmailAndPassword(auth, email, password)
