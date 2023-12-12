@@ -12,8 +12,10 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
+
 // import { FaCheckCircle } from "react-icons/fa";
 import { useNavigate } from "react-router";
+
 const options = [
   {
     courseId: 1,
@@ -136,6 +138,7 @@ const options = [
     courseId: 1,
   },
 ];
+
 interface PackageTierProps {
   // title: string;
   options: Array<{ lessonId: number; titleVN?: string }>;
