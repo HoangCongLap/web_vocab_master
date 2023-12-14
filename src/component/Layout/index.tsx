@@ -23,6 +23,8 @@ import { FiBell, FiChevronDown } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import Logo from "../Logo";
 import { pageLinks } from "../../data/PageLinks";
+import DrawerCourse from "../DrawerCourse/DrawerCourse";
+import React from "react";
 
 interface Props {
   children: React.ReactNode;
@@ -59,6 +61,8 @@ export default function Layout(props: Props) {
   const { children } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
+  const courseDisclouse = useDisclosure();
+  const btnRef = React.useRef(null);
   const handleOnclickLogin = () => {
     navigate("/login");
   };
@@ -114,7 +118,23 @@ export default function Layout(props: Props) {
                 </li>
               );
             })}
-
+            <li>
+              <Box
+                px={3}
+                py={3}
+                textDecoration="none"
+                color="white"
+                transition="background 0.3s"
+                _hover={{
+                  bg: "green.300",
+                  color: "white",
+                }}
+                ref={btnRef}
+                onClick={courseDisclouse.onOpen}
+              >
+                Khóa học
+              </Box>
+            </li>
             {/* {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))} */}
@@ -179,7 +199,7 @@ export default function Layout(props: Props) {
           </Box>
         ) : null}
       </Box>
-
+      <DrawerCourse {...courseDisclouse} btnRef={btnRef} />
       <Box>{children}</Box>
     </>
   );

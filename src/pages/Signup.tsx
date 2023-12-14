@@ -18,8 +18,9 @@ import Nav from "../component/Nav";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "../firebaseConfig";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router";
 export default function Signup() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -30,7 +31,7 @@ export default function Signup() {
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
-          // navigate("/login")
+          navigate("/learnvocab");
           // ...
         })
         .catch((error) => {

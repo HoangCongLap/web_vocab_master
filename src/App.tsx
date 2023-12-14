@@ -14,7 +14,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import DrawerCourse from "./component/DrawerCourse/DrawerCourse";
 import { useEffect, useState } from "react";
-import { getAuthV2, setupFirebase, useAuth } from "./firebaseConfig";
+import { setupFirebase } from "./firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 const router = createBrowserRouter([
   {
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
   },
   {
     path: "drawer",
-    element: <DrawerCourse />,
+    // element: <DrawerCourse />,
   },
 ]);
 function App() {
