@@ -1,15 +1,16 @@
 // bắt đầu vào học từ vựng
 import React, { useEffect, useState } from "react";
-import FlipItemShadow from "../component/FlipItemShadow";
+import FlipItemShadow from "../component/FlipItem/FlipItemShadow";
 import { Button, Container, HStack, VStack } from "@chakra-ui/react";
 import UseSound from "../component/Sound/UseSound";
-import { Vocabulary } from "../data/Vocabulary";
+import { Vocabulary, VocabularyReponse } from "../data/Vocabulary";
 import { toast } from "react-toastify";
 import Slow from "../component/Sound/Slow";
 import ProgressBar from "../component/Progress/ProgressBar";
 import Writewords from "../component/FormLabelWritewords/Writewords";
 import axios from "axios";
 import { getAuthV2 } from "../firebaseConfig";
+import { useParams } from "react-router";
 // const vocabularies: Vocabulary[] = [
 //   {
 //     id: 344,
@@ -71,19 +72,19 @@ const Learning: React.FC = () => {
   const [isFlipped, setIsFlipped] = useState(false);
   const [progressValue, setProgressValue] = useState(0);
   const auth = getAuthV2();
+  const { courseId, lessionId } = useParams();
   const getData = async () => {
     const token = await auth?.currentUser?.getIdToken();
     axios
-      .get<Vocabulary[]>("https://pi.nhalq.dev/kimochiapi/api/vocabs/from", {
-        headers: { Authorization: `Bearer ${token}` },
-        params: {
-          fromId: 0,
-          limit: 10,
-        },
-      })
+      .get<VocabularyReponse>(
+        `https://pi.nhalq.dev/kimochiapi/api/lesson/${courseId}/${lessionId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then((response) => {
         console.log("response.data", response.data);
-        setVocabularies(response.data);
+        setVocabularies(response.data.vocabularies);
       });
   };
   React.useEffect(() => {
@@ -127,8 +128,11 @@ const Learning: React.FC = () => {
     setIsFlipped(false);
   }, [index]);
   const renderContent = () => {
-    console.log({ index });
+    console.log({ vocabularies });
     if (index % 2 == 0) {
+      if (!vocabularies[index / 2]) {
+        return <></>;
+      }
       return (
         <>
           <FlipItemShadow
@@ -174,12 +178,13 @@ const Learning: React.FC = () => {
         </>
       );
     } else {
+      console.log("vocabulariesxxx", vocabularies);
       const vocab = vocabularies[(index - 1) / 2];
       return <Writewords word={vocab.content} onSucces={nextVocab} />;
     }
   };
   if (!vocabularies || vocabularies.length === 0) {
-    return null;
+    return <></>;
   }
   return (
     <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">

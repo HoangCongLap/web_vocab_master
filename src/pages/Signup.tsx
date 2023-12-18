@@ -26,24 +26,33 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const auth = useAuth();
   const handleOnclickSignup = async () => {
-    if (password == confirmPassword) {
-      await createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
-          navigate("/learnvocab");
-          // ...
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
-          if (errorCode === "auth/email-already-in-use") {
-            toast.error("Email đã được sử dụng.");
-          }
-        });
+    if (!email || !password || !confirmPassword) {
+      toast.error("Vui lòng nhập email, Password và Confirm password.");
+      return;
     } else {
-      toast.error("Xác nhận mật khẩu không khớp.");
+      if (password == confirmPassword) {
+        await createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            toast.success("Đăng Ký thành công.");
+            navigate("/learnvocab");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage);
+            if (errorCode === "auth/email-already-in-use") {
+              toast.error("Email đã được sử dụng.");
+            } else if (errorCode === "auth/weak-password") {
+              toast.error("passwork phải có ít nhất 6 ký tự.");
+            } else {
+              toast(errorCode);
+            }
+          });
+      } else {
+        toast.error("Xác nhận mật khẩu không khớp.");
+      }
     }
   };
   // const [showPassword, setShowPassword] = useState(false);

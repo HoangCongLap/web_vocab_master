@@ -1,6 +1,7 @@
 import React from "react";
 import { Heading, Stack, VStack } from "@chakra-ui/react";
-import LearnNewWords from "../component/LearnNew/LearnNewWords";
+import LearnNewWords from "../component/LearnVocab/LearnVocab";
+import { useParams } from "react-router";
 
 const VocabLesson: React.FC = () => {
   return (
@@ -23,7 +24,7 @@ const VocabLesson: React.FC = () => {
         <Heading fontSize={30}>1000 TỪ CƠ BẢN</Heading>
       </Stack>
       <VStack>
-        <LearnNewWords />
+        <LearnNewWords courseId={1} />
       </VStack>
     </>
   );

@@ -1,13 +1,14 @@
 // lật bóng của từ vựng ./learn
 import React, { useState } from "react";
-import { Vocabulary } from "../data/Vocabulary";
-import { Box, Image, Stack } from "@chakra-ui/react";
+import { Vocabulary } from "../../data/Vocabulary";
+import { Image, Stack } from "@chakra-ui/react";
 interface Props {
   vocabulary: Vocabulary;
   onFlip: () => void;
 }
 
 const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
+  console.log("vocabularyxxx", vocabulary);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isCliked, setIsCliked] = useState(false);
   const handleToggle = () => {

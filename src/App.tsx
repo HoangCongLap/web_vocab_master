@@ -12,10 +12,10 @@ import ReviewAnswer from "./component/ReviewAnswer/ReviewAnswer";
 import BoxAnswer from "./component/Boxx/BoxAnswer";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import DrawerCourse from "./component/DrawerCourse/DrawerCourse";
 import { useEffect, useState } from "react";
 import { setupFirebase } from "./firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import WrongAnswer from "./component/WrongAnswer/WrongAnswer";
 const router = createBrowserRouter([
   {
     path: "learnvocab",
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
   // },
   // chia màn hình thành 3 phần
   {
-    path: "learning",
+    path: "/learning/:courseId/:lessionId",
     element: <Learning />,
   },
   //=========== test
@@ -81,10 +81,7 @@ const router = createBrowserRouter([
   //   path: "H",
   //   element: <Hstack />,
   // },
-  // {
-  //   path: "write",
-  //   element: <Writewords />,
-  // },
+
   {
     path: "chart",
     element: <BarChart />,
@@ -96,6 +93,10 @@ const router = createBrowserRouter([
   {
     path: "drawer",
     // element: <DrawerCourse />,
+  },
+  {
+    path: "wrong",
+    element: <WrongAnswer />,
   },
 ]);
 function App() {
