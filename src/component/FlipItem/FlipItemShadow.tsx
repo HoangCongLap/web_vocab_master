@@ -8,7 +8,6 @@ interface Props {
 }
 
 const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
-  console.log("vocabularyxxx", vocabulary);
   const [isFlipped, setIsFlipped] = useState(false);
   const [isCliked, setIsCliked] = useState(false);
   const handleToggle = () => {

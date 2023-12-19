@@ -162,6 +162,7 @@ const PackageTier = ({
   lessonId,
   checked = false,
 }: PackageTierProps) => {
+  // const auth = useAuth();
   const navigate = useNavigate();
   const handleOnclickGetStartLearn = () => {
     navigate(`/learning/${courseId}/${lessonId}`);
@@ -185,8 +186,8 @@ const PackageTier = ({
         alignItems="center"
         borderRadius={20}
       >
-        <Heading size={"lg"}>{titleEN}</Heading>
-        <Heading size={"xs"}>{titleVN}</Heading>
+        <Heading size={"md"}>{titleEN}</Heading>
+        <p>{titleVN}</p>
 
         <Stack>
           <Button
@@ -206,6 +207,7 @@ const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
   const [lesson, setLesson] = React.useState<LessonResponse[]>([]);
   const auth = getAuthV2();
   const getData = async () => {
+    console.log("cou", courseId);
     const token = await auth?.currentUser?.getIdToken();
     axios
       .get<LessonResponse[]>(
@@ -219,7 +221,7 @@ const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
         }
       )
       .then((response) => {
-        console.log("response.data", response.data);
+        console.log("LearnVocabResponse.data", response.data);
         setLesson(response.data);
       });
   };
@@ -228,7 +230,7 @@ const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
     if (auth?.currentUser) {
       getData();
     }
-  }, [auth?.currentUser]);
+  }, [auth?.currentUser, courseId]);
 
   return (
     <Box width={"60%"}>
@@ -236,7 +238,7 @@ const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
         <Stack gap={8}>
           <Divider />
           {lesson.map((individualLesson, index) => {
-            console.log("tu", individualLesson);
+            // console.log("tu", individualLesson);
             return (
               <PackageTier
                 key={individualLesson.lesson.lessonId}

@@ -2,8 +2,8 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Nav from "./component/Nav";
-import Learning from "./pages/Learning";
-import VocabLesson from "./pages/VocabLesson";
+import Learning from "./pages/LearningVocab";
+import LessonVocab from "./pages/LessonVocab";
 import { ToastContainer } from "react-toastify";
 import CatsMenu from "./component/Menu/CatsMenu";
 import Hstack from "./component/Stack/Hstack";
@@ -18,12 +18,16 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import WrongAnswer from "./component/WrongAnswer/WrongAnswer";
 const router = createBrowserRouter([
   {
-    path: "learnvocab",
+    path: "/lessonvocab/:courseId",
     element: (
       <Hstack>
-        <VocabLesson />
+        <LessonVocab />
       </Hstack>
     ),
+  },
+  {
+    path: "/learning/:courseId/:lessionId",
+    element: <Learning />,
   },
   {
     path: "menu",
@@ -62,24 +66,10 @@ const router = createBrowserRouter([
     ),
   },
 
-  // {
-  //   path: "learnnewwords",
-  //   element: <LearnNewWords />,
-  // },
-  //ảnh khi xuất hiện từ để học
-  // {
-  //   path: "flip",
-  //   element: <FlipItemShadow />,
-  // },
-  // chia màn hình thành 3 phần
-  {
-    path: "/learning/:courseId/:lessionId",
-    element: <Learning />,
-  },
   //=========== test
   // {
   //   path: "H",
-  //   element: <Hstack />,
+  //   element: <Hstackk />,
   // },
 
   {

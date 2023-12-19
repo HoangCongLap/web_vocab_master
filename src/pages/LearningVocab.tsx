@@ -128,7 +128,7 @@ const Learning: React.FC = () => {
     setIsFlipped(false);
   }, [index]);
   const renderContent = () => {
-    console.log({ vocabularies });
+    // console.log({ vocabularies });
     if (index % 2 == 0) {
       if (!vocabularies[index / 2]) {
         return <></>;
@@ -157,7 +157,7 @@ const Learning: React.FC = () => {
             width={"250px"}
             color={"#fff"}
             borderRadius={"50px"}
-            marginTop={"50px"}
+            marginTop={"20px"}
             onClick={handleOnClick}
           >
             Tiếp Tục
@@ -187,11 +187,18 @@ const Learning: React.FC = () => {
     return <></>;
   }
   return (
-    <Container maxW="50%" bg="gray.100" height="calc(100vh)" color="white">
+    <Container
+      minW="400px"
+      maxW="50%"
+      maxH="100%"
+      bg="gray.100"
+      height="calc(100vh)"
+      color="white"
+    >
       <VStack>
         <ProgressBar value={progressValue} />
         <VStack width="50%">
-          <HStack marginTop={"50px"}>
+          <HStack marginTop={"20px"}>
             <UseSound />
             <Slow />
           </HStack>

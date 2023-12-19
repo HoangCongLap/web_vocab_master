@@ -16,7 +16,7 @@ import Nav from "../component/Nav";
 export default function HomePage() {
   const navigate = useNavigate();
   const handleOnclickGetStarted = () => {
-    navigate("/learnvocab");
+    navigate("/lessonvocab/1");
   };
   return (
     <>

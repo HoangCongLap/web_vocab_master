@@ -4,8 +4,13 @@ import LearnNewWords from "../component/LearnVocab/LearnVocab";
 import { useParams } from "react-router";
 
 const VocabLesson: React.FC = () => {
+  const { courseId } = useParams();
+  console.log("courseidLesson", courseId);
+  // const navigate = useNavigate();
+  if (courseId == undefined) {
+    // return navigate("/lessonvocab");
+  }
   return (
-    // <div ="gray.100" color="white" p={10}>
     <>
       <Stack
         width={"85%"}
@@ -24,7 +29,7 @@ const VocabLesson: React.FC = () => {
         <Heading fontSize={30}>1000 TỪ CƠ BẢN</Heading>
       </Stack>
       <VStack>
-        <LearnNewWords courseId={1} />
+        <LearnNewWords courseId={parseInt(courseId)} />
       </VStack>
     </>
   );

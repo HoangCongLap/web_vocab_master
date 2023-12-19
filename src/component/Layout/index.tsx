@@ -23,7 +23,7 @@ import { FiBell, FiChevronDown } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import Logo from "../Logo";
 import { pageLinks } from "../../data/PageLinks";
-import DrawerCourse from "../DrawerCourse/DrawerCourse";
+import DrawerCourse from "../../pages/CourseVocab";
 import React from "react";
 
 interface Props {
@@ -67,7 +67,7 @@ export default function Layout(props: Props) {
     navigate("/login");
   };
   const handleOnclickLogo = () => {
-    navigate("/learnvocab");
+    navigate("/lessonvocab/1");
   };
   return (
     <>

@@ -36,7 +36,7 @@ export default function Signup() {
             const user = userCredential.user;
             console.log(user);
             toast.success("Đăng Ký thành công.");
-            navigate("/learnvocab");
+            navigate("/lessonvocab/1");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -106,7 +106,7 @@ export default function Signup() {
             <FormControl id="confirmPassword">
               <FormLabel>Confirm password</FormLabel>
               <Input
-                type="confirmPassword"
+                type="Password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />

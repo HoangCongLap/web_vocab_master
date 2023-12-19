@@ -47,8 +47,8 @@ export default function Login() {
         .then((userCredential) => {
           const user = userCredential.user;
 
-          navigate("/learnvocab");
-          console.log(user);
+          navigate("/lessonvocab/1");
+          console.log("user:", user);
           toast.success("Đăng nhập thành công.");
         })
         .catch((error) => {
