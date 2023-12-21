@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { setupFirebase } from "./firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import WrongAnswer from "./component/WrongAnswer/WrongAnswer";
+import EndOfLesson from "./component/EndOfLessoning/EndOfLesson";
 const router = createBrowserRouter([
   {
     path: "/lessonvocab/:courseId",
@@ -87,6 +88,10 @@ const router = createBrowserRouter([
   {
     path: "wrong",
     element: <WrongAnswer />,
+  },
+  {
+    path: "end",
+    element: <EndOfLesson />,
   },
 ]);
 function App() {
