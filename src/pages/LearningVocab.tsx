@@ -10,7 +10,7 @@ import ProgressBar from "../component/Progress/ProgressBar";
 import Writewords from "../component/FormLabelWritewords/Writewords";
 import axios from "axios";
 import { getAuthV2 } from "../firebaseConfig";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 // const vocabularies: Vocabulary[] = [
 //   {
 //     id: 344,
@@ -67,6 +67,7 @@ import { useParams } from "react-router";
 //   },
 // ];
 const Learning: React.FC = () => {
+  const navigate = useNavigate();
   const [vocabularies, setVocabularies] = React.useState<Vocabulary[]>([]);
   const [index, setIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -112,6 +113,7 @@ const Learning: React.FC = () => {
     setProgressValue(progressValue + 100 / getTotalStep());
     if (index == getTotalStep() - 1) {
       learnFinish();
+      navigate("/endoflesson");
       return;
     }
     setIndex(index + 1);
@@ -120,6 +122,7 @@ const Learning: React.FC = () => {
     setProgressValue(progressValue + (2 * 100) / getTotalStep());
     if (index == getTotalStep() - 2) {
       learnFinish();
+      navigate("/endoflesson");
       return;
     }
     setIndex(index + 2);

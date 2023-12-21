@@ -1,8 +1,13 @@
 import { Button, Container, Image, VStack } from "@chakra-ui/react";
 
 import Book from "../../img/book.png";
+import { useNavigate } from "react-router";
 
 const EndOfLesson = () => {
+  const navigate = useNavigate();
+  const handleOnclickCompletesLearning = () => {
+    navigate("/lessonvocab/1");
+  };
   return (
     <Container
       minW="400px"

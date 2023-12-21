@@ -90,7 +90,7 @@ const router = createBrowserRouter([
     element: <WrongAnswer />,
   },
   {
-    path: "end",
+    path: "endoflesson",
     element: <EndOfLesson />,
   },
 ]);
