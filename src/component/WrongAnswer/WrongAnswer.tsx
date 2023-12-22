@@ -1,10 +1,12 @@
 // import { Vocabulary } from "../../data/Vocabulary";
 
-// interface Props {
-//   vocabulary: Vocabulary;
-// }
+import { Vocabulary } from "../../data/Vocabulary";
 
-const WrongAnswer = () => {
+interface Props {
+  vocabulary: Vocabulary;
+}
+
+const WrongAnswer = ({ vocabulary }: Props) => {
   return (
     <div
       style={{
@@ -12,20 +14,22 @@ const WrongAnswer = () => {
         width: "500px",
         height: "300px",
         backgroundColor: "#EB5757",
-        position: "absolute",
-        backfaceVisibility: "hidden",
+        // position: "absolute",
+
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         fontSize: "16px",
-        background: "white",
-        color: "black",
-        borderRadius: "10px",
+        color: "white",
+        borderRadius: "20px",
         textAlign: "center",
         flexDirection: "column",
       }}
     >
-      WrongAnswer
+      {vocabulary.content}
+      {vocabulary.phonetic}
+      {vocabulary.trans}
+      {vocabulary.en_hint}
     </div>
   );
 };

@@ -11,6 +11,7 @@ import Writewords from "../component/FormLabelWritewords/Writewords";
 import axios from "axios";
 import { getAuthV2 } from "../firebaseConfig";
 import { useNavigate, useParams } from "react-router";
+import WrongAnswer from "../component/WrongAnswer/WrongAnswer";
 // const vocabularies: Vocabulary[] = [
 //   {
 //     id: 344,
