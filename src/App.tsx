@@ -85,10 +85,10 @@ const router = createBrowserRouter([
     path: "drawer",
     // element: <DrawerCourse />,
   },
-  {
-    path: "wrong",
-    element: <WrongAnswer />,
-  },
+  // {
+  //   path: "wrong",
+  //   element: <WrongAnswer />,
+  // },
   {
     path: "endoflesson",
     element: <EndOfLesson />,

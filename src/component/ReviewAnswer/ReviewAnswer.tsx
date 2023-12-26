@@ -1,5 +1,5 @@
 import { Button, FormControl, Input, Stack, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ReviewVocab } from "../../data/ReviewVocab";
 import { toast } from "react-toastify";
 
@@ -49,10 +49,11 @@ const vocabularies: ReviewVocab[] = [
 const ReviewAnswer = () => {
   const [fillInWord, setFillInWord] = useState("");
   const [index, setIndex] = useState(0);
+
   const getTotalStep = () => {
     return vocabularies.length;
   };
-
+  console.log("lap");
   const handleOnClickreviewAnswer = () => {
     console.log("Vocabulary Trans:", vocabularies[index].vocabulary.trans);
 

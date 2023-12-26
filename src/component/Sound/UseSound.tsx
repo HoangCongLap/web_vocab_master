@@ -1,18 +1,15 @@
-import React from "react";
 import useSound from "use-sound";
-import boopSfx from "../../voice/boop.mp3";
 import { Button, Icon } from "@chakra-ui/react";
 import { IoVolumeHighSharp } from "react-icons/io5";
-const UseSound = () => {
-  // const [playbackRate, setPlaybackRate] = React.useState(0.75);
-
-  const [play] = useSound(boopSfx, {
-    // playbackRate,
+import { Vocabulary } from "../../data/Vocabulary";
+interface Props {
+  vocabulary: Vocabulary;
+}
+const UseSound = ({ vocabulary }: Props) => {
+  const [play] = useSound(vocabulary.audio, {
     interrupt: true,
   });
-
   const handleClick = () => {
-    // setPlaybackRate(playbackRate + 0.1);
     play();
   };
 

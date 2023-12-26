@@ -1,37 +1,41 @@
 import { Button, FormControl, Input, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import WrongAnswer from "../WrongAnswer/WrongAnswer";
+import { Vocabulary } from "../../data/Vocabulary";
+
 interface Props {
-  word: string;
+  vocabulary: Vocabulary;
   onSucces: () => void;
 }
 
-const Writewords = ({ word, onSucces }: Props) => {
+const Writewords = ({ vocabulary, onSucces }: Props) => {
   const [heardWords, setHeardWords] = useState("");
+  const [showWrongAnswer, setShowWrongAnswer] = useState(false);
 
   const handleOnClickCheckWords = () => {
     if (heardWords) {
-      const isMatch = word === heardWords;
+      const isMatch = vocabulary.content === heardWords;
       if (isMatch) {
+        onSucces();
+      } else if (showWrongAnswer == true) {
         onSucces();
       } else {
         toast.error("Nhập từ không đúng");
+        setShowWrongAnswer(true);
       }
     }
   };
   return (
     <>
-      {/* <Writewords />; */}
       <Stack
         style={{
-          width: "170%",
-          marginTop: "40px",
+          width: "100%",
+          marginTop: "10px",
+          minWidth: "160%",
         }}
       >
         <FormControl id="heardWords">
-          {/* <FormLabel color={"black"} textAlign={"center"} fontSize={"40px"}>
-          Nghe và viết lại
-        </FormLabel> */}
           <p
             style={{
               color: "black",
@@ -42,9 +46,12 @@ const Writewords = ({ word, onSucces }: Props) => {
           >
             Nghe và viết lại
           </p>
+          {/* <UseSound vocabulary={vocabulary.audio} /> */}
+
           <Input
             autoFocus
             style={{
+              // width: "70%",
               background: "white",
               color: "black",
               marginTop: "40px",
@@ -56,8 +63,10 @@ const Writewords = ({ word, onSucces }: Props) => {
             onChange={(e) => setHeardWords(e.target.value)}
           />
         </FormControl>
-        {/* console.log({heardWords}); */}
       </Stack>
+      <div style={{ width: "200%", marginTop: "30px" }}>
+        {showWrongAnswer && <WrongAnswer vocabulary={vocabulary} />}
+      </div>
       <Button
         background={
           !heardWords

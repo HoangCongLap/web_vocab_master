@@ -142,6 +142,61 @@ import React from "react";
 //     courseId: 1,
 //   },
 // ];
+
+const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
+  const [lesson, setLesson] = React.useState<LessonResponse[]>([]);
+  const auth = getAuthV2();
+
+  const getDataLesson = async () => {
+    console.log("cou", courseId);
+    const token = await auth?.currentUser?.getIdToken();
+    axios
+      .get<LessonResponse[]>(
+        `https://pi.nhalq.dev/kimochiapi/api/lessons/${courseId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          params: {
+            fromId: 0,
+            limit: 10,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("LearnVocabResponse.data", response.data);
+        setLesson(response.data);
+      });
+  };
+  React.useEffect(() => {
+    console.log("auth", auth?.currentUser);
+    if (auth?.currentUser) {
+      getDataLesson();
+    }
+  }, [auth?.currentUser, courseId]);
+
+  return (
+    <Box width={"60%"}>
+      <Stack spacing={4} direction={"column"}>
+        <Stack gap={8}>
+          <Divider />
+          {lesson.map((individualLesson, index) => {
+            // console.log("tu", individualLesson);
+            return (
+              <PackageTier
+                key={individualLesson.lesson.lessonId}
+                titleVN={index + 1 + "." + individualLesson.lesson.titleVN}
+                titleEN={individualLesson.lesson.titleEN}
+                courseId={courseId}
+                lessonId={individualLesson.lesson.lessonId}
+              />
+            );
+          })}
+          <Divider />
+        </Stack>
+      </Stack>
+    </Box>
+  );
+};
+
 interface LearnNewWordsProps {
   courseId: number;
 }
@@ -162,7 +217,6 @@ const PackageTier = ({
   lessonId,
   checked = false,
 }: PackageTierProps) => {
-  // const auth = useAuth();
   const navigate = useNavigate();
   const handleOnclickGetStartLearn = () => {
     navigate(`/learning/${courseId}/${lessonId}`);
@@ -201,58 +255,6 @@ const PackageTier = ({
         </Stack>
       </Stack>
     </Stack>
-  );
-};
-const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
-  const [lesson, setLesson] = React.useState<LessonResponse[]>([]);
-  const auth = getAuthV2();
-  const getData = async () => {
-    console.log("cou", courseId);
-    const token = await auth?.currentUser?.getIdToken();
-    axios
-      .get<LessonResponse[]>(
-        `https://pi.nhalq.dev/kimochiapi/api/lessons/${courseId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-          params: {
-            fromId: 0,
-            limit: 10,
-          },
-        }
-      )
-      .then((response) => {
-        console.log("LearnVocabResponse.data", response.data);
-        setLesson(response.data);
-      });
-  };
-  React.useEffect(() => {
-    console.log("auth", auth?.currentUser);
-    if (auth?.currentUser) {
-      getData();
-    }
-  }, [auth?.currentUser, courseId]);
-
-  return (
-    <Box width={"60%"}>
-      <Stack spacing={4} direction={"column"}>
-        <Stack gap={8}>
-          <Divider />
-          {lesson.map((individualLesson, index) => {
-            // console.log("tu", individualLesson);
-            return (
-              <PackageTier
-                key={individualLesson.lesson.lessonId}
-                titleVN={index + 1 + "." + individualLesson.lesson.titleVN}
-                titleEN={individualLesson.lesson.titleEN}
-                courseId={courseId}
-                lessonId={individualLesson.lesson.lessonId}
-              />
-            );
-          })}
-          <Divider />
-        </Stack>
-      </Stack>
-    </Box>
   );
 };
 

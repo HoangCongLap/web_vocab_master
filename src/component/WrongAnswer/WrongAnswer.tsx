@@ -11,25 +11,55 @@ const WrongAnswer = ({ vocabulary }: Props) => {
     <div
       style={{
         left: "50px",
-        width: "500px",
-        height: "300px",
+        width: "100%",
+        height: "200px",
         backgroundColor: "#EB5757",
-        // position: "absolute",
-
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
         fontSize: "16px",
         color: "white",
         borderRadius: "20px",
-        textAlign: "center",
         flexDirection: "column",
+        marginTop: "30px",
       }}
     >
-      {vocabulary.content}
-      {vocabulary.phonetic}
-      {vocabulary.trans}
-      {vocabulary.en_hint}
+      <div style={{ marginLeft: "40px" }}>
+        <p
+          style={{
+            fontStyle: "normal",
+            fontSize: "20px",
+            fontWeight: "bold",
+          }}
+        >
+          {vocabulary.content}
+        </p>
+        <p
+          style={{
+            fontStyle: "normal",
+            fontSize: "18px",
+          }}
+        >
+          {vocabulary.phonetic}
+        </p>
+        <p
+          style={{
+            fontStyle: "normal",
+            fontSize: "16px",
+            lineHeight: "45px",
+          }}
+        >
+          {vocabulary.trans}
+        </p>
+        <p
+          style={{
+            fontStyle: "normal",
+            fontSize: "16px",
+            lineHeight: "45px",
+          }}
+        >
+          {vocabulary.en_hint}
+        </p>
+      </div>
     </div>
   );
 };

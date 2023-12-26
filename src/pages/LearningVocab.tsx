@@ -11,7 +11,9 @@ import Writewords from "../component/FormLabelWritewords/Writewords";
 import axios from "axios";
 import { getAuthV2 } from "../firebaseConfig";
 import { useNavigate, useParams } from "react-router";
-import WrongAnswer from "../component/WrongAnswer/WrongAnswer";
+import { LevelVocab } from "../data/LevelVocab";
+import { LearningProgess } from "../data/LearningProgress";
+import { LessonResponse } from "../data/Lesson";
 // const vocabularies: Vocabulary[] = [
 //   {
 //     id: 344,
@@ -67,15 +69,43 @@ import WrongAnswer from "../component/WrongAnswer/WrongAnswer";
 //     picture: "https://pi.nhalq.dev/kimochi/image/348.png",
 //   },
 // ];
+
 const Learning: React.FC = () => {
   const navigate = useNavigate();
   const [vocabularies, setVocabularies] = React.useState<Vocabulary[]>([]);
+
+  const [levelVocab, setLevelVocab] = React.useState<
+    Record<number, LevelVocab>
+  >([]);
+  // levelVocab[]={
+  //   id:vocabulary.id,
+  //   level:2
+  // }
+  // setLevelVocab({...levelVocab})
+
+  // const updateLevelVocab = (vocabulary: Vocabulary) => {
+  //   setLevelVocab((prevLevelVocab) => ({
+  //     ...prevLevelVocab,
+  //     [vocabulary.id]: {
+  //       id: vocabulary.id,
+  //       level: 2,
+  //     },
+  //   }));
+  // };
+  // React.useEffect(() => {
+  //   console.log("le", levelVocab);
+  //   vocabularies.forEach((vocabulary) => {
+  //     updateLevelVocab(vocabulary);
+  //   });
+  // }, [vocabularies]);
+
+  // ========================================
   const [index, setIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [progressValue, setProgressValue] = useState(0);
   const auth = getAuthV2();
   const { courseId, lessionId } = useParams();
-  const getData = async () => {
+  const getDataVocabularies = async () => {
     const token = await auth?.currentUser?.getIdToken();
     axios
       .get<VocabularyReponse>(
@@ -85,15 +115,55 @@ const Learning: React.FC = () => {
         }
       )
       .then((response) => {
-        console.log("response.data", response.data);
+        console.log("responseVocabularies.data", response.data);
         setVocabularies(response.data.vocabularies);
       });
   };
   React.useEffect(() => {
     if (auth?.currentUser) {
-      getData();
+      getDataVocabularies();
     }
   }, [auth?.currentUser]);
+  //push isFinish
+  const UpdateLevelVocab = async () => {
+    // const date = new Date();
+    const token = await auth?.currentUser?.getIdToken();
+    const list: LearningProgess[] = [];
+    for (const [key, value] of Object.entries(levelVocab)) {
+      list.push({
+        level: value.level,
+        vocabId: value.id,
+      });
+    }
+    axios
+      .put<LearningProgess[]>(
+        "https://pi.nhalq.dev/kimochiapi/api/learningprogress",
+        list,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log("levelVocabResponse.data", response.data);
+      });
+  };
+
+  // update Level
+  const UpdateIsFinishLesson = async () => {
+    // const date = new Date();
+    const token = await auth?.currentUser?.getIdToken();
+    axios
+      .put<LearningProgess[]>(
+        `https://pi.nhalq.dev/kimochiapi/api/lesson/:${courseId}/:${lessonId}/finish`,
+
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log("IsFinishResponse.data", response.data);
+      });
+  };
 
   const getTotalStep = () => {
     return vocabularies.length * 2;
@@ -101,25 +171,53 @@ const Learning: React.FC = () => {
   const handleFlip = () => {
     setIsFlipped(true);
   };
+  // set Level của từ vựng
+  const setLevel = (level: LevelVocab) => {
+    levelVocab[level.id] = { ...level };
+    setLevelVocab({ ...levelVocab });
+    console.log("da nho", levelVocab);
+  };
   // xử lí tiếp tục khi hình đã lật
-  const handleOnClick = () => {
+  const handleOnClick = (vocablary: Vocabulary) => {
+    setLevel({
+      id: vocablary.id,
+      level: 3,
+    });
+    console.log("tt", levelVocab);
     if (isFlipped) {
-      nextVocab();
+      nextVocab(vocabularies[getVocabIndex()]);
     }
   };
   const learnFinish = () => {
+    UpdateLevelVocab();
+    UpdateIsFinishLesson();
     toast("Wow. Finish!");
   };
-  const nextVocab = () => {
+
+  const nextVocab = (vocablary: Vocabulary) => {
+    setLevel({
+      id: vocablary.id,
+      level: 1,
+    });
+    console.log("kiemer tra", levelVocab);
+
     setProgressValue(progressValue + 100 / getTotalStep());
     if (index == getTotalStep() - 1) {
       learnFinish();
       navigate("/endoflesson");
+
       return;
     }
     setIndex(index + 1);
   };
-  const handleRemembered = () => {
+  //==================================================================================
+
+  const handleRemembered = (vocablary: Vocabulary) => {
+    setLevel({
+      id: vocablary.id,
+      level: 3,
+    });
+
     setProgressValue(progressValue + (2 * 100) / getTotalStep());
     if (index == getTotalStep() - 2) {
       learnFinish();
@@ -127,23 +225,43 @@ const Learning: React.FC = () => {
       return;
     }
     setIndex(index + 2);
+
+    // ============================
+    // setLevelVocab((prevLevelVocab) => [
+    //   ...prevLevelVocab,
+    //   { id: vocabularies[].id, level: 3 },
+    // ]);
+    // console.log("leve", vocabularies[]);
   };
   useEffect(() => {
     setIsFlipped(false);
   }, [index]);
+  const getVocabIndex = () => {
+    if (index % 2 == 0) {
+      return index / 2;
+    }
+    return (index - 1) / 2;
+  };
   const renderContent = () => {
     // console.log({ vocabularies });
+    const vocabIndex = getVocabIndex();
+
     if (index % 2 == 0) {
-      if (!vocabularies[index / 2]) {
+      if (!vocabularies[vocabIndex]) {
         return <></>;
       }
       return (
         <>
           <FlipItemShadow
             key={index}
-            vocabulary={vocabularies[index / 2]}
+            vocabulary={vocabularies[vocabIndex]}
             onFlip={handleFlip}
           />
+
+          {/* <p style={{ background: "red" }}>
+            {JSON.stringify(levelVocab) + "llllllllllllllll"}
+          </p> */}
+
           <Button
             background={
               !isFlipped
@@ -162,7 +280,7 @@ const Learning: React.FC = () => {
             color={"#fff"}
             borderRadius={"50px"}
             marginTop={"20px"}
-            onClick={handleOnClick}
+            onClick={() => handleOnClick(vocabularies[getVocabIndex()])}
           >
             Tiếp Tục
           </Button>
@@ -175,17 +293,28 @@ const Learning: React.FC = () => {
               textDecoration: "underline",
               margin: "1rem 0px",
             }}
-            onClick={handleRemembered}
+            onClick={() => handleRemembered(vocabularies[getVocabIndex()])}
           >
             Mình đã thuộc từ này
           </p>
         </>
       );
     } else {
-      console.log("vocabulariesxxx", vocabularies);
-      const vocab = vocabularies[(index - 1) / 2];
-      return <Writewords word={vocab.content} onSucces={nextVocab} />;
+      const vocab = vocabularies[vocabIndex];
+
+      return (
+        <Writewords
+          key={index}
+          vocabulary={vocab}
+          onSucces={() => nextVocab(vocabularies[getVocabIndex()])}
+        />
+      );
     }
+    // } else {
+    //   console.log("vocabulariesxxx", vocabularies);
+    //   const vocab = vocabularies[(index - 1) / 2];
+    //   return <Writewords word={vocab.content} onSucces={nextVocab} />;
+    // }
   };
   if (!vocabularies || vocabularies.length === 0) {
     return <></>;
@@ -201,10 +330,11 @@ const Learning: React.FC = () => {
     >
       <VStack>
         <ProgressBar value={progressValue} />
-        <VStack width="50%">
+        <VStack id="1111" width="50%">
           <HStack marginTop={"20px"}>
-            <UseSound />
-            <Slow />
+            key={index}
+            <UseSound vocabulary={vocabularies[getVocabIndex()]} />
+            <Slow vocabulary={vocabularies[getVocabIndex()]} />
           </HStack>
           {renderContent()}
 
