@@ -13,7 +13,7 @@ import { getAuthV2 } from "../firebaseConfig";
 import { useNavigate, useParams } from "react-router";
 import { LevelVocab } from "../data/LevelVocab";
 import { LearningProgess } from "../data/LearningProgress";
-import { LessonResponse } from "../data/Lesson";
+import { IsFinishLesson } from "../data/IsFinishLesson";
 // const vocabularies: Vocabulary[] = [
 //   {
 //     id: 344,
@@ -148,14 +148,14 @@ const Learning: React.FC = () => {
       });
   };
 
-  // update Level
-  const UpdateIsFinishLesson = async () => {
-    // const date = new Date();
+  // update Level chưa làm được
+
+  const UpdateIsFinishLession = async () => {
     const token = await auth?.currentUser?.getIdToken();
     axios
-      .put<LearningProgess[]>(
-        `https://pi.nhalq.dev/kimochiapi/api/lesson/:${courseId}/:${lessonId}/finish`,
-
+      .post<IsFinishLesson[]>(
+        `https://pi.nhalq.dev/kimochiapi/api/lesson/${courseId}/${lessionId}/finish`,
+        { courseId: { courseId }, lessonId: { lessionId } },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -190,7 +190,7 @@ const Learning: React.FC = () => {
   };
   const learnFinish = () => {
     UpdateLevelVocab();
-    UpdateIsFinishLesson();
+    UpdateIsFinishLession();
     toast("Wow. Finish!");
   };
 

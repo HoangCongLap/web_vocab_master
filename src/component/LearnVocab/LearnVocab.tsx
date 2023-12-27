@@ -187,6 +187,7 @@ const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
                 titleEN={individualLesson.lesson.titleEN}
                 courseId={courseId}
                 lessonId={individualLesson.lesson.lessonId}
+                isFinish={individualLesson.isFinish}
               />
             );
           })}
@@ -200,15 +201,14 @@ const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
 interface LearnNewWordsProps {
   courseId: number;
 }
-interface PackageTierProps {
-  // title: string;
-  // options: Array<{ lessonId: number; titleVN?: string }>;
 
+interface PackageTierProps {
   titleEN?: string;
   titleVN?: string;
   checked?: boolean;
   courseId: number;
   lessonId: number;
+  isFinish: boolean;
 }
 const PackageTier = ({
   titleVN,
@@ -216,6 +216,7 @@ const PackageTier = ({
   courseId,
   lessonId,
   checked = false,
+  isFinish,
 }: PackageTierProps) => {
   const navigate = useNavigate();
   const handleOnclickGetStartLearn = () => {
@@ -226,17 +227,17 @@ const PackageTier = ({
 
   const colorTextDark = checked ? "white" : "purple.500";
   const bgColorDark = checked ? "purple.400" : "gray.300";
-
+  console.log("isFinish", isFinish);
   return (
     <Stack
       width={"100%"}
-      backgroundColor="#e0e0e0"
+      backgroundColor={isFinish ? "red" : "#e0e0e0"}
       boxShadow="5px 10px 5px rgba(189, 189, 189, 0.9);"
       borderRadius={20}
     >
       <Stack
         p={3}
-        backgroundColor={"#F8F8F8"}
+        backgroundColor={isFinish ? "red" : "#F8F8F8"}
         alignItems="center"
         borderRadius={20}
       >

@@ -2,6 +2,9 @@ import { Button, FormControl, Input, Stack, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ReviewVocab } from "../../data/ReviewVocab";
 import { toast } from "react-toastify";
+import { getAuthV2 } from "../../firebaseConfig";
+import { VocabularyAnswer } from "../../data/VocabularyAnswer";
+import axios from "axios";
 
 const vocabularies: ReviewVocab[] = [
   {
@@ -50,10 +53,43 @@ const ReviewAnswer = () => {
   const [fillInWord, setFillInWord] = useState("");
   const [index, setIndex] = useState(0);
 
+  const [VocabularyAnswer, setVocabularyAnswer] = React.useState<ReviewVocab[]>(
+    []
+  );
+  const auth = getAuthV2();
+  //Lây danh sách vocab cần ôn tập
+  const getDataListreviewvocab = async () => {
+    const token = await auth?.currentUser?.getIdToken();
+    axios
+      .get<ReviewVocab[]>(
+        "https://pi.nhalq.dev/kimochiapi/api/listreviewvocab",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log("getDataListreviewvocab.data", response.data);
+        setVocabularyAnswer(response.data);
+      });
+  };
+  React.useEffect(() => {
+    if (auth?.currentUser) {
+      getDataListreviewvocab();
+    }
+  }, [auth?.currentUser]);
+
+  if (VocabularyAnswer.length > 0) {
+    console.log(
+      "VocabularyAnswerxxx",
+      VocabularyAnswer,
+      VocabularyAnswer[0].vocabulary
+    );
+  }
+
   const getTotalStep = () => {
     return vocabularies.length;
   };
-  console.log("lap");
+
   const handleOnClickreviewAnswer = () => {
     console.log("Vocabulary Trans:", vocabularies[index].vocabulary.trans);
 
