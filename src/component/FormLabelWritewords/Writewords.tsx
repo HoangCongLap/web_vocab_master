@@ -56,6 +56,7 @@ const Writewords = ({ vocabulary, onSucces }: Props) => {
               color: "black",
               marginTop: "40px",
               fontSize: "17px",
+              borderRadius: "20px",
             }}
             placeholder="Gõ lại từ bạn đã nghe được"
             type="heardWords"

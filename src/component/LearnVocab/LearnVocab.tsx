@@ -220,7 +220,11 @@ const PackageTier = ({
 }: PackageTierProps) => {
   const navigate = useNavigate();
   const handleOnclickGetStartLearn = () => {
-    navigate(`/learning/${courseId}/${lessonId}`);
+    if (isFinish) {
+      return;
+    } else {
+      navigate(`/learning/${courseId}/${lessonId}`);
+    }
   };
   const colorTextLight = checked ? "white" : "purple.600";
   const bgColorLight = checked ? "purple.400" : "gray.300";
@@ -237,9 +241,10 @@ const PackageTier = ({
     >
       <Stack
         p={3}
-        backgroundColor={isFinish ? "red" : "#F8F8F8"}
+        backgroundColor={isFinish ? "#47c958" : "#F8F8F8"}
         alignItems="center"
         borderRadius={20}
+        //  background: linear-gradient(269.83deg, #26AE38 0.14%, #59CD05 99.86%);
       >
         <Heading size={"md"}>{titleEN}</Heading>
         <p>{titleVN}</p>

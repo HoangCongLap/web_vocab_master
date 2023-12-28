@@ -9,7 +9,7 @@ const Hstack = ({ children }: Props) => {
     <Layout>
       <Flex>
         <Box flex="1" background="gray.200"></Box>
-        <Box flex="2" background="#fff!important">
+        <Box flex="2" background="#fff!important" minW={500}>
           {children}
         </Box>
         <Box flex="1" background="gray.200"></Box>

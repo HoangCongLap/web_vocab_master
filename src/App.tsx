@@ -8,15 +8,15 @@ import { ToastContainer } from "react-toastify";
 import CatsMenu from "./component/Menu/CatsMenu";
 import Hstack from "./component/Stack/Hstack";
 import BarChart from "./component/Chart/BarChart";
-import ReviewAnswer from "./component/ReviewAnswer/ReviewAnswer";
+import ReviewAnswer from "./pages/ReviewAnswer";
 import BoxAnswer from "./component/Boxx/BoxAnswer";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useEffect, useState } from "react";
 import { setupFirebase } from "./firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import WrongAnswer from "./component/WrongAnswer/WrongAnswer";
 import EndOfLesson from "./component/EndOfLessoning/EndOfLesson";
+import EndOfReviewAnswer from "./component/EndOfReviewAnswer/EndOfReviewAnswer";
 const router = createBrowserRouter([
   {
     path: "/lessonvocab/:courseId",
@@ -92,6 +92,10 @@ const router = createBrowserRouter([
   {
     path: "endoflesson",
     element: <EndOfLesson />,
+  },
+  {
+    path: "endofreview",
+    element: <EndOfReviewAnswer />,
   },
 ]);
 function App() {

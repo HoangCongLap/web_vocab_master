@@ -67,7 +67,7 @@ export default function Layout(props: Props) {
     navigate("/login");
   };
   const handleOnclickLogo = () => {
-    navigate("/lessonvocab/1");
+    navigate("/");
   };
   return (
     <>

@@ -3,5 +3,5 @@ import { VocabularyAnswer } from "./VocabularyAnswer";
 
 export interface ReviewVocab {
   learningProgressDTO: LearningProgressDTO[];
-  vocabulary: VocabularyAnswer[];
+  vocabulary: VocabularyAnswer;
 }

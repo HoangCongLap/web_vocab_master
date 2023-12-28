@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import Nav from "../component/Nav";
+import Footer from "../component/Footer";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -19,16 +20,16 @@ export default function HomePage() {
     navigate("/lessonvocab/1");
   };
   return (
-    <>
+    <Stack height={500}>
       <Nav />
       <Stack
         as={Box}
         textAlign={"center"}
-        spacing={{ base: 8, md: 14 }}
-        py={{ base: 20, md: 36 }}
+        spacing={{ base: 7, md: 10 }}
+        py={{ base: 20, md: 20 }}
       >
         <Heading
-          fontWeight={600}
+          // fontWeight={600}
           fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
           lineHeight={"110%"}
         >
@@ -72,7 +73,8 @@ export default function HomePage() {
           </Box>
         </Stack>
       </Stack>
-    </>
+      <Footer />
+    </Stack>
   );
 }
 

@@ -1,7 +1,15 @@
 // bắt đầu vào học từ vựng
 import React, { useEffect, useState } from "react";
 import FlipItemShadow from "../component/FlipItem/FlipItemShadow";
-import { Button, Container, HStack, VStack } from "@chakra-ui/react";
+import {
+  Button,
+  CloseButton,
+  Container,
+  Flex,
+  HStack,
+  Stack,
+  VStack,
+} from "@chakra-ui/react";
 import UseSound from "../component/Sound/UseSound";
 import { Vocabulary, VocabularyReponse } from "../data/Vocabulary";
 import { toast } from "react-toastify";
@@ -211,7 +219,9 @@ const Learning: React.FC = () => {
     setIndex(index + 1);
   };
   //==================================================================================
-
+  const handleOnClickCloseLearning = () => {
+    navigate("/review");
+  };
   const handleRemembered = (vocablary: Vocabulary) => {
     setLevel({
       id: vocablary.id,
@@ -328,9 +338,16 @@ const Learning: React.FC = () => {
       height="calc(100vh)"
       color="white"
     >
-      <VStack>
+      <Flex flexDirection="row" alignItems="center">
+        <CloseButton
+          size="lg"
+          fontSize={20}
+          onClick={handleOnClickCloseLearning}
+        />
         <ProgressBar value={progressValue} />
-        <VStack id="1111" width="50%">
+      </Flex>
+      <VStack>
+        <VStack width="50%">
           <HStack marginTop={"20px"}>
             key={index}
             <UseSound vocabulary={vocabularies[getVocabIndex()]} />
