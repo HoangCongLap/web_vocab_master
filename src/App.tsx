@@ -17,6 +17,7 @@ import { setupFirebase } from "./firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import EndOfLesson from "./component/EndOfLessoning/EndOfLesson";
 import EndOfReviewAnswer from "./component/EndOfReviewAnswer/EndOfReviewAnswer";
+import NoteBook from "./pages/Notebook";
 const router = createBrowserRouter([
   {
     path: "/lessonvocab/:courseId",
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
   {
     path: "endofreview",
     element: <EndOfReviewAnswer />,
+  },
+  {
+    path: "notebook",
+    element: <NoteBook />,
   },
 ]);
 function App() {

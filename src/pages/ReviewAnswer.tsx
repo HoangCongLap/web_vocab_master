@@ -74,7 +74,7 @@ const ReviewAnswer = () => {
   );
   const auth = getAuthV2();
   //Lây danh sách vocab cần ôn tập
-  const getDataListreviewvocab = async () => {
+  const getDataListReviewVocab = async () => {
     const token = await auth?.currentUser?.getIdToken();
     axios
       .get<ReviewVocab[]>(
@@ -84,13 +84,13 @@ const ReviewAnswer = () => {
         }
       )
       .then((response) => {
-        console.log("getDataListreviewvocab.data", response.data);
+        console.log("getDataListReviewVocab.data", response.data);
         setVocabularyAnswer(response.data);
       });
   };
   React.useEffect(() => {
     if (auth?.currentUser) {
-      getDataListreviewvocab();
+      getDataListReviewVocab();
     }
   }, [auth?.currentUser]);
 
@@ -136,10 +136,14 @@ const ReviewAnswer = () => {
   //   );
   // }
   const setLevelForVocabularyReview = (vocablary: Vocabulary) => {
-    console.log("object", vocabularies[index].learningProgressDTO[index].level);
+    console.log("object", vocabularies[1].learningProgressDTO.level);
+    const currentLevel = vocabularies[1].learningProgressDTO?.level;
+    const newLevel = currentLevel + 1;
+    console.log("newLevel", newLevel);
+
     setLevel({
       id: vocablary.id,
-      level: 2,
+      level: newLevel,
     });
   };
 

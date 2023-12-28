@@ -7,7 +7,6 @@ import {
   Container,
   Flex,
   HStack,
-  Stack,
   VStack,
 } from "@chakra-ui/react";
 import UseSound from "../component/Sound/UseSound";
