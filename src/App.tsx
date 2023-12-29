@@ -100,7 +100,12 @@ const router = createBrowserRouter([
   },
   {
     path: "notebook",
-    element: <NoteBook />,
+
+    element: (
+      <Hstack>
+        <NoteBook />
+      </Hstack>
+    ),
   },
 ]);
 function App() {
