@@ -56,7 +56,7 @@ function CourseVocab({ isOpen, onClose, btnRef }: DrawerProps) {
   };
   const [course, setCourse] = React.useState<Course[]>([]);
   const auth = getAuthV2();
-  const getData = async () => {
+  const getDataCourse = async () => {
     const token = await auth?.currentUser?.getIdToken();
     axios
       .get<Course[]>("https://pi.nhalq.dev/kimochiapi/api/courses", {
@@ -74,7 +74,7 @@ function CourseVocab({ isOpen, onClose, btnRef }: DrawerProps) {
   React.useEffect(() => {
     console.log("auth", auth?.currentUser);
     if (auth?.currentUser) {
-      getData();
+      getDataCourse();
     }
   }, [auth?.currentUser]);
 

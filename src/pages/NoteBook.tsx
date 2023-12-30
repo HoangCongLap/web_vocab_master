@@ -53,7 +53,7 @@ const NoteBook = () => {
     getDataVocabByLevel(level);
   };
   return (
-    <Stack height={605}>
+    <Stack height={673}>
       <>
         <style>
           {`
@@ -76,8 +76,10 @@ const NoteBook = () => {
             marginTop={"20px"}
             spacing="0px"
             color={"black"}
+            textAlign="center"
           >
             <Box
+              margin={" 0 0"}
               w="12.5%"
               h="40px"
               className="scaleOnHover"
@@ -201,8 +203,13 @@ const NoteBook = () => {
               {filteredVocabularies.map((vocabulary) => (
                 <Tbody key={vocabulary.id}>
                   <Tr>
-                    <Td> {vocabulary.content}</Td>
-                    <Td> {vocabulary.position}</Td>
+                    <Td>
+                      <Box style={{ fontWeight: "bold" }}>
+                        {vocabulary.content}
+                      </Box>
+                      {vocabulary.phonetic}
+                    </Td>
+                    <Td> ({vocabulary.position})</Td>
                     <Td> {vocabulary.trans}</Td>
                   </Tr>
                 </Tbody>

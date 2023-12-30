@@ -174,7 +174,7 @@ const LearnNewWords = ({ courseId }: LearnNewWordsProps) => {
   }, [auth?.currentUser, courseId]);
 
   return (
-    <Box width={"60%"}>
+    <Box width={"60%"} id="dd">
       <Stack spacing={4} direction={"column"}>
         <Stack gap={8}>
           <Divider />
@@ -233,34 +233,42 @@ const PackageTier = ({
   const bgColorDark = checked ? "purple.400" : "gray.300";
   console.log("isFinish", isFinish);
   return (
-    <Stack
-      width={"100%"}
-      backgroundColor={isFinish ? "red" : "#e0e0e0"}
-      boxShadow="5px 10px 5px rgba(189, 189, 189, 0.9);"
-      borderRadius={20}
-    >
+    <>
       <Stack
-        p={3}
-        backgroundColor={isFinish ? "#47c958" : "#F8F8F8"}
-        alignItems="center"
-        borderRadius={20}
-        //  background: linear-gradient(269.83deg, #26AE38 0.14%, #59CD05 99.86%);
+        width={"100%"}
+        background={isFinish ? "#4da936" : "#e0e0e0"}
+        boxShadow="rgba(189, 189, 189, 0.25) 5px 5px 5px 0px"
+        borderRadius={"20px"}
       >
-        <Heading size={"md"}>{titleEN}</Heading>
-        <p>{titleVN}</p>
+        <Stack
+          p={3}
+          // background={isFinish ? "#47c958" : "#F8F8F8"}
+          background={
+            isFinish
+              ? "linear-gradient(269.83deg, #26AE38 0.14%, #59CD05 99.86%)"
+              : "#F8F8F8"
+          }
+          boxShadow={isFinish ? "0 6px 0 0 #209b32" : "0 6px 0 0 #f2f2f2"}
+          alignItems="center"
+          borderRadius={20}
+          //  background: linear-gradient(269.83deg, #26AE38 0.14%, #59CD05 99.86%);
+        >
+          <Heading size={"md"}>{titleEN}</Heading>
+          <p>{titleVN}</p>
 
-        <Stack>
-          <Button
-            size="md"
-            color={useColorModeValue(colorTextLight, colorTextDark)}
-            bgColor={useColorModeValue(bgColorLight, bgColorDark)}
-            onClick={handleOnclickGetStartLearn}
-          >
-            Get Started
-          </Button>
+          <Stack>
+            <Button
+              size="md"
+              color={useColorModeValue(colorTextLight, colorTextDark)}
+              bgColor={useColorModeValue(bgColorLight, bgColorDark)}
+              onClick={handleOnclickGetStartLearn}
+            >
+              Get Started
+            </Button>
+          </Stack>
         </Stack>
       </Stack>
-    </Stack>
+    </>
   );
 };
 

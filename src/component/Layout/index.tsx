@@ -16,6 +16,7 @@ import {
   Stack,
   VStack,
   Text,
+
   // background,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -71,7 +72,13 @@ export default function Layout(props: Props) {
   };
   return (
     <>
-      <Box bg={useColorModeValue("green.400", "gray.400")} px={4}>
+      <Box
+        bg={useColorModeValue("green.400", "gray.400")}
+        px={4}
+        position="sticky"
+        top="0"
+        zIndex="100"
+      >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
             size={"md"}
@@ -80,45 +87,65 @@ export default function Layout(props: Props) {
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <Box onClick={handleOnclickLogo}>
+          <Box onClick={handleOnclickLogo} marginRight={"2%"}>
             <Logo />
           </Box>
-          <HStack
-            as={"nav"}
-            display={{ base: "none", md: "flex" }}
-            justifyContent="center"
-            gap={10}
-            style={{
-              listStyle: "none",
-              color: "white",
-              fontSize: "23px",
-              fontFamily: "cursive",
-              fontWeight: "bold",
-            }}
-          >
-            {pageLinks.map((link) => {
-              const { id, href, text } = link;
-              return (
-                <li key={id}>
-                  <Box
-                    as="a"
-                    px={3}
-                    py={3}
-                    href={href}
-                    textDecoration="none"
-                    color="white"
-                    transition="background 0.3s"
-                    _hover={{
-                      bg: "green.300",
-                      color: "white",
-                    }}
-                  >
-                    {text}
-                  </Box>
-                </li>
-              );
-            })}
-            <li>
+          <div>
+            <HStack
+              id="2222"
+              as={"nav"}
+              display={{ base: "none", md: "flex" }}
+              justifyContent="center"
+              gap={10}
+              style={{
+                listStyle: "none",
+                color: "white",
+                fontSize: "23px",
+                fontFamily: "cursive",
+                fontWeight: "bold",
+              }}
+            >
+              {pageLinks.map((link) => {
+                const { id, href, text, Image } = link;
+
+                return (
+                  <li key={id}>
+                    <Box
+                      as="a"
+                      px={3}
+                      py={3}
+                      href={href}
+                      textDecoration="none"
+                      color="white"
+                    >
+                      <Box
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          flexDirection: "column",
+                          width: "100%",
+                          marginRight: "30px",
+                          marginTop: "5px",
+                          transition: "background 0.3s, color 0.3s",
+                        }}
+                        _hover={{
+                          bg: "green.300",
+                          color: "white",
+                        }}
+                      >
+                        <img
+                          src={Image}
+                          alt={text}
+                          width="30px"
+                          height="20px"
+                        />
+                        <p> {text} </p>
+                      </Box>
+                    </Box>
+                  </li>
+                );
+              })}
+              {/* <li>
               <Box
                 px={3}
                 py={3}
@@ -134,11 +161,14 @@ export default function Layout(props: Props) {
               >
                 Khóa học
               </Box>
-            </li>
-            {/* {Links.map((link) => (
+            </li> */}
+
+              {/* /fdsgfdgsdgfsdg */}
+              {/* {Links.map((link) => (
               <NavLink key={link}>{link}</NavLink>
             ))} */}
-          </HStack>
+            </HStack>
+          </div>
           <Flex alignItems={"center"}>
             <IconButton
               size="lg"

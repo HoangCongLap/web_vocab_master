@@ -1,4 +1,4 @@
-interface Lesson {
+export interface Lesson {
   courseId: number;
   lessonId: number;
   titleVN: string;

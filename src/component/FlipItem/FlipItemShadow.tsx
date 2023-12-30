@@ -38,7 +38,7 @@ const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
 
   const frontStyle: React.CSSProperties = {
     width: "100%",
-    height: "100%",
+    height: "90%",
     position: "relative",
     backfaceVisibility: "hidden",
     display: "flex",
@@ -54,7 +54,7 @@ const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
 
   const backStyle: React.CSSProperties = {
     width: "100%",
-    height: "100%",
+    height: "90%",
     position: "absolute",
     backfaceVisibility: "hidden",
     display: "flex",

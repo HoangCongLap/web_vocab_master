@@ -1,11 +1,4 @@
-import {
-  Button,
-  CloseButton,
-  FormControl,
-  Input,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { CloseButton, FormControl, Input, Stack, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { ReviewVocab } from "../data/ReviewVocab";
 import { toast } from "react-toastify";
@@ -16,6 +9,7 @@ import { useNavigate } from "react-router";
 import { LearningProgess } from "../data/LearningProgress";
 import { LevelVocab } from "../data/LevelVocab";
 import { Vocabulary } from "../data/Vocabulary";
+import StyledButton from "../component/StyledButton";
 
 // const vocabularies: ReviewVocab[] = [
 //   {
@@ -160,6 +154,7 @@ const ReviewAnswer = () => {
       const isMatch = vocabularies[index].vocabulary.content === fillInWord;
       if (isMatch) {
         setLevelForVocabularyReview(vocablary);
+        UpdateLevelVocab();
         onSucces();
       } else if (showWrongAnswer == true) {
         onSucces();
@@ -169,15 +164,20 @@ const ReviewAnswer = () => {
       }
     }
   };
+  console.log("objectzz", showWrongAnswer);
+  const handleNotRemembered = () => {
+    setShowWrongAnswer(true);
+  };
   const onSucces = () => {
     if (index == getTotalStep() - 1) {
       toast("Wow. Finish!");
       navigate("/endofreview");
-      UpdateLevelVocab();
       return;
     }
+
     setIndex(index + 1);
   };
+  console.log(" !showWrongAnswer", !fillInWord, !showWrongAnswer);
   return (
     <Stack h="91vh">
       <Stack>
@@ -188,7 +188,6 @@ const ReviewAnswer = () => {
           onClick={handleOnClickCloseReviewAnswer}
         />
       </Stack>
-
       <Stack
         id="123"
         w="60%"
@@ -214,7 +213,7 @@ const ReviewAnswer = () => {
               fontWeight: "bold",
               fontStyle: "normal",
               color: "#06072E",
-              marginTop: "20px",
+              marginTop: "10px",
               textAlign: "center",
             }}
           >
@@ -225,7 +224,7 @@ const ReviewAnswer = () => {
             style={{
               background: "white",
               color: "black",
-              marginTop: "40px",
+              marginTop: "20px",
               fontSize: "17px",
               borderRadius: "20px",
             }}
@@ -241,30 +240,30 @@ const ReviewAnswer = () => {
           <WrongAnswer vocabulary={vocabularies[index].vocabulary} />
         )}
       </div>
-      <Button
-        background={
-          !fillInWord
-            ? "gray.200"
-            : "linear-gradient(83deg, #58cc02 19.02%, #23ac38 90.81%)"
-        }
-        boxShadow={!fillInWord ? "gray" : "0 6px 0 0 #209b32"}
-        _hover={{
-          background: !fillInWord
-            ? "gray.200"
-            : "linear-gradient(83deg, #7bea00 9.02%, #2fbf33 90.81%)",
-        }}
-        fontSize={"20px"}
-        height={"50px"}
-        width={"250px"}
-        color={"#fff"}
-        borderRadius={"50px"}
-        margin={"50px auto 0"}
+      <StyledButton
+        disable={!(fillInWord || showWrongAnswer)}
         onClick={() =>
           handleOnClickreviewAnswer(vocabularies[index].vocabulary)
         }
       >
         Tiếp Tục
-      </Button>
+      </StyledButton>
+
+      <p
+        style={{
+          fontWeight: "bold",
+          fontSize: "18px",
+          color: "black",
+          cursor: "pointer",
+          textDecoration: "underline",
+          margin: "10px 0px ",
+          background: "white",
+          textAlign: "center",
+        }}
+        onClick={() => handleNotRemembered()}
+      >
+        Mình không nhớ từ này
+      </p>
     </Stack>
   );
 };

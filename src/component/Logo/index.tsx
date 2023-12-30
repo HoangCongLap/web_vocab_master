@@ -4,9 +4,10 @@ export default function Logo() {
   return (
     <Text
       fontSize="xx-large"
-      fontWeight={900}
+      fontWeight={"50%"}
       fontFamily="cursive"
       color="gray.200"
+      minW={200}
     >
       VocabMaster
     </Text>

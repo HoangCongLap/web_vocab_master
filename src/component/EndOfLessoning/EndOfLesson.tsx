@@ -2,6 +2,7 @@ import { Button, Container, Image, VStack } from "@chakra-ui/react";
 
 import Book from "../../img/book.png";
 import { useNavigate } from "react-router";
+import StyledButton from "../StyledButton";
 
 const EndOfLesson = () => {
   const navigate = useNavigate();
@@ -35,18 +36,10 @@ const EndOfLesson = () => {
           src={Book}
           alt="Dan Abramov"
         />
-        <Button
-          fontSize={"20px"}
-          height={"50px"}
-          width={"250px"}
-          color={"#fff"}
-          borderRadius={"50px"}
-          marginTop={"200px"}
-          background={"linear-gradient(83deg, #58cc02 19.02%, #23ac38 90.81%)"}
-          onClick={handleOnclickCompletesLearning}
-        >
+
+        <StyledButton onClick={handleOnclickCompletesLearning}>
           Tiếp Tục
-        </Button>
+        </StyledButton>
       </VStack>
     </Container>
   );
