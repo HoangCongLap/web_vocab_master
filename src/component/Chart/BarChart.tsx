@@ -14,6 +14,7 @@ import { getAuthV2 } from "../../firebaseConfig";
 import axios from "axios";
 import { OverViewVocab } from "../../data/OverViewVocab";
 import React from "react";
+import StyledButton from "../StyledButton";
 
 ChartJS.register(
   CategoryScale,
@@ -120,7 +121,8 @@ export default function BarChart() {
   };
 
   const handleOnclickReview = () => {
-    navigate("/reviewAnswer");
+    navigate("/load");
+    // navigate("/reviewAnswer");
   };
   return (
     <div
@@ -142,7 +144,7 @@ export default function BarChart() {
         >
           Chuẩn bị ôn tập: {overViewvocabularies.practiceVocabCount} từ
         </p>
-        <Button
+        {/* <Button
           margin={"0 auto"}
           marginTop={"20px"}
           width={"60%"}
@@ -158,7 +160,8 @@ export default function BarChart() {
           onClick={handleOnclickReview}
         >
           ÔN TẬP NGAY
-        </Button>
+        </Button> */}
+        <StyledButton onClick={handleOnclickReview}>ÔN TẬP NGAY</StyledButton>
       </Stack>
     </div>
   );

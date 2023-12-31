@@ -84,9 +84,12 @@ const NoteBook = () => {
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 1 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 1
-              <Divider bgColor={"red"} height={1} />
+              <Divider bgColor={"red"} height={1} marginTop={"3px"} />
             </Box>
 
             <Box
@@ -94,63 +97,84 @@ const NoteBook = () => {
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 2 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 2
-              <Divider bgColor={"#ffcb08"} height={1} />
+              <Divider bgColor={"#ffcb08"} height={1} marginTop={"3px"} />
             </Box>
             <Box
               w="12.5%"
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 3 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 3
-              <Divider bgColor={"#56ccf2"} height={1} />
+              <Divider bgColor={"#56ccf2"} height={1} marginTop={"3px"} />
             </Box>
             <Box
               w="12.5%"
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 4 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 4
-              <Divider bgColor={"#2f80ed"} height={1} />
+              <Divider bgColor={"#2f80ed"} height={1} marginTop={"3px"} />
             </Box>
             <Box
               w="12.5%"
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 5 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 5
-              <Divider bgColor={"#213782"} height={1} />
+              <Divider bgColor={"#213782"} height={1} marginTop={"3px"} />
             </Box>
             <Box
               w="12.5%"
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 6 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 6
-              <Divider bgColor={"#FF00FF"} height={1} />
+              <Divider bgColor={"#FF00FF"} height={1} marginTop={"3px"} />
             </Box>
             <Box
               w="12.5%"
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 7 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 7
-              <Divider bgColor={"#CCFF00"} height={1} />
+              <Divider bgColor={"#CCFF00"} height={1} marginTop={"3px"} />
             </Box>
             <Box
               w="12.5%"
               h="40px"
               className="scaleOnHover"
               onClick={() => handleOnclickVocabByLevel({ level: 8 })}
+              _hover={{
+                fontWeight: "bold",
+              }}
             >
               Cấp độ 8
-              <Divider bgColor={"#FFCC00"} height={1} />
+              <Divider bgColor={"#FFCC00"} height={1} marginTop={"3px"} />
             </Box>
           </Stack>
         </Stack>

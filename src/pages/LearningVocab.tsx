@@ -1,14 +1,7 @@
 // bắt đầu vào học từ vựng
 import React, { useEffect, useState } from "react";
 import FlipItemShadow from "../component/FlipItem/FlipItemShadow";
-import {
-  Button,
-  CloseButton,
-  Container,
-  Flex,
-  HStack,
-  VStack,
-} from "@chakra-ui/react";
+import { CloseButton, Container, Flex, HStack, VStack } from "@chakra-ui/react";
 import UseSound from "../component/Sound/UseSound";
 import { Vocabulary, VocabularyReponse } from "../data/Vocabulary";
 import { toast } from "react-toastify";
@@ -267,10 +260,6 @@ const Learning: React.FC = () => {
             vocabulary={vocabularies[vocabIndex]}
             onFlip={handleFlip}
           />
-
-          {/* <p style={{ background: "red" }}>
-            {JSON.stringify(levelVocab) + "llllllllllllllll"}
-          </p> */}
 
           <StyledButton
             disable={!isFlipped}

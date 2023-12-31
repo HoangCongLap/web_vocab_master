@@ -231,7 +231,6 @@ const PackageTier = ({
 
   const colorTextDark = checked ? "white" : "purple.500";
   const bgColorDark = checked ? "purple.400" : "gray.300";
-  console.log("isFinish", isFinish);
   return (
     <>
       <Stack

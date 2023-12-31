@@ -1,5 +1,4 @@
 import {
-  Button,
   CircularProgress,
   CircularProgressLabel,
   CloseButton,
@@ -8,11 +7,11 @@ import {
   VStack,
 } from "@chakra-ui/react";
 
-import Book from "../../img/book.png";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import StyledButton from "../StyledButton";
 
 const EndOfReviewAnswer = () => {
+  const { length, value } = useParams();
   const navigate = useNavigate();
   const handleOnclickCompletesLearning = () => {
     navigate("/lessonvocab/1");
@@ -20,6 +19,8 @@ const EndOfReviewAnswer = () => {
   const handleOnClickCloseReviewAnswer = () => {
     navigate("/review");
   };
+  console.log("value", length, value);
+
   return (
     <Container
       minW="400px"
@@ -34,6 +35,9 @@ const EndOfReviewAnswer = () => {
           size="lg"
           fontSize={20}
           marginTop={2}
+          color="gray"
+          background={"white"}
+          borderRadius={30}
           onClick={handleOnClickCloseReviewAnswer}
         />
       </Stack>
@@ -41,7 +45,7 @@ const EndOfReviewAnswer = () => {
         <p
           style={{
             color: "#66BB6A",
-            fontSize: "24px",
+            fontSize: "30px",
             fontWeight: "Bold",
             marginTop: "30px",
           }}
@@ -49,20 +53,25 @@ const EndOfReviewAnswer = () => {
           Cố lên, bạn có thể làm được mà
         </p>
         <Stack marginTop={10}>
-          <CircularProgress size={200} value={40} color="green.400">
+          <CircularProgress
+            max={100}
+            size={200}
+            value={(100 / length) * value}
+            color="green.400"
+          >
             <CircularProgressLabel color={"green.400"}>
-              40%
+              {(100 / length) * value}%
             </CircularProgressLabel>
           </CircularProgress>
         </Stack>
         <p
           style={{
             color: "#66BB6A",
-            fontSize: "18px",
+            fontSize: "24px",
             marginTop: "30px",
           }}
         >
-          Bạn đã trả lời đúng 1/6 câu
+          Bạn đã trả lời đúng {value}/{length} câu
         </p>
 
         <StyledButton onClick={handleOnclickCompletesLearning}>

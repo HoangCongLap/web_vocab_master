@@ -58,7 +58,9 @@ const ReviewAnswer = () => {
   const navigate = useNavigate();
   const [fillInWord, setFillInWord] = useState("");
   const [showWrongAnswer, setShowWrongAnswer] = useState(false);
+  const [isCheckMatch, setCheckIsMatch] = useState(false);
   const [index, setIndex] = useState(0);
+  const [numberCorrectAnswews, setNumberCorrectAnswews] = useState(0);
   const [levelVocab, setLevelVocab] = React.useState<
     Record<number, LevelVocab>
   >([]);
@@ -130,8 +132,9 @@ const ReviewAnswer = () => {
   //   );
   // }
   const setLevelForVocabularyReview = (vocablary: Vocabulary) => {
-    console.log("object", vocabularies[1].learningProgressDTO.level);
-    const currentLevel = vocabularies[1].learningProgressDTO?.level;
+    console.log("object", vocabularies);
+    console.log("index", index);
+    const currentLevel = vocabularies[index].learningProgressDTO?.level;
     const newLevel = currentLevel + 1;
     console.log("newLevel", newLevel);
 
@@ -149,35 +152,57 @@ const ReviewAnswer = () => {
   };
   const handleOnClickreviewAnswer = (vocablary: Vocabulary) => {
     console.log("Vocabulary Trans:", VocabularyAnswer[index].vocabulary.trans);
-    console.log("fill", fillInWord);
-    if (fillInWord) {
-      const isMatch = vocabularies[index].vocabulary.content === fillInWord;
-      if (isMatch) {
-        setLevelForVocabularyReview(vocablary);
-        UpdateLevelVocab();
-        onSucces();
-      } else if (showWrongAnswer == true) {
+    if (fillInWord !== "" || showWrongAnswer === true) {
+      if (fillInWord) {
+        const isMatch =
+          vocabularies[index].vocabulary.content === fillInWord.trim();
+        if (isMatch) {
+          setCheckIsMatch(true);
+          setLevelForVocabularyReview(vocablary);
+          UpdateLevelVocab();
+          setNumberCorrectAnswews(numberCorrectAnswews + 1);
+          console.log("zzzz", isCheckMatch);
+          onSucces();
+        } else if (showWrongAnswer === true) {
+          onSucces();
+          setShowWrongAnswer(false);
+        } else {
+          setShowWrongAnswer(true);
+        }
+      } else {
         onSucces();
         setShowWrongAnswer(false);
-      } else {
-        setShowWrongAnswer(true);
       }
     }
   };
-  console.log("objectzz", showWrongAnswer);
+
   const handleNotRemembered = () => {
     setShowWrongAnswer(true);
   };
+  console.log("3", isCheckMatch);
   const onSucces = () => {
-    if (index == getTotalStep() - 1) {
-      toast("Wow. Finish!");
-      navigate("/endofreview");
-      return;
-    }
+    console.log("33", isCheckMatch);
 
-    setIndex(index + 1);
+    if (index == getTotalStep() - 1) {
+      console.log("333", isCheckMatch);
+      if (isCheckMatch) {
+        console.log("4", isCheckMatch);
+        toast("Wow. Finish!");
+        navigate(`/endofreview/${getTotalStep()}/${numberCorrectAnswews}`);
+      } else {
+        console.log("5", isCheckMatch);
+        setShowWrongAnswer(true);
+        console.log("showWrongAnswevoo", showWrongAnswer);
+        if (showWrongAnswer == true) {
+          toast("Wow. Finish!");
+          navigate(`/endofreview/${getTotalStep()}/${numberCorrectAnswews}`);
+        }
+      }
+    } else {
+      setIndex(index + 1);
+    }
   };
-  console.log(" !showWrongAnswer", !fillInWord, !showWrongAnswer);
+
   return (
     <Stack h="91vh">
       <Stack>

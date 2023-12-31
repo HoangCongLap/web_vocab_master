@@ -17,7 +17,8 @@ import { setupFirebase } from "./firebaseConfig";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import EndOfLesson from "./component/EndOfLessoning/EndOfLesson";
 import EndOfReviewAnswer from "./component/EndOfReviewAnswer/EndOfReviewAnswer";
-import NoteBook from "./pages/Notebook";
+import NoteBook from "./pages/NoteBook";
+import LoaderByTimlmit from "./component/LoaderByTimlmit/LoaderByTimlmit";
 const router = createBrowserRouter([
   {
     path: "/lessonvocab/:courseId",
@@ -67,7 +68,18 @@ const router = createBrowserRouter([
       </Hstack>
     ),
   },
-
+  {
+    path: "notebook",
+    element: (
+      <Hstack>
+        <NoteBook />
+      </Hstack>
+    ),
+  },
+  {
+    path: "/endofreview/:length/:value",
+    element: <EndOfReviewAnswer />,
+  },
   //=========== test
   // {
   //   path: "H",
@@ -94,16 +106,12 @@ const router = createBrowserRouter([
     path: "endoflesson",
     element: <EndOfLesson />,
   },
-  {
-    path: "endofreview",
-    element: <EndOfReviewAnswer />,
-  },
-  {
-    path: "notebook",
 
+  {
+    path: "load",
     element: (
       <Hstack>
-        <NoteBook />
+        <LoaderByTimlmit />
       </Hstack>
     ),
   },

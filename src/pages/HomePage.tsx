@@ -13,6 +13,7 @@ import {
 import { useNavigate } from "react-router";
 import Nav from "../component/Nav";
 import Footer from "../component/Footer";
+import LoaderByTimlmit from "../component/LoaderByTimlmit/LoaderByTimlmit";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -61,6 +62,7 @@ export default function HomePage() {
           >
             Bắt đầu
           </Button>
+
           <Box>
             <Icon
               as={Arrow}
