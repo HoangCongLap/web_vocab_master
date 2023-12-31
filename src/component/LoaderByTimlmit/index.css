@@ -29,7 +29,7 @@
     left: 0;
     height: 10px;
     background: #ff0000;
-    animation: coloredBarRun 6s linear infinite;
+    animation: coloredBarRun 5s linear infinite;
     z-index: 0;
 }
 

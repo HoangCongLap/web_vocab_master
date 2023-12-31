@@ -17,7 +17,7 @@ const LoaderByTimlmit = () => {
   }, []);
 
   useEffect(() => {
-    if (percentage === 51) {
+    if (percentage === 48) {
       window.location.href = "/reviewAnswer";
     }
   }, [percentage]);
