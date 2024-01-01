@@ -19,14 +19,13 @@ import EndOfLesson from "./component/EndOfLessoning/EndOfLesson";
 import EndOfReviewAnswer from "./component/EndOfReviewAnswer/EndOfReviewAnswer";
 import NoteBook from "./pages/NoteBook";
 import LoaderByTimlmit from "./component/LoaderByTimlmit/LoaderByTimlmit";
+import LabCourse from "./component/LabCourse/LabCourse";
 
 const router = createBrowserRouter([
   {
     path: "/lessonvocab/:courseId",
     element: (
-      <Hstack>
-        <LessonVocab />
-      </Hstack>
+      <Hstack children={<LessonVocab />} childrenRight={<LabCourse />} />
     ),
   },
   {
@@ -107,7 +106,10 @@ const router = createBrowserRouter([
     path: "endoflesson",
     element: <EndOfLesson />,
   },
-
+  {
+    path: "lab",
+    element: <LabCourse />,
+  },
   {
     path: "load",
     element: (

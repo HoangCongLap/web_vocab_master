@@ -194,6 +194,7 @@ const ReviewAnswer = () => {
         }
       }
     } else {
+      setFillInWord("");
       setIndex(index + 1);
     }
   };

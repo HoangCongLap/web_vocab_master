@@ -1,4 +1,4 @@
-import { Button, Stack } from "@chakra-ui/react";
+import { Stack } from "@chakra-ui/react";
 import {
   Chart as ChartJS,
   CategoryScale,

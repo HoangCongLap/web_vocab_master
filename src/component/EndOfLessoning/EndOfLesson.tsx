@@ -1,4 +1,4 @@
-import { Button, Container, Image, VStack } from "@chakra-ui/react";
+import { Container, Image, VStack } from "@chakra-ui/react";
 
 import Book from "../../img/book.png";
 import { useNavigate } from "react-router";

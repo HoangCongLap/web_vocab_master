@@ -24,7 +24,7 @@ import { FiBell, FiChevronDown } from "react-icons/fi";
 import { useNavigate } from "react-router";
 import Logo from "../Logo";
 import { pageLinks } from "../../data/PageLinks";
-import DrawerCourse from "../../pages/CourseVocab";
+// import DrawerCourse from "../../pages/CourseVocab";
 import React from "react";
 
 interface Props {
@@ -146,22 +146,22 @@ export default function Layout(props: Props) {
                 );
               })}
               {/* <li>
-              <Box
-                px={3}
-                py={3}
-                textDecoration="none"
-                color="white"
-                transition="background 0.3s"
-                _hover={{
-                  bg: "green.300",
-                  color: "white",
-                }}
-                ref={btnRef}
-                onClick={courseDisclouse.onOpen}
-              >
-                Khóa học
-              </Box>
-            </li> */}
+                <Box
+                  px={3}
+                  py={3}
+                  textDecoration="none"
+                  color="white"
+                  transition="background 0.3s"
+                  _hover={{
+                    bg: "green.300",
+                    color: "white",
+                  }}
+                  ref={btnRef}
+                  onClick={courseDisclouse.onOpen}
+                >
+                  Khóa học
+                </Box>
+              </li> */}
 
               {/* /fdsgfdgsdgfsdg */}
               {/* {Links.map((link) => (
@@ -232,7 +232,7 @@ export default function Layout(props: Props) {
           </Box>
         ) : null}
       </Box>
-      <DrawerCourse {...courseDisclouse} btnRef={btnRef} />
+      {/* <DrawerCourse {...courseDisclouse} btnRef={btnRef} /> */}
       <Box>{children}</Box>
     </>
   );

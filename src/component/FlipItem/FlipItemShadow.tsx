@@ -50,6 +50,7 @@ const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
     borderRadius: "10px",
     textAlign: "center",
     flexDirection: "column",
+    border: isFlipped ? "2px solid red" : "none",
   };
 
   const backStyle: React.CSSProperties = {
@@ -67,6 +68,7 @@ const FlipItemShadow = ({ vocabulary, onFlip }: Props) => {
     transform: isFlipped ? "rotateY(180deg)" : "backStyle",
     textAlign: "center",
     flexDirection: "column",
+    border: isFlipped ? "2px solid red" : "none",
   };
   const imgaPointer = (
     <div

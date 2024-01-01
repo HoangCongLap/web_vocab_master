@@ -7,6 +7,7 @@ import {
   Button,
   Stack,
   Heading,
+  Box,
 } from "@chakra-ui/react";
 import React from "react";
 import { Course } from "../data/Course";
@@ -94,64 +95,68 @@ function CourseVocab({ isOpen, onClose, btnRef }: DrawerProps) {
           minWidth="min-content"
         >
           <DrawerCloseButton />
-          <div
+          <Box
             style={{
               minWidth: "380px",
               background:
                 "  linear-gradient(0deg , #387ed9 65.50%, #0023ac 100.81%)",
-              height: "80px",
+              height: "100px",
               width: "100%",
-              // borderRadius: "10px",
               display: "flex",
               flexDirection: "column",
+              position: "sticky",
+              top: "0px",
+              zIndex: "101",
             }}
           >
             <p
               style={{
                 fontSize: "28px",
                 fontWeight: "bold",
-                margin: "20px auto 0",
+                margin: "30px auto",
                 color: "white",
+                height: "100px",
               }}
             >
               CÁC KHÓA HỌC
             </p>
-            <Stack width={"100%"} borderRadius={20} marginTop={5}>
-              {course.map((courses) => (
-                <Stack
-                  key={courses.courseId}
-                  p={3}
-                  boxShadow="5px 10px 5px rgba(189, 189, 189, 0.9);"
-                  backgroundColor={"#F8F8F8"}
-                  alignItems="center"
-                  borderRadius={20}
-                  marginTop={5}
-                >
-                  <Heading fontSize={25} fontWeight={"Bold"}>
-                    {courses.title}
-                  </Heading>
-                  <p style={{ fontSize: "20px" }}>{courses.desc}</p>
-                  <Stack>
-                    <Button
-                      size="md"
-                      bgColor={"#a9d4f5"}
-                      onClick={() =>
-                        handleOnclickGetStartLessonVocab(courses.courseId)
-                      }
-                    >
-                      Bắt Đầu
-                    </Button>
-                  </Stack>
+          </Box>
+          <Stack width={"100%"} borderRadius={20} marginTop={5}>
+            {course.map((courses) => (
+              <Stack
+                key={courses.courseId}
+                p={3}
+                boxShadow="5px 10px 5px rgba(189, 189, 189, 0.9);"
+                backgroundColor={"#F8F8F8"}
+                alignItems="center"
+                borderRadius={20}
+                marginTop={5}
+              >
+                <Heading fontSize={25} fontWeight={"Bold"}>
+                  {courses.title}
+                </Heading>
+                <p style={{ fontSize: "20px" }}>{courses.desc}</p>
+                <Stack>
+                  <Button
+                    size="md"
+                    bgColor={"#a9d4f5"}
+                    onClick={() =>
+                      handleOnclickGetStartLessonVocab(courses.courseId)
+                    }
+                  >
+                    Bắt Đầu
+                  </Button>
                 </Stack>
-              ))}
-            </Stack>
+              </Stack>
+            ))}
+          </Stack>
 
-            <DrawerFooter>
-              <Button variant="outline" mr={3} onClick={onClose}>
-                Cancel
-              </Button>
-            </DrawerFooter>
-          </div>
+          <DrawerFooter>
+            <Button variant="outline" mr={3} onClick={onClose}>
+              Cancel
+            </Button>
+          </DrawerFooter>
+          {/* </div> */}
         </DrawerContent>
       </Drawer>
     </>
