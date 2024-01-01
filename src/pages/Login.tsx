@@ -47,7 +47,7 @@ export default function Login() {
         .then((userCredential) => {
           const user = userCredential.user;
 
-          navigate("/lessonvocab/1");
+          navigate("/review");
           console.log("user:", user);
           toast.success("Đăng nhập thành công.");
         })
@@ -58,7 +58,10 @@ export default function Login() {
             toast.error("Email không đúng. Vui lòng nhập lại.");
           } else if (errorCode === "auth/wrong-password") {
             toast.error("Mật khẩu không đúng. Vui lòng nhập lại.");
+          } else if (errorCode === "auth/user-not-found") {
+            toast.error("Tài khoản không đúng. Vui lòng nhập lại.");
           }
+
           console.log(errorCode, errorMessage);
         });
     }

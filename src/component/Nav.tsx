@@ -7,7 +7,14 @@ export default function Nav() {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <Box sx={{ backgroundColor: "green.400" }} px={4} minWidth="100%">
+      <Box
+        sx={{ backgroundColor: "green.400" }}
+        px={4}
+        minWidth="100%"
+        position="sticky"
+        top="0"
+        zIndex="100"
+      >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Logo />
           <Flex alignItems={"center"}>

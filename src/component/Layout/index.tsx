@@ -21,11 +21,12 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { FiBell, FiChevronDown } from "react-icons/fi";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Logo from "../Logo";
 import { pageLinks } from "../../data/PageLinks";
 // import DrawerCourse from "../../pages/CourseVocab";
 import React from "react";
+import { useAuth } from "../../firebaseConfig";
 
 interface Props {
   children: React.ReactNode;
@@ -35,6 +36,7 @@ interface Props {
 
 const NavLink = (props: Props) => {
   const { children } = props;
+
   return (
     <Box
       as="a"
@@ -62,14 +64,24 @@ export default function Layout(props: Props) {
   const { children } = props;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
-  const courseDisclouse = useDisclosure();
-  const btnRef = React.useRef(null);
+  let username = null;
+  const auth = useAuth();
+
+  // const courseDisclouse = useDisclosure();
+  // const btnRef = React.useRef(null);
   const handleOnclickLogin = () => {
     navigate("/login");
   };
   const handleOnclickLogo = () => {
     navigate("/");
   };
+  if (
+    auth?.currentUser?.email &&
+    typeof auth?.currentUser?.email === "string"
+  ) {
+    username = auth?.currentUser?.email.split("@")[0];
+  }
+  username = auth?.currentUser?.emailVerified;
   return (
     <>
       <Box
@@ -145,28 +157,6 @@ export default function Layout(props: Props) {
                   </li>
                 );
               })}
-              {/* <li>
-                <Box
-                  px={3}
-                  py={3}
-                  textDecoration="none"
-                  color="white"
-                  transition="background 0.3s"
-                  _hover={{
-                    bg: "green.300",
-                    color: "white",
-                  }}
-                  ref={btnRef}
-                  onClick={courseDisclouse.onOpen}
-                >
-                  Khóa học
-                </Box>
-              </li> */}
-
-              {/* /fdsgfdgsdgfsdg */}
-              {/* {Links.map((link) => (
-              <NavLink key={link}>{link}</NavLink>
-            ))} */}
             </HStack>
           </div>
           <Flex alignItems={"center"}>
@@ -187,7 +177,7 @@ export default function Layout(props: Props) {
                   <Avatar
                     size={"sm"}
                     src={
-                      "https://images.unsplash.com/photo-1619946794135-5bc917a27793?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                      "https://imgt.taimienphi.vn/cf/Images/np/2023/1/5/avatar-tet-2023-30-anh-dai-dien-tet-quy-mao-dep-de-thuong-10.jpg"
                     }
                   />
                   <VStack
@@ -198,7 +188,8 @@ export default function Layout(props: Props) {
                     spacing="1px"
                     ml="2"
                   >
-                    <Text fontSize="sm">Justin Clark</Text>
+                    {/* <Text fontSize="sm">Justin Clark</Text> */}
+                    <Text fontSize="18px">{username}</Text>
                     {/* <Text fontSize="xs" color="gray.600">
                       Admin
                     </Text> */}

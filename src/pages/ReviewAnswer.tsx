@@ -123,7 +123,7 @@ const ReviewAnswer = () => {
   const setLevel = (level: LevelVocab) => {
     levelVocab[level.id] = { ...level };
     setLevelVocab({ ...levelVocab });
-    console.log("da nho review", levelVocab);
+    // console.log("da nho review", levelVocab);
   };
 
   // if (VocabularyAnswer.length > 0) {
@@ -134,11 +134,11 @@ const ReviewAnswer = () => {
   //   );
   // }
   const setLevelForVocabularyReview = (vocablary: Vocabulary) => {
-    console.log("object", vocabularies);
-    console.log("index", index);
+    // console.log("object", vocabularies);
+    // console.log("index", index);
     const currentLevel = vocabularies[index].learningProgressDTO?.level;
     const newLevel = currentLevel + 1;
-    console.log("newLevel", newLevel);
+    // console.log("newLevel", newLevel);
 
     setLevel({
       id: vocablary.id,

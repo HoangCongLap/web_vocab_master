@@ -8,7 +8,7 @@ const LabCourse = () => {
   const btnRef = React.useRef(null);
   return (
     <>
-      <Flex flexDirection="row" position="sticky" top="64px" zIndex="101">
+      <Flex flexDirection="row" position="sticky" top="64px">
         {/* <div
         style={{
           height: "140px",

@@ -122,7 +122,6 @@ export default function BarChart() {
 
   const handleOnclickReview = () => {
     navigate("/load");
-    // navigate("/reviewAnswer");
   };
   return (
     <div
