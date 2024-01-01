@@ -75,6 +75,7 @@ const VocabLesson: React.FC = () => {
       <VStack>
         <LearnNewWords courseId={parseInt(courseId as string)} />
       </VStack>
+      <Stack marginRight={0} bg={"Red"}></Stack>
     </>
   );
 };

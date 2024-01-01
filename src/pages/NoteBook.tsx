@@ -53,7 +53,7 @@ const NoteBook = () => {
     getDataVocabByLevel(level);
   };
   return (
-    <Stack height={673}>
+    <Stack h="92vh">
       <>
         <style>
           {`

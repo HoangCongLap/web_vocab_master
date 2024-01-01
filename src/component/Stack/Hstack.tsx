@@ -3,8 +3,9 @@ import Layout from "../Layout";
 
 interface Props {
   children: React.ReactNode;
+  childrenRight?: React.ReactNode;
 }
-const Hstack = ({ children }: Props) => {
+const Hstack = ({ children, childrenRight }: Props) => {
   return (
     <Layout>
       <Flex>
@@ -12,7 +13,9 @@ const Hstack = ({ children }: Props) => {
         <Box flex="2" background="#fff!important" minW={500}>
           {children}
         </Box>
-        <Box flex="1" background="gray.200"></Box>
+        <Box flex="1" background="gray.200">
+          {childrenRight}
+        </Box>
       </Flex>
     </Layout>
   );

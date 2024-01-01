@@ -127,7 +127,7 @@ export default function BarChart() {
   return (
     <div
       style={{
-        minHeight: "91vh",
+        minHeight: "92vh",
         display: "flex",
       }}
     >
@@ -144,23 +144,7 @@ export default function BarChart() {
         >
           Chuẩn bị ôn tập: {overViewvocabularies.practiceVocabCount} từ
         </p>
-        {/* <Button
-          margin={"0 auto"}
-          marginTop={"20px"}
-          width={"60%"}
-          color={"white"}
-          borderRadius={25}
-          fontSize={20}
-          background={"linear-gradient(83deg, #58cc02 19.02%, #23ac38 90.81%)"}
-          boxShadow={"0 6px 0 0 #209b32"}
-          _hover={{
-            background: "linear-gradient(83deg, #7bea00 9.02%, #2fbf33 90.81%)",
-            boxShadow: "0 6px 0 0 #209b32",
-          }}
-          onClick={handleOnclickReview}
-        >
-          ÔN TẬP NGAY
-        </Button> */}
+
         <StyledButton onClick={handleOnclickReview}>ÔN TẬP NGAY</StyledButton>
       </Stack>
     </div>

@@ -171,6 +171,7 @@ export default function Layout(props: Props) {
           </div>
           <Flex alignItems={"center"}>
             <IconButton
+              marginLeft={"130px"}
               size="lg"
               variant="ghost"
               aria-label="open menu"
@@ -190,15 +191,17 @@ export default function Layout(props: Props) {
                     }
                   />
                   <VStack
+                    // bg={"red"}
+                    // width={"205px"}
                     display={{ base: "none", md: "flex" }}
                     alignItems="flex-start"
                     spacing="1px"
                     ml="2"
                   >
-                    <Text fontSize="sm">Justina Clark</Text>
-                    <Text fontSize="xs" color="gray.600">
+                    <Text fontSize="sm">Justin Clark</Text>
+                    {/* <Text fontSize="xs" color="gray.600">
                       Admin
-                    </Text>
+                    </Text> */}
                   </VStack>
                   <Box display={{ base: "none", md: "flex" }}>
                     <FiChevronDown />

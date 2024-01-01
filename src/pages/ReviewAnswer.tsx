@@ -58,7 +58,7 @@ const ReviewAnswer = () => {
   const navigate = useNavigate();
   const [fillInWord, setFillInWord] = useState("");
   const [showWrongAnswer, setShowWrongAnswer] = useState(false);
-  const [isCheckMatch, setCheckIsMatch] = useState(false);
+
   const [index, setIndex] = useState(0);
   const [numberCorrectAnswews, setNumberCorrectAnswews] = useState(0);
   const [levelVocab, setLevelVocab] = React.useState<
@@ -82,6 +82,8 @@ const ReviewAnswer = () => {
       .then((response) => {
         console.log("getDataListReviewVocab.data", response.data);
         setVocabularyAnswer(response.data);
+        // cách lấy một phần từ trong mảng
+        // setVocabularyAnswer(response.data.slice(0, 1));
       });
   };
   React.useEffect(() => {
@@ -157,20 +159,20 @@ const ReviewAnswer = () => {
         const isMatch =
           vocabularies[index].vocabulary.content === fillInWord.trim();
         if (isMatch) {
-          setCheckIsMatch(true);
           setLevelForVocabularyReview(vocablary);
           UpdateLevelVocab();
           setNumberCorrectAnswews(numberCorrectAnswews + 1);
-          console.log("zzzz", isCheckMatch);
-          onSucces();
+          onSucces({
+            isCheckMatchParam: true,
+          });
         } else if (showWrongAnswer === true) {
-          onSucces();
+          onSucces({ isCheckMatchParam: false });
           setShowWrongAnswer(false);
         } else {
           setShowWrongAnswer(true);
         }
       } else {
-        onSucces();
+        onSucces({ isCheckMatchParam: false });
         setShowWrongAnswer(false);
       }
     }
@@ -179,20 +181,13 @@ const ReviewAnswer = () => {
   const handleNotRemembered = () => {
     setShowWrongAnswer(true);
   };
-  console.log("3", isCheckMatch);
-  const onSucces = () => {
-    console.log("33", isCheckMatch);
-
+  const onSucces = ({ isCheckMatchParam }: { isCheckMatchParam: boolean }) => {
     if (index == getTotalStep() - 1) {
-      console.log("333", isCheckMatch);
-      if (isCheckMatch) {
-        console.log("4", isCheckMatch);
+      if (isCheckMatchParam) {
         toast("Wow. Finish!");
         navigate(`/endofreview/${getTotalStep()}/${numberCorrectAnswews}`);
       } else {
-        console.log("5", isCheckMatch);
         setShowWrongAnswer(true);
-        console.log("showWrongAnswevoo", showWrongAnswer);
         if (showWrongAnswer == true) {
           toast("Wow. Finish!");
           navigate(`/endofreview/${getTotalStep()}/${numberCorrectAnswews}`);
@@ -204,7 +199,7 @@ const ReviewAnswer = () => {
   };
 
   return (
-    <Stack h="91vh">
+    <Stack h="92vh">
       <Stack>
         <CloseButton
           size="lg"
