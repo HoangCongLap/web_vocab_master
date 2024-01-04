@@ -14,6 +14,9 @@ import {
 import { useNavigate } from "react-router";
 import Nav from "../component/Nav";
 import Footer from "../component/Footer";
+import CallToActionWithVideo from "../component/HomePage/CallToActionWithVideo/CallToActionWithVideo";
+import GridBlurredBackdrop from "../component/HomePage/GridBlurredBackdrop/GridBlurredBackdrop";
+import SplitWithImage11 from "../component/HomePage/SplitWithImage11/SplitWithImage11";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -23,59 +26,61 @@ export default function HomePage() {
   return (
     <Stack height={500}>
       <Nav />
-      <Stack
-        as={Box}
-        textAlign={"center"}
-        spacing={{ base: 7, md: 10 }}
-        py={{ base: 20, md: 20 }}
-      >
-        <Heading
-          // fontWeight={600}
-          fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
-          lineHeight={"110%"}
-        >
-          Never give up <br />
-          <Text as={"span"} color={"green.400"}>
-            learning English
-          </Text>
-        </Heading>
-        <Text color={"gray.500"} fontSize={20}>
-          Ghi nhớ 1000 từ vựng trong 1 tháng
-          <br /> Học đúng thời điểm vàng giúp bạn học ít vẫn dễ dàng nhớ ngàn từ
-        </Text>
+      <Flex display={"table-column"}>
         <Stack
-          direction={"column"}
-          spacing={3}
-          align={"center"}
-          alignSelf={"center"}
-          position={"relative"}
+          as={Box}
+          textAlign={"center"}
+          spacing={{ base: 7, md: 10 }}
+          py={{ base: 20, md: 20 }}
         >
-          <Button
-            colorScheme={"green"}
-            bg={"green.400"}
-            rounded={"full"}
-            px={6}
-            _hover={{
-              bg: "green.500",
-            }}
-            onClick={handleOnclickGetStarted}
+          <Heading
+            // fontWeight={600}
+            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+            lineHeight={"110%"}
           >
-            Bắt đầu
-          </Button>
+            Never give up <br />
+            <Text as={"span"} color={"green.400"}>
+              learning English
+            </Text>
+          </Heading>
+          <Text color={"gray.500"} fontSize={20}>
+            Ghi nhớ 1000 từ vựng trong 1 tháng
+            <br /> Học đúng thời điểm vàng giúp bạn học ít vẫn dễ dàng nhớ ngàn
+            từ
+          </Text>
+          <Stack
+            direction={"column"}
+            spacing={3}
+            align={"center"}
+            alignSelf={"center"}
+            position={"relative"}
+          >
+            <Button
+              colorScheme={"green"}
+              bg={"green.400"}
+              rounded={"full"}
+              px={6}
+              _hover={{
+                bg: "green.500",
+              }}
+              onClick={handleOnclickGetStarted}
+            >
+              Bắt đầu
+            </Button>
 
-          <Box>
-            <Icon
-              as={Arrow}
-              color={useColorModeValue("gray.800", "gray.300")}
-              w={71}
-              position={"absolute"}
-              right={-71}
-              top={"10px"}
-            />
-          </Box>
+            <Box>
+              <Icon
+                as={Arrow}
+                color={useColorModeValue("gray.800", "gray.300")}
+                w={71}
+                position={"absolute"}
+                right={-71}
+                top={"10px"}
+              />
+            </Box>
+          </Stack>
         </Stack>
-      </Stack>
-      <Flex
+        {/* <Flex
         marginLeft={60}
         flexDirection="row"
         justifyContent="center"
@@ -107,8 +112,11 @@ export default function HomePage() {
           <li>Tiếng Anh du lịch</li>
           <li>Tiếng Anh CNTT</li>
         </Box>
+      </Flex> */}
+        <CallToActionWithVideo />
+        <SplitWithImage11 />
+        <GridBlurredBackdrop />
       </Flex>
-
       <Footer />
     </Stack>
   );

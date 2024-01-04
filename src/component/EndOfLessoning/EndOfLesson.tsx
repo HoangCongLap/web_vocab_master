@@ -24,13 +24,13 @@ const EndOfLesson = () => {
             color: "#FFCB08",
             fontSize: "24px",
             fontWeight: "Bold",
-            marginTop: "30px",
+            marginTop: "80px",
           }}
         >
           Bạn đã học 10 từ
         </p>
         <Image
-          marginTop="30px"
+          marginTop="40px"
           borderRadius="20px"
           boxSize="300px"
           src={Book}

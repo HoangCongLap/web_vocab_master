@@ -20,7 +20,8 @@ import EndOfReviewAnswer from "./component/EndOfReviewAnswer/EndOfReviewAnswer";
 import NoteBook from "./pages/NoteBook";
 import LoaderByTimlmit from "./component/LoaderByTimlmit/LoaderByTimlmit";
 import LabCourse from "./component/LabCourse/LabCourse";
-import ResetPassword from "./component/ForgotPassword/ForgotPassword";
+import ResetPassword from "./component/ResetPassword/ResetPassword";
+import Profile from "./component/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -120,8 +121,12 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "forgot-password",
+    path: "ResetPassword",
     element: <ResetPassword />,
+  },
+  {
+    path: "profile",
+    element: <Profile />,
   },
 ]);
 function App() {
