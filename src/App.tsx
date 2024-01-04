@@ -20,6 +20,7 @@ import EndOfReviewAnswer from "./component/EndOfReviewAnswer/EndOfReviewAnswer";
 import NoteBook from "./pages/NoteBook";
 import LoaderByTimlmit from "./component/LoaderByTimlmit/LoaderByTimlmit";
 import LabCourse from "./component/LabCourse/LabCourse";
+import ResetPassword from "./component/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
         <LoaderByTimlmit />
       </Hstack>
     ),
+  },
+  {
+    path: "forgot-password",
+    element: <ResetPassword />,
   },
 ]);
 function App() {

@@ -62,7 +62,7 @@ export default function Footer() {
       bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
     >
-      <Container as={Stack} maxW={"6xl"} py={10}>
+      <Container as={Stack} maxW={"6xl"} py={10} height={200}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
           <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
@@ -96,7 +96,7 @@ export default function Footer() {
           <Stack align={"flex-start"}>
             <ListHeader>Legal</ListHeader>
             <Box as="a" href={"#"}>
-              Cookies Policy
+              Policy
             </Box>
             <Box as="a" href={"#"}>
               Privacy Policy

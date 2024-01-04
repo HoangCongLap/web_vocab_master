@@ -127,7 +127,16 @@ export default function Login() {
                 justify={"space-between"}
               >
                 <Checkbox>Remember me</Checkbox>
-                <Text color={"blue.400"}>Forgot password?</Text>
+                <Text
+                  color={"blue.400"}
+                  onClick={() => navigate("/forgot-password")}
+                  _hover={{
+                    textDecoration: "underline",
+                    cursor: "pointer",
+                  }}
+                >
+                  Forgot password?
+                </Text>
               </Stack>
               <Button
                 bg={"blue.400"}

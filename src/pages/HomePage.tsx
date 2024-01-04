@@ -9,11 +9,11 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  Flex,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import Nav from "../component/Nav";
 import Footer from "../component/Footer";
-import LoaderByTimlmit from "../component/LoaderByTimlmit/LoaderByTimlmit";
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -75,6 +75,40 @@ export default function HomePage() {
           </Box>
         </Stack>
       </Stack>
+      <Flex
+        marginLeft={60}
+        flexDirection="row"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <img
+          style={{ width: "500px", height: "500px" }}
+          src="https://mochidemy.com/blog/wp-content/uploads/2021/09/mochi-course-1.jpg"
+        ></img>
+        <Box marginLeft={30}>
+          <p style={{ fontWeight: "bold" }}>
+            Có 20 khóa học, phục vụ cho nhiều mục đích học tập khác nhau
+          </p>
+          <li>1000 từ vựng cơ bản New TOEIC IELTS Cơ bản</li>
+          <li>IELTS Nâng cao Cụm từ</li>
+          <li>IELTS cơ bản Phrasal Verb & Idiom</li>
+          <li>Cụm từ ôn thi THPT QG</li>
+          <li>Tiếng Anh lớp 12</li>
+          <li>Tiếng Anh lớp 12 mới</li>
+          <li>Tiếng Anh lớp 11</li>
+          <li>Tiếng Anh lớp 11 mới</li>
+          <li>Tiếng Anh lớp 10</li>
+          <li>Tiếng Anh lớp 10 mới</li>
+          <li>Tiếng Anh lớp 9</li>
+          <li>Tiếng Anh lớp 8</li>
+          <li>Tiếng Anh lớp 7</li>
+          <li>Tiếng Anh lớp 6</li>
+          <li>Tiếng Anh công sở</li>
+          <li>Tiếng Anh du lịch</li>
+          <li>Tiếng Anh CNTT</li>
+        </Box>
+      </Flex>
+
       <Footer />
     </Stack>
   );
