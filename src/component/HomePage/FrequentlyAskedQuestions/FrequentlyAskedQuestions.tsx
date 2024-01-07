@@ -31,10 +31,9 @@ export default function FrequentlyAskedQuestions() {
               </AccordionButton>
             </h2>
             <AccordionPanel pb={4}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              Học từ vựng: Bạn có thể học từ vựng theo từng chủ đề, từ những chủ
+              đề quen thuộc như: Family, School, Sport, Masterchef, Games,
+              Hobbies, Work, Emotion,…
             </AccordionPanel>
           </AccordionItem>
 

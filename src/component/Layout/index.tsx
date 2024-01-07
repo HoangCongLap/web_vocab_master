@@ -31,9 +31,6 @@ import axios from "axios";
 import { OverViewVocab } from "../../data/OverViewVocab";
 import "./index.css";
 import { getAuthV2, useAuth } from "../../firebaseConfig";
-import Profile from "../Profile/Profile";
-import AccountSettings from "../AlertDialog/AccountSettings";
-
 interface Props {
   children: React.ReactNode;
 }
@@ -64,11 +61,11 @@ const NavLink = (props: Props) => {
 };
 import {
   Modal,
-  ModalOverlay,
   ModalContent,
   ModalCloseButton,
   ModalBody,
 } from "@chakra-ui/react";
+import AccountSettings from "../AlertDialog/AccountSettings";
 
 interface Props {
   children: React.ReactNode;
@@ -86,6 +83,7 @@ export default function Layout(props: Props) {
       overviewVocabs: [],
       practiceVocabCount: 0,
     });
+  // lấy số tự vựng cần ôn tập
   const getDataOverView = async () => {
     const token = await authv2?.currentUser?.getIdToken();
     axios
@@ -128,28 +126,52 @@ export default function Layout(props: Props) {
     typeof auth?.currentUser?.email === "string"
   ) {
     username = auth?.currentUser?.email.split("@")[0];
+    if (username.length > 7) {
+      username = username.substring(0, 7);
+    }
   }
 
   return (
     <>
-      <Modal
-        isOpen={showAccountSettings}
-        onClose={() => setShowAccountSettings(false)}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalBody>
-            <AccountSettings />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <HStack>
+        <Modal
+          isOpen={showAccountSettings}
+          onClose={() => setShowAccountSettings(false)}
+        >
+          <ModalContent
+            style={{
+              width: "100%",
+              maxWidth: "700px",
+              height: "780px",
+              marginBottom: "0",
+              marginTop: "0",
+              margin: "20px auto",
+            }}
+          >
+            <ModalCloseButton />
+            <ModalBody>
+              <div
+              // style={{
+              //   width: "100%",
+              //   height: "100%",
+              //   maxWidth: "500px",
+              //   maxHeight: "300px",
+              // }}
+              >
+                <AccountSettings />
+              </div>
+            </ModalBody>
+          </ModalContent>
+        </Modal>
+      </HStack>
+
       <Box
         bg={useColorModeValue("green.400", "gray.400")}
         px={4}
         position="sticky"
         top="0"
         zIndex="100"
+        boxShadow="0 2px 0 0 #B5B5B5"
       >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
@@ -255,7 +277,7 @@ export default function Layout(props: Props) {
                       marginRight={"20px"}
                     >
                       {/* <Text fontSize="sm">Justin Clark</Text> */}
-                      <Text fontSize="18px">{username}</Text>
+                      <Text fontSize="18px">{username}...</Text>
                       {/* <Text fontSize="xs" color="gray.600">
                       Admin
                     </Text> */}
@@ -269,8 +291,7 @@ export default function Layout(props: Props) {
                   bg={useColorModeValue("white", "gray.900")}
                   borderColor={useColorModeValue("gray.200", "gray.700")}
                 >
-                  <MenuItem onClick={handleOnclickRestpass}>Profile</MenuItem>
-                  <MenuItem>Settings</MenuItem>
+                  <MenuItem onClick={handleOnclickRestpass}>Settings</MenuItem>
                   <MenuItem>Billing</MenuItem>
                   <MenuDivider />
                   <MenuItem onClick={handleOnclickLogin}>Sign out</MenuItem>

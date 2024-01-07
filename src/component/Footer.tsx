@@ -131,9 +131,7 @@ export default function Footer() {
           justify={{ md: "space-between" }}
           align={{ md: "center" }}
         >
-          <Text>
-            © {new Date().getFullYear()} Chakra Templates. All rights reserved
-          </Text>
+          <Text>© {new Date().getFullYear()} VocabMaster</Text>
           <Stack direction={"row"} spacing={6}>
             <SocialButton label={"Twitter"} href={"#"}>
               <FaTwitter />

@@ -59,7 +59,8 @@ export default function HomePage() {
               colorScheme={"green"}
               bg={"green.400"}
               rounded={"full"}
-              px={6}
+              px={20}
+              py={6}
               _hover={{
                 bg: "green.500",
               }}

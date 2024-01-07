@@ -6,6 +6,7 @@
 .btn-5:before {
     border: 0 solid;
     box-sizing: border-box;
+  
 }
 
 .btn-5 {
@@ -25,6 +26,8 @@
     -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
     padding: 0;
     text-transform: uppercase;
+    box-shadow: 0 60px 20px rgba(185, 14, 14, 0.3);
+   
 }
 
 .btn-5:disabled {

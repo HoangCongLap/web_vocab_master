@@ -43,11 +43,11 @@ const NoteBook = () => {
     vocabulary.content.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log("zzz", vocabularies);
+  // console.log("zzz", vocabularies);
 
-  if (vocabularies.length > 0) {
-    console.log("xxx", vocabularies[0].content);
-  }
+  // if (vocabularies.length > 0) {
+  //   console.log("xxx", vocabularies[0].content);
+  // }
 
   const handleOnclickVocabByLevel = (level: LevelVocablaryProps) => {
     getDataVocabByLevel(level);

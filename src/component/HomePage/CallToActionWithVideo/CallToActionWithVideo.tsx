@@ -5,7 +5,6 @@ import {
   Box,
   Heading,
   Text,
-  Button,
   Image,
   Icon,
   IconButton,
@@ -43,23 +42,21 @@ export default function CallToActionWithVideo() {
                 zIndex: -1,
               }}
             >
-              Write once,
+              Giới thiệu,
             </Text>
             <br />
             <Text as={"span"} color={"red.400"}>
-              use everywhere!
+              về cách sử dụng!
             </Text>
           </Heading>
           <Text color={"gray.500"}>
-            Snippy is a rich coding snippets app that lets you create your own
-            code snippets, categorize them, and even sync them in the cloud so
-            you can use them anywhere. All that is free!
+            Tham gia thử thách 14 ngày để hình thành thói quen học.
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
           >
-            <Button
+            {/* <Button
               rounded={"full"}
               size={"lg"}
               fontWeight={"normal"}
@@ -78,7 +75,7 @@ export default function CallToActionWithVideo() {
               leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
             >
               How It Works
-            </Button>
+            </Button> */}
           </Stack>
         </Stack>
         <Flex
