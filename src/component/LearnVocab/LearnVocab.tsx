@@ -262,7 +262,7 @@ const PackageTier = ({
               bgColor={useColorModeValue(bgColorLight, bgColorDark)}
               onClick={handleOnclickGetStartLearn}
             >
-              Get Started
+              Bắt Đầu
             </Button>
           </Stack>
         </Stack>
