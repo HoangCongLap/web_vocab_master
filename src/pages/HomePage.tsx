@@ -21,7 +21,7 @@ import SplitWithImage11 from "../component/HomePage/SplitWithImage11/SplitWithIm
 export default function HomePage() {
   const navigate = useNavigate();
   const handleOnclickGetStarted = () => {
-    navigate("/lessonvocab/1");
+    navigate("/login");
   };
   return (
     <Stack height={500}>

@@ -292,7 +292,7 @@ export default function Layout(props: Props) {
                   borderColor={useColorModeValue("gray.200", "gray.700")}
                 >
                   <MenuItem onClick={handleOnclickRestpass}>Settings</MenuItem>
-                  <MenuItem>Billing</MenuItem>
+                  {/* <MenuItem>Billing</MenuItem> */}
                   <MenuDivider />
                   <MenuItem onClick={handleOnclickLogin}>Sign out</MenuItem>
                 </MenuList>
