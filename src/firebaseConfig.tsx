@@ -1,8 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { FirebaseApp, initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import {
+  browserPopupRedirectResolver,
+  browserSessionPersistence,
+  getAuth,
+  initializeAuth,
+} from "firebase/auth";
 
 let auth;
+
 let firebaseApp: FirebaseApp;
 export const setupFirebase = () => {
   try {
@@ -21,6 +27,7 @@ export const setupFirebase = () => {
     console.error({ error });
   }
 };
+
 export const useAuth = () => {
   if (firebaseApp) {
     auth = getAuth(firebaseApp);

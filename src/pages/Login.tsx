@@ -19,8 +19,14 @@ import { useNavigate } from "react-router";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { signInWithEmailAndPassword } from "firebase/auth/cordova";
+
 import { useAuth } from "../firebaseConfig";
+import {
+  Auth,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+} from "firebase/auth";
 
 // const account: Account[] = [
 //   {
@@ -43,7 +49,7 @@ export default function Login() {
       toast.error("Vui lòng nhập email và mật khẩu.");
       return;
     } else {
-      signInWithEmailAndPassword(auth, email, password)
+      signInWithEmailAndPassword(auth as Auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
 
@@ -64,6 +70,16 @@ export default function Login() {
 
           console.log(errorCode, errorMessage);
         });
+    }
+  };
+
+  const handleClick = () => {
+    console.log("auth", auth);
+    if (auth) {
+      const provider = new GoogleAuthProvider();
+      auth.languageCode = "en";
+
+      signInWithRedirect(auth, provider);
     }
   };
 
@@ -163,6 +179,9 @@ export default function Login() {
                 </div>
               </Stack>
               {/* những icon email,fb,... */}
+              <li>
+                <button onClick={handleClick}>FaFacebook</button>
+              </li>
               <SocialMediaButtons />
             </Stack>
           </Stack>

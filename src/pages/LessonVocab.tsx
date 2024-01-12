@@ -3,7 +3,7 @@ import { Heading, Stack, VStack } from "@chakra-ui/react";
 import LearnNewWords from "../component/LearnVocab/LearnVocab";
 import { useParams } from "react-router";
 import { getAuthV2 } from "../firebaseConfig";
-import { Lesson } from "../data/Lesson";
+// import { Lesson } from "../data/Lesson";
 import axios from "axios";
 import { Course } from "../data/Course";
 

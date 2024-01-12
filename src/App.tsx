@@ -21,6 +21,7 @@ import NoteBook from "./pages/NoteBook";
 import LoaderByTimlmit from "./component/LoaderByTimlmit/LoaderByTimlmit";
 import LabCourse from "./component/LabCourse/LabCourse";
 import Profile from "./component/Profile/Profile";
+import Logincss from "./pages/Logincss/Logincss";
 
 const router = createBrowserRouter([
   {
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
   {
     path: "profile",
     element: <Profile />,
+  },
+  {
+    path: "logg",
+    element: <Logincss />,
   },
 ]);
 function App() {
