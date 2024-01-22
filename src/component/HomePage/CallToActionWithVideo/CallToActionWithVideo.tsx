@@ -80,7 +80,7 @@ export default function CallToActionWithVideo() {
             width={"full"}
             overflow={"hidden"}
           >
-            <IconButton
+            {/* <IconButton
               aria-label={"Play Button"}
               variant={"ghost"}
               _hover={{ bg: "transparent" }}
@@ -91,7 +91,8 @@ export default function CallToActionWithVideo() {
               left={"50%"}
               top={"50%"}
               transform={"translateX(-50%) translateY(-50%)"}
-            />
+              bg={"red"}
+            /> */}
             {/* <Image
               alt={"Hero Image"}
               fit={"cover"}
@@ -102,9 +103,13 @@ export default function CallToActionWithVideo() {
                 "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
               }
             /> */}
-            <video width="100%" height="100%" controls>
-              <source src="https://youtu.be/vsUOs2lA6X4" type="video/mp4" />
-            </video>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/vsUOs2lA6X4"
+              // frameborder="0"
+              // allowfullscreen
+            ></iframe>
           </Box>
         </Flex>
       </Stack>
