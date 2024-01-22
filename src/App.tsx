@@ -10,7 +10,6 @@ import Hstack from "./component/Stack/Hstack";
 import BarChart from "./component/Chart/BarChart";
 import ReviewAnswer from "./pages/ReviewAnswer";
 import BoxAnswer from "./component/Boxx/BoxAnswer";
-import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useEffect, useState } from "react";
 import { setupFirebase } from "./firebaseConfig";
@@ -21,7 +20,7 @@ import NoteBook from "./pages/NoteBook";
 import LoaderByTimlmit from "./component/LoaderByTimlmit/LoaderByTimlmit";
 import LabCourse from "./component/LabCourse/LabCourse";
 import Profile from "./component/Profile/Profile";
-import Logincss from "./pages/Logincss/Logincss";
+import Login from "./pages/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -125,10 +124,10 @@ const router = createBrowserRouter([
     path: "profile",
     element: <Profile />,
   },
-  {
-    path: "logg",
-    element: <Logincss />,
-  },
+  // {
+  //   path: "logg",
+  //   element: <Logincss />,
+  // },
 ]);
 function App() {
   const [indexState, setIndexState] = useState(0);

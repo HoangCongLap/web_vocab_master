@@ -15,7 +15,7 @@ import {
 import { useState } from "react";
 // import { useNavigate } from "react-router";
 import Nav from "../component/Nav";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { Auth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "../firebaseConfig";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router";
@@ -31,7 +31,7 @@ export default function Signup() {
       return;
     } else {
       if (password == confirmPassword) {
-        await createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth as Auth, email, password)
           .then((userCredential) => {
             const user = userCredential.user;
             console.log(user);

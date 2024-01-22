@@ -56,11 +56,16 @@ const EndOfReviewAnswer = () => {
           <CircularProgress
             max={100}
             size={200}
-            value={(100 / length) * value}
+            value={
+              (100 / parseInt(length as string)) * parseInt(value as string)
+            }
             color="green.400"
           >
             <CircularProgressLabel color={"green.400"}>
-              {Math.round((100 / length) * value)}%
+              {Math.round(
+                (100 / parseInt(length as string)) * parseInt(value as string)
+              )}
+              %
             </CircularProgressLabel>
           </CircularProgress>
         </Stack>

@@ -1,5 +1,6 @@
 "use client";
 
+import { EmailIcon } from "@chakra-ui/icons";
 import { FaTwitter, FaFacebook } from "react-icons/fa";
 
 export default function SocialMediaButtons() {
@@ -14,19 +15,13 @@ export default function SocialMediaButtons() {
       }}
     >
       <li>
-        <a href="https://www.facebook.com">
-          <FaFacebook />
-        </a>
+        <EmailIcon />
       </li>
       <li>
-        <a href="https://www.facebook.com">
-          <FaFacebook />
-        </a>
+        <FaFacebook />
       </li>
       <li>
-        <a href="https://www.twitter.com">
-          <FaTwitter />
-        </a>
+        <FaTwitter />
       </li>
     </ul>
   );

@@ -130,7 +130,7 @@ const Learning: React.FC = () => {
     // const date = new Date();
     const token = await auth?.currentUser?.getIdToken();
     const list: LearningProgess[] = [];
-    for (const [key, value] of Object.entries(levelVocab)) {
+    for (const [, value] of Object.entries(levelVocab)) {
       list.push({
         level: value.level,
         vocabId: value.id,
@@ -325,7 +325,10 @@ const Learning: React.FC = () => {
           <HStack marginTop={"10px"}>
             key={index}
             <UseSound vocabulary={vocabularies[getVocabIndex()]} />
-            <Slow vocabulary={vocabularies[getVocabIndex()]} />
+            <Slow
+              key={getVocabIndex()}
+              vocabulary={vocabularies[getVocabIndex()]}
+            />
           </HStack>
           {renderContent()}
 

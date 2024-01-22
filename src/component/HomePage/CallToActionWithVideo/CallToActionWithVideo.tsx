@@ -5,7 +5,6 @@ import {
   Box,
   Heading,
   Text,
-  Image,
   Icon,
   IconButton,
   createIcon,
@@ -55,28 +54,7 @@ export default function CallToActionWithVideo() {
           <Stack
             spacing={{ base: 4, sm: 6 }}
             direction={{ base: "column", sm: "row" }}
-          >
-            {/* <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              colorScheme={"red"}
-              bg={"red.400"}
-              _hover={{ bg: "red.500" }}
-            >
-              Get started
-            </Button>
-            <Button
-              rounded={"full"}
-              size={"lg"}
-              fontWeight={"normal"}
-              px={6}
-              leftIcon={<PlayIcon h={4} w={4} color={"gray.300"} />}
-            >
-              How It Works
-            </Button> */}
-          </Stack>
+          ></Stack>
         </Stack>
         <Flex
           flex={1}
@@ -114,7 +92,7 @@ export default function CallToActionWithVideo() {
               top={"50%"}
               transform={"translateX(-50%) translateY(-50%)"}
             />
-            <Image
+            {/* <Image
               alt={"Hero Image"}
               fit={"cover"}
               align={"center"}
@@ -123,7 +101,11 @@ export default function CallToActionWithVideo() {
               src={
                 "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=800&q=80"
               }
-            />
+            /> */}
+            <video width="100%" height="100%" controls>
+              <source src="https://youtu.be/vsUOs2lA6X4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </Box>
         </Flex>
       </Stack>

@@ -24,12 +24,12 @@ export default function UserProfile() {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPasswordForm, setShowPasswordForm] = useState(false);
-  const currentDate = new Date();
-  const formattedDate = currentDate.toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  });
+  // const currentDate = new Date();
+  // const formattedDate = currentDate.toLocaleDateString("en-GB", {
+  //   day: "2-digit",
+  //   month: "2-digit",
+  //   year: "numeric",
+  // });
 
   let username = null;
   const auth = useAuth();
@@ -98,7 +98,7 @@ export default function UserProfile() {
           toast.error("Xác nhận mật khẩu không khớp.");
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Lỗi khi cập nhật mật khẩu:", error.message);
       toast.error("Đã xảy ra lỗi khi cập nhật mật khẩu. Vui lòng thử lại sau.");
     }

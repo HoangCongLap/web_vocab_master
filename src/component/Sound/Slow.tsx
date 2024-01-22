@@ -1,4 +1,5 @@
-import React from "react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import useSound from "use-sound";
 import { Button, Icon } from "@chakra-ui/react";
 import { MdSlowMotionVideo } from "react-icons/md";
@@ -7,14 +8,12 @@ interface Props {
   vocabulary: Vocabulary;
 }
 const Slow = ({ vocabulary }: Props) => {
-  const [playbackRate, setPlaybackRate] = React.useState(0.5);
   const [play] = useSound(vocabulary.audio, {
-    playbackRate,
+    playbackRate: 0.5,
     interrupt: true,
   });
 
   const handleClick = () => {
-    setPlaybackRate(playbackRate);
     play();
   };
 

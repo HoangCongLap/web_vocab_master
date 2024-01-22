@@ -1,3 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
 import useSound from "use-sound";
 import { Button, Icon } from "@chakra-ui/react";
 import { IoVolumeHighSharp } from "react-icons/io5";

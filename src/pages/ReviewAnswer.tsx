@@ -100,7 +100,7 @@ const ReviewAnswer = () => {
     // const date = new Date();
     const token = await auth?.currentUser?.getIdToken();
     const list: LearningProgess[] = [];
-    for (const [key, value] of Object.entries(levelVocab)) {
+    for (const [, value] of Object.entries(levelVocab)) {
       list.push({
         level: value.level,
         vocabId: value.id,

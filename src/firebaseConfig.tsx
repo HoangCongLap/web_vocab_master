@@ -1,11 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { FirebaseApp, initializeApp } from "firebase/app";
-import {
-  browserPopupRedirectResolver,
-  browserSessionPersistence,
-  getAuth,
-  initializeAuth,
-} from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 let auth;
 
