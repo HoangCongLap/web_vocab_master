@@ -6,8 +6,6 @@
 
 ## 2. Sơ đồ chức năng hệ thống:
 
-![example](../web_vocab_master/imgReadme/SoDoHeThong.jpg)
-
 ## 3. Thiết kế giao diện:
 
 ### 3.1 Màn hình trang chủ
