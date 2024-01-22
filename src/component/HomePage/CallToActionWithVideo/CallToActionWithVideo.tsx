@@ -104,7 +104,7 @@ export default function CallToActionWithVideo() {
             /> */}
             <video width="100%" height="100%" controls>
               <source src="https://youtu.be/vsUOs2lA6X4" type="video/mp4" />
-              Your browser does not support the video tag.
+              {/* Your browser does not support the video tag. */}
             </video>
           </Box>
         </Flex>
