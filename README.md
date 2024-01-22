@@ -53,7 +53,7 @@
 
 #### 3.6.3 Màn hình hiển thị điền từ
 
-![example](../web_vocab_master/imgReadme/TuVung3.png)
+![example](./imgReadme/TuVung3.png)
 
 - Giao diện hệ thống yêu cầu người dùng học phải nghe và viết lại từ. Người dùng sẽ nghe và viết lại từ vào ô trống. Sau khi nghe và điền vào ô trống, người dùng nhấp vào “Kiểm tra”. Nếu đúng, hệ thống sẽ chuyển sang từ vựng tiếp theo. Nếu sai, hệ thống hiển thị đáp án trong một hình chữ nhật màu đỏ (như trên hình).
 
@@ -78,5 +78,3 @@
 ## 4. Video
 
 Youtube: https://youtu.be/vsUOs2lA6X4
-
-## lap
