@@ -31,18 +31,18 @@ import axios from "axios";
 import { OverViewVocab } from "../../data/OverViewVocab";
 import "./index.css";
 import { getAuthV2, useAuth } from "../../firebaseConfig";
-interface Props {
+interface NavLinkProps {
   children: React.ReactNode;
+  href: string;
 }
 
-// const Links = ["Ôn tập", "Học từ mới ", "Sổ tay", "Khóa học"];
-
-const NavLink = (props: Props) => {
-  const { children } = props;
+const NavLink = (props: NavLinkProps) => {
+  const { children, href } = props;
 
   return (
     <Box
       as="a"
+      href={href}
       px={3}
       py={3}
       rounded={"md"}
@@ -53,7 +53,6 @@ const NavLink = (props: Props) => {
         textDecoration: "none",
         bg: useColorModeValue("green.200", "green.700"),
       }}
-      href={"#"}
     >
       {children}
     </Box>
@@ -300,19 +299,20 @@ export default function Layout(props: Props) {
             </div>
           </Flex>
         </Flex>
-
+        {/* thu gọn màn hình lại mở ra các mục */}
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
               {pageLinks.map((link) => (
-                <NavLink key={link.id}>{link.text}</NavLink>
+                <NavLink key={link.id} href={link.href}>
+                  {link.text}
+                </NavLink>
               ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
-      {/* {showAccountSettings && <AccountSettings />} */}
-      {/* <DrawerCourse {...courseDisclouse} btnRef={btnRef} /> */}
+
       <Box>{children}</Box>
     </>
   );

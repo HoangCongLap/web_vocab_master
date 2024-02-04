@@ -7,7 +7,7 @@ import imgLoginUser from "../../img/loginUser.jpg";
 import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithRedirect,
+  signInWithPopup,
 } from "firebase/auth";
 
 import { useNavigate } from "react-router";
@@ -57,8 +57,21 @@ const Login = () => {
     if (auth) {
       const provider = new GoogleAuthProvider();
       auth.languageCode = "en";
-      signInWithRedirect(auth, provider);
-      navigate("/review");
+      // signInWithRedirect(auth, provider);
+      // navigate("/review");
+      signInWithPopup(auth, provider)
+        .then((result: any) => {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential?.accessToken;
+
+          const user = result.user;
+
+          console.log("user", user, token);
+          navigate("/review");
+        })
+        .catch((error: any) => {
+          console.log("login error", error);
+        });
     }
   };
   return (
